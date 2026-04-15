@@ -86,20 +86,32 @@ export function renderHeader(activePage) {
   `
 }
 
-export function renderHero({ eyebrow, title, intro, supportingCard = '', stats = [], actions = [] }) {
+export function renderHero({ eyebrow = '', title, intro = '', supportingCard = '', stats = [], actions = [] }) {
   const hasSupportingCard = supportingCard.trim().length > 0
+  const hasEyebrow = eyebrow.trim().length > 0
+  const hasIntro = intro.trim().length > 0
 
   return `
     <section class="px-5 pb-8 pt-6 lg:px-6 lg:pb-12 lg:pt-10">
       <div class="mx-auto grid max-w-7xl gap-8 ${hasSupportingCard ? 'lg:grid-cols-[1.08fr_0.92fr] lg:items-end' : ''}">
         <div class="border-b border-stone-300 pb-8">
-          <p class="text-xs font-semibold uppercase tracking-[0.32em] text-emerald-800">${eyebrow}</p>
-          <h1 class="mt-5 max-w-[13ch] text-4xl font-semibold tracking-tight text-stone-950 sm:text-5xl lg:text-6xl">
+          ${
+            hasEyebrow
+              ? `<p class="text-xs font-semibold uppercase tracking-[0.32em] text-emerald-800">${eyebrow}</p>`
+              : ''
+          }
+          <h1 class="${hasEyebrow ? 'mt-5' : ''} max-w-[13ch] text-4xl font-semibold tracking-tight text-stone-950 sm:text-5xl lg:text-6xl">
             ${title}
           </h1>
-          <p class="mt-5 max-w-3xl text-lg leading-8 text-stone-700">
-            ${intro}
-          </p>
+          ${
+            hasIntro
+              ? `
+                <p class="mt-5 max-w-3xl text-lg leading-8 text-stone-700">
+                  ${intro}
+                </p>
+              `
+              : ''
+          }
 
           ${
             actions.length > 0

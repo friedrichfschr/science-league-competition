@@ -176,80 +176,88 @@ function renderFilters() {
   return `
     <aside class="lg:sticky lg:top-24">
       <div class="border-y border-stone-300 py-5">
-        <div class="flex items-center gap-3">
-          <button
-            type="button"
-            data-action="toggle-filters"
-            aria-expanded="${state.filtersOpen ? 'true' : 'false'}"
-            class="flex min-w-0 flex-1 items-center justify-between gap-3 rounded-2xl border border-stone-300 bg-white px-4 py-3 text-left transition hover:border-stone-400 hover:bg-stone-50"
-          >
-            <div>
-              <p class="text-sm font-semibold text-stone-950">Filter</p>
-              <p class="mt-1 text-sm text-stone-600">${getActiveFilterCount()} aktiv</p>
-            </div>
-            <span class="text-sm font-medium text-stone-600">${state.filtersOpen ? 'Schließen' : 'Öffnen'}</span>
-          </button>
+        <div class="rounded-2xl border border-stone-300 bg-white px-4 py-3">
+          <div class="flex items-center gap-3">
+            <button
+              type="button"
+              data-action="toggle-filters"
+              aria-expanded="${state.filtersOpen ? 'true' : 'false'}"
+              class="flex min-w-0 flex-1 items-center justify-between gap-3 text-left transition"
+            >
+              <div>
+                <p class="text-sm text-stone-600">${getActiveFilterCount()} aktiv</p>
+              </div>
+              <span class="text-sm font-medium text-stone-700">${state.filtersOpen ? 'Schließen' : 'Filter öffnen'}</span>
+            </button>
+            ${
+              getActiveFilterCount() > 0
+                ? '<button type="button" data-action="clear-filters" class="shrink-0 rounded-full border border-stone-300 px-3 py-2 text-sm font-medium text-stone-700 transition hover:border-stone-400 hover:bg-stone-50">Zurücksetzen</button>'
+                : ''
+            }
+          </div>
+
           ${
-            getActiveFilterCount() > 0
-              ? '<button type="button" data-action="clear-filters" class="shrink-0 text-sm font-medium text-stone-600 transition hover:text-stone-950">Zurücksetzen</button>'
+            state.filtersOpen
+              ? `
+                <div class="mt-6 border-t border-stone-200 pt-6">
+                  <p class="text-xs font-semibold uppercase tracking-[0.28em] text-stone-500">Sortierung</p>
+                  <select id="sort-select" class="mt-3 w-full rounded-2xl border border-stone-300 bg-stone-50 px-4 py-3 text-sm text-stone-900 outline-none transition focus:border-emerald-400 focus:bg-white focus:ring-4 focus:ring-emerald-100">
+                    ${SORT_OPTIONS.map((option) => `<option value="${option.value}" ${state.sort === option.value ? 'selected' : ''}>${option.label}</option>`).join('')}
+                  </select>
+                </div>
+
+                <div class="mt-6 border-t border-stone-200 pt-6">
+                  <p class="text-xs font-semibold uppercase tracking-[0.28em] text-stone-500">Kategorie</p>
+                  <div class="mt-3 flex flex-wrap gap-2 lg:flex-col">
+                    ${productCategories
+                      .map(
+                        (category) => `
+                          <button
+                            type="button"
+                            data-action="set-category"
+                            data-value="${category}"
+                            class="rounded-full border px-4 py-2 text-sm font-medium transition ${
+                              state.category === category
+                                ? 'border-stone-950 bg-stone-950 text-white'
+                                : 'border-stone-300 bg-white text-stone-700 hover:border-stone-400 hover:bg-stone-100'
+                            }"
+                          >
+                            ${category}
+                          </button>
+                        `,
+                      )
+                      .join('')}
+                  </div>
+                </div>
+
+                <div class="mt-6 border-t border-stone-200 pt-6">
+                  <p class="text-xs font-semibold uppercase tracking-[0.28em] text-stone-500">Bestand</p>
+                  <div class="mt-3 grid gap-2">
+                    ${STOCK_FILTERS
+                      .map(
+                        (filter) => `
+                          <button
+                            type="button"
+                            data-action="set-stock"
+                            data-value="${filter.value}"
+                            class="flex items-center justify-between rounded-2xl border px-4 py-3 text-left text-sm transition ${
+                              state.stock === filter.value
+                                ? 'border-emerald-300 bg-emerald-50 text-emerald-900'
+                                : 'border-stone-300 bg-white text-stone-700 hover:border-stone-400 hover:bg-stone-100'
+                            }"
+                          >
+                            <span>${filter.label}</span>
+                            <span class="text-xs uppercase tracking-[0.2em]">${filter.value === 'Alle' ? 'ALL' : filter.value}</span>
+                          </button>
+                        `,
+                      )
+                      .join('')}
+                  </div>
+                </div>
+              `
               : ''
           }
         </div>
-
-        ${
-          state.filtersOpen
-            ? `
-              <div class="mt-6 border-t border-stone-200 pt-6">
-                <p class="text-xs font-semibold uppercase tracking-[0.28em] text-stone-500">Kategorie</p>
-                <div class="mt-3 flex flex-wrap gap-2 lg:flex-col">
-                  ${productCategories
-                    .map(
-                      (category) => `
-                        <button
-                          type="button"
-                          data-action="set-category"
-                          data-value="${category}"
-                          class="rounded-full border px-4 py-2 text-sm font-medium transition ${
-                            state.category === category
-                              ? 'border-stone-950 bg-stone-950 text-white'
-                              : 'border-stone-300 bg-white text-stone-700 hover:border-stone-400 hover:bg-stone-100'
-                          }"
-                        >
-                          ${category}
-                        </button>
-                      `,
-                    )
-                    .join('')}
-                </div>
-              </div>
-
-              <div class="mt-6 border-t border-stone-200 pt-6">
-                <p class="text-xs font-semibold uppercase tracking-[0.28em] text-stone-500">Bestand</p>
-                <div class="mt-3 grid gap-2">
-                  ${STOCK_FILTERS
-                    .map(
-                      (filter) => `
-                        <button
-                          type="button"
-                          data-action="set-stock"
-                          data-value="${filter.value}"
-                          class="flex items-center justify-between rounded-2xl border px-4 py-3 text-left text-sm transition ${
-                            state.stock === filter.value
-                              ? 'border-emerald-300 bg-emerald-50 text-emerald-900'
-                              : 'border-stone-300 bg-white text-stone-700 hover:border-stone-400 hover:bg-stone-100'
-                          }"
-                        >
-                          <span>${filter.label}</span>
-                          <span class="text-xs uppercase tracking-[0.2em]">${filter.value === 'Alle' ? 'ALL' : filter.value}</span>
-                        </button>
-                      `,
-                    )
-                    .join('')}
-                </div>
-              </div>
-            `
-            : ''
-        }
       </div>
     </aside>
   `
@@ -453,16 +461,13 @@ function render() {
   const filteredProducts = getFilteredProducts()
 
   const hero = renderHero({
-    eyebrow: 'Food & Einkauf',
-    title: 'Produkte suchen, filtern und direkt in den Warenkorb legen.',
-    intro:
-      'Der Food-Bereich zeigt nur das Nötige: Suche, Filter, Produktliste und Warenkorb.',
+    title: 'Produkte',
   })
 
   const content = `
     <section class="px-5 py-8 lg:px-6 lg:py-12">
       <div class="mx-auto max-w-7xl">
-        <div class="grid gap-4 border-b border-stone-300 pb-5 lg:grid-cols-[minmax(0,1fr)_15rem] lg:items-end">
+        <div class="border-b border-stone-300 pb-5">
           <label class="block">
             <span class="mb-2 block text-sm font-medium text-stone-700">Produkte suchen</span>
             <input
@@ -472,13 +477,6 @@ function render() {
               placeholder="z. B. Salat, Basilikum, regional oder frisch"
               class="w-full rounded-2xl border border-stone-300 bg-stone-50 px-4 py-3 text-stone-900 outline-none transition placeholder:text-stone-400 focus:border-emerald-400 focus:bg-white focus:ring-4 focus:ring-emerald-100"
             />
-          </label>
-
-          <label class="block">
-            <span class="mb-2 block text-sm font-medium text-stone-700">Sortieren</span>
-            <select id="sort-select" class="w-full rounded-2xl border border-stone-300 bg-stone-50 px-4 py-3 text-stone-900 outline-none transition focus:border-emerald-400 focus:bg-white focus:ring-4 focus:ring-emerald-100">
-              ${SORT_OPTIONS.map((option) => `<option value="${option.value}" ${state.sort === option.value ? 'selected' : ''}>${option.label}</option>`).join('')}
-            </select>
           </label>
         </div>
 

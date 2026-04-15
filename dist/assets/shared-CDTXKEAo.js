@@ -40,17 +40,19 @@
         ${p(e)}
       </div>
     </header>
-  `}function h({eyebrow:e,title:t,intro:n,supportingCard:r=``,stats:i=[],actions:a=[]}){let o=r.trim().length>0;return`
+  `}function h({eyebrow:e=``,title:t,intro:n=``,supportingCard:r=``,stats:i=[],actions:a=[]}){let o=r.trim().length>0,s=e.trim().length>0,c=n.trim().length>0;return`
     <section class="px-5 pb-8 pt-6 lg:px-6 lg:pb-12 lg:pt-10">
       <div class="mx-auto grid max-w-7xl gap-8 ${o?`lg:grid-cols-[1.08fr_0.92fr] lg:items-end`:``}">
         <div class="border-b border-stone-300 pb-8">
-          <p class="text-xs font-semibold uppercase tracking-[0.32em] text-emerald-800">${e}</p>
-          <h1 class="mt-5 max-w-[13ch] text-4xl font-semibold tracking-tight text-stone-950 sm:text-5xl lg:text-6xl">
+          ${s?`<p class="text-xs font-semibold uppercase tracking-[0.32em] text-emerald-800">${e}</p>`:``}
+          <h1 class="${s?`mt-5`:``} max-w-[13ch] text-4xl font-semibold tracking-tight text-stone-950 sm:text-5xl lg:text-6xl">
             ${t}
           </h1>
-          <p class="mt-5 max-w-3xl text-lg leading-8 text-stone-700">
-            ${n}
-          </p>
+          ${c?`
+                <p class="mt-5 max-w-3xl text-lg leading-8 text-stone-700">
+                  ${n}
+                </p>
+              `:``}
 
           ${a.length>0?`
                 <div class="mt-8 flex flex-wrap gap-3">
