@@ -1,0 +1,30 @@
+name: FTP Deployment
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Use Node.js 22.12
+        uses: actions/setup-node@v2
+        with:
+          node-version: '22'  
+      - name: 🔨 Build Project
+        run: |
+          npm install
+          npm run build
+      - name: Deploy over FTP
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.6
+        with:
+          server: hosting236035.ae855.netcup.net 
+          username: ${{ secrets.FTP_NETCUP_USERNAME }}
+          password: ${{ secrets.FTP_NETCUP_PASSWORD }}
+          server-dir: /bredelicious.de/
