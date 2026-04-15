@@ -1,4 +1,4 @@
-import{i as e,l as t,n,r,s as i,t as a,u as o}from"./shared-BPaZaP-a.js";var s=`foodconnect-cart-v2`,c=new Intl.NumberFormat(`de-DE`,{style:`currency`,currency:`EUR`}),l=[{value:`Alle`,label:`Alle Bestände`},{value:`fresh`,label:`Frisch geerntet`},{value:`ready`,label:`Sofort verfügbar`},{value:`limited`,label:`Nur kleine Menge`}],u=[{value:`empfohlen`,label:`Empfohlen`},{value:`preis-aufsteigend`,label:`Preis: niedrig zuerst`},{value:`preis-absteigend`,label:`Preis: hoch zuerst`},{value:`name-a-z`,label:`Name A–Z`}],d=document.querySelector(`#app`),f={query:``,category:`Alle`,stock:`Alle`,sort:`empfohlen`,cart:p(),cartDrawerOpen:!1,filtersOpen:!1};function p(){try{let e=window.localStorage.getItem(s);return e?JSON.parse(e):{}}catch{return{}}}function m(){window.localStorage.setItem(s,JSON.stringify(f.cart))}function h(e){return o.find(t=>t.id===e)}function g(){return Object.entries(f.cart).map(([e,t])=>{let n=h(e);return!n||t<=0?null:{...n,quantity:t,total:n.price*t}}).filter(Boolean)}function _(){return Object.values(f.cart).reduce((e,t)=>e+t,0)}function v(){return g().reduce((e,t)=>e+t.total,0)}function y(){let e=0;return f.query.trim()&&(e+=1),f.category!==`Alle`&&(e+=1),f.stock!==`Alle`&&(e+=1),e}function b(e){return{fresh:3,ready:2,limited:1}[e.stockLevel]+(e.badge===`Heute empfohlen`?2:0)}function x(e){switch(f.sort){case`preis-aufsteigend`:return[...e].sort((e,t)=>e.price-t.price);case`preis-absteigend`:return[...e].sort((e,t)=>t.price-e.price);case`name-a-z`:return[...e].sort((e,t)=>e.name.localeCompare(t.name,`de`));default:return[...e].sort((e,t)=>{let n=b(e),r=b(t);return r===n?e.name.localeCompare(t.name,`de`):r-n})}}function S(){let e=f.query.trim().toLowerCase();return x(o.filter(t=>{let n=f.category===`Alle`||t.category===f.category,r=f.stock===`Alle`||t.stockLevel===f.stock,i=e.length===0||[t.name,t.category,t.origin,t.stockLabel].join(` `).toLowerCase().includes(e);return n&&r&&i}))}function C(e){f.cart[e]=(f.cart[e]??0)+1,m(),P()}function w(e,t){t<=0?delete f.cart[e]:f.cart[e]=t,m(),P()}function T(){f.cart={},m(),P()}function E(){f.query=``,f.category=`Alle`,f.stock=`Alle`,f.sort=`empfohlen`,P()}function D(e){return{fresh:`border-emerald-200 bg-emerald-50 text-emerald-800`,ready:`border-sky-200 bg-sky-50 text-sky-800`,limited:`border-amber-200 bg-amber-50 text-amber-800`}[e.stockLevel]??`border-stone-200 bg-stone-100 text-stone-700`}function O(){return`
+import{i as e,l as t,n,r,s as i,t as a,u as o}from"./shared-BX1T5XKg.js";var s=`foodconnect-cart-v2`,c=new Intl.NumberFormat(`de-DE`,{style:`currency`,currency:`EUR`}),l=[{value:`Alle`,label:`Alle Bestände`},{value:`fresh`,label:`Frisch geerntet`},{value:`ready`,label:`Sofort verfügbar`},{value:`limited`,label:`Nur kleine Menge`}],u=[{value:`empfohlen`,label:`Empfohlen`},{value:`preis-aufsteigend`,label:`Preis: niedrig zuerst`},{value:`preis-absteigend`,label:`Preis: hoch zuerst`},{value:`name-a-z`,label:`Name A–Z`}],d=document.querySelector(`#app`),f={query:``,category:`Alle`,stock:`Alle`,sort:`empfohlen`,cart:p(),cartDrawerOpen:!1,filtersOpen:!1};function p(){try{let e=window.localStorage.getItem(s);return e?JSON.parse(e):{}}catch{return{}}}function m(){window.localStorage.setItem(s,JSON.stringify(f.cart))}function h(e){return o.find(t=>t.id===e)}function g(){return Object.entries(f.cart).map(([e,t])=>{let n=h(e);return!n||t<=0?null:{...n,quantity:t,total:n.price*t}}).filter(Boolean)}function _(){return Object.values(f.cart).reduce((e,t)=>e+t,0)}function v(){return g().reduce((e,t)=>e+t.total,0)}function y(){let e=0;return f.query.trim()&&(e+=1),f.category!==`Alle`&&(e+=1),f.stock!==`Alle`&&(e+=1),e}function b(e){return{fresh:3,ready:2,limited:1}[e.stockLevel]+(e.badge===`Heute empfohlen`?2:0)}function x(e){switch(f.sort){case`preis-aufsteigend`:return[...e].sort((e,t)=>e.price-t.price);case`preis-absteigend`:return[...e].sort((e,t)=>t.price-e.price);case`name-a-z`:return[...e].sort((e,t)=>e.name.localeCompare(t.name,`de`));default:return[...e].sort((e,t)=>{let n=b(e),r=b(t);return r===n?e.name.localeCompare(t.name,`de`):r-n})}}function S(){let e=f.query.trim().toLowerCase();return x(o.filter(t=>{let n=f.category===`Alle`||t.category===f.category,r=f.stock===`Alle`||t.stockLevel===f.stock,i=e.length===0||[t.name,t.category,t.origin,t.stockLabel].join(` `).toLowerCase().includes(e);return n&&r&&i}))}function C(e){f.cart[e]=(f.cart[e]??0)+1,m(),P()}function w(e,t){t<=0?delete f.cart[e]:f.cart[e]=t,m(),P()}function T(){f.cart={},m(),P()}function E(){f.query=``,f.category=`Alle`,f.stock=`Alle`,f.sort=`empfohlen`,P()}function D(e){return{fresh:`border-emerald-200 bg-emerald-50 text-emerald-800`,ready:`border-sky-200 bg-sky-50 text-sky-800`,limited:`border-amber-200 bg-amber-50 text-amber-800`}[e.stockLevel]??`border-stone-200 bg-stone-100 text-stone-700`}function O(){return`
     <aside class="lg:sticky lg:top-24">
       <div class="border-y border-stone-300 py-5">
         <div class="rounded-2xl border border-stone-300 bg-white px-4 py-3">
@@ -60,7 +60,7 @@ import{i as e,l as t,n,r,s as i,t as a,u as o}from"./shared-BPaZaP-a.js";var s=`
       </div>
     </aside>
   `}function k(e){let t=f.cart[e.id]??0;return`
-    <article class="flex h-full flex-col rounded-[1.5rem] border border-stone-200 bg-white p-5 shadow-[0_10px_30px_rgba(41,37,36,0.05)] transition hover:-translate-y-0.5 hover:border-stone-300 hover:shadow-[0_16px_40px_rgba(41,37,36,0.08)]">
+    <article class="flex h-full flex-col rounded-[1.5rem] border border-stone-200 bg-white p-4 shadow-[0_10px_30px_rgba(41,37,36,0.05)] transition hover:-translate-y-0.5 hover:border-stone-300 hover:shadow-[0_16px_40px_rgba(41,37,36,0.08)]">
       <div class="flex flex-wrap items-start justify-between gap-3">
         <span class="rounded-full border border-stone-200 bg-stone-50 px-3 py-1 text-xs font-semibold uppercase tracking-[0.2em] text-stone-700">
           ${e.category}
@@ -70,15 +70,15 @@ import{i as e,l as t,n,r,s as i,t as a,u as o}from"./shared-BPaZaP-a.js";var s=`
         </span>
       </div>
 
-      <div class="mt-4 overflow-hidden rounded-[1.1rem] bg-stone-100">
+      <div class="mt-3 overflow-hidden rounded-[1.1rem] bg-stone-100">
         <img src="${e.image}" alt="${e.name}" class="aspect-[4/3] w-full object-cover" loading="lazy" />
       </div>
 
-      <div class="mt-4">
+      <div class="mt-3">
         <h3 class="text-2xl font-semibold text-stone-950">${e.name}</h3>
       </div>
 
-      <dl class="mt-5 grid grid-cols-2 gap-3 border-t border-stone-200 pt-4 text-sm">
+      <dl class="mt-4 grid grid-cols-2 gap-3 border-t border-stone-200 pt-3 text-sm">
         <div>
           <dt class="text-stone-500">Preis</dt>
           <dd class="mt-1 font-semibold text-stone-950">${c.format(e.price)}</dd>
@@ -93,7 +93,7 @@ import{i as e,l as t,n,r,s as i,t as a,u as o}from"./shared-BPaZaP-a.js";var s=`
         </div>
       </dl>
 
-      <div class="mt-auto pt-6">
+      <div class="mt-auto pt-5">
         ${t>0?`
               <div class="flex items-center justify-between gap-3">
                 <div class="inline-flex items-center gap-2 rounded-full border border-stone-300 bg-stone-50 px-2 py-2">
@@ -196,7 +196,7 @@ import{i as e,l as t,n,r,s as i,t as a,u as o}from"./shared-BPaZaP-a.js";var s=`
       </button>
     </div>
   `}function P(){let t=S();d.innerHTML=e({activePage:`food`,hero:r({title:`Produkte`}),content:`
-    <section class="px-5 py-8 lg:px-6 lg:py-12">
+    <section class="px-5 py-6 lg:px-6 lg:py-8">
       <div class="mx-auto max-w-7xl">
         <div class="border-b border-stone-300 pb-5">
           <label class="block">
@@ -211,11 +211,11 @@ import{i as e,l as t,n,r,s as i,t as a,u as o}from"./shared-BPaZaP-a.js";var s=`
           </label>
         </div>
 
-        <div class="mt-8 grid gap-8 lg:grid-cols-[17rem_minmax(0,1fr)_20rem] lg:items-start">
+        <div class="mt-6 grid gap-6 lg:grid-cols-[17rem_minmax(0,1fr)_20rem] lg:items-start">
           ${O()}
 
           <div>
-            <div class="mb-4 flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
+            <div class="mb-3 flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
               <p class="text-sm text-stone-600">${t.length} Produkte sichtbar</p>
               <a href="${i.links.team}" target="_blank" rel="noreferrer" class="text-sm font-medium text-emerald-800 transition hover:text-emerald-900">Teamprofil</a>
             </div>

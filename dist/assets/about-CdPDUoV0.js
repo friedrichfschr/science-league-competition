@@ -1,4 +1,4 @@
-import{a as e,c as t,f as n,i as r,o as i,p as a,r as o,s,t as c}from"./shared-BPaZaP-a.js";var l=document.querySelector(`#app`);l.innerHTML=r({activePage:`about`,hero:o({eyebrow:s.season,title:`FoodConnectMarkt: Projekt, Angebot und Nutzung klar erklärt.`,intro:`Der FoodConnectMarkt verbindet Einkauf, soziale Angebote und Science-League-Projektidee auf drei klar getrennten Seiten.`,stats:t,supportingCard:`
+import{a as e,c as t,f as n,i as r,o as i,p as a,r as o,s,t as c}from"./shared-BX1T5XKg.js";var l=document.querySelector(`#app`);l.innerHTML=r({activePage:`about`,hero:o({eyebrow:s.season,title:`FoodConnectMarkt: Projekt, Angebot und Nutzung klar erklärt.`,intro:`Der FoodConnectMarkt verbindet Einkauf, soziale Angebote und Science-League-Projektidee auf drei klar getrennten Seiten.`,stats:t,supportingCard:`
     <p class="text-xs font-semibold uppercase tracking-[0.32em] text-emerald-300">Über uns</p>
     <h2 class="mt-4 text-3xl font-semibold tracking-tight">Kurzüberblick</h2>
     <div class="mt-6 border-t border-white/10">
@@ -9,20 +9,20 @@ import{a as e,c as t,f as n,i as r,o as i,p as a,r as o,s,t as c}from"./shared-B
           `).join(``)}
     </div>
   `}),content:`
-  <section class="px-5 py-8 lg:px-6 lg:py-12">
-    <div class="mx-auto grid max-w-7xl gap-10 lg:grid-cols-[0.86fr_1.14fr] lg:items-start">
+  <section class="px-5 py-6 lg:px-6 lg:py-8">
+    <div class="mx-auto grid max-w-7xl gap-8 lg:grid-cols-[0.86fr_1.14fr] lg:items-start">
       <div>
         <p class="text-xs font-semibold uppercase tracking-[0.32em] text-emerald-800">Projektidee</p>
-        <h2 class="mt-4 max-w-[13ch] text-3xl font-semibold tracking-tight text-stone-950 sm:text-4xl">
+        <h2 class="mt-3 max-w-[13ch] text-3xl font-semibold tracking-tight text-stone-950 sm:text-4xl">
           Ein Markt für Einkauf, Lernen und Nachbarschaft.
         </h2>
-        <p class="mt-5 text-base leading-8 text-stone-600">
+        <p class="mt-4 text-base leading-8 text-stone-600">
           Über uns erklärt das Projekt. Soziales zeigt die Community-Angebote. Food zeigt den Einkaufsbereich.
         </p>
 
-        <div class="mt-8 border-y border-stone-300">
+        <div class="mt-6 border-y border-stone-300">
           ${e.map(e=>`
-                <article class="grid gap-3 border-b border-stone-200 py-5 last:border-b-0 sm:grid-cols-[6rem_1fr] sm:items-start">
+                <article class="grid gap-3 border-b border-stone-200 py-4 last:border-b-0 sm:grid-cols-[6rem_1fr] sm:items-start">
                   <p class="text-lg font-semibold text-stone-950">${e.value}</p>
                   <p class="text-sm leading-7 text-stone-600">${e.label}</p>
                 </article>
@@ -31,17 +31,17 @@ import{a as e,c as t,f as n,i as r,o as i,p as a,r as o,s,t as c}from"./shared-B
       </div>
 
       <div class="overflow-hidden rounded-[1.75rem] border border-stone-200 bg-white/80">
-        <div class="bg-stone-950 px-6 py-7 text-stone-50 sm:px-8">
+        <div class="bg-stone-950 px-6 py-6 text-stone-50 sm:px-7">
           <p class="text-xs font-semibold uppercase tracking-[0.28em] text-emerald-300">Schwerpunkt 1</p>
-          <h3 class="mt-4 text-2xl font-semibold">${i[0].title}</h3>
-          <p class="mt-3 text-sm leading-7 text-stone-200">${i[0].text}</p>
+          <h3 class="mt-3 text-2xl font-semibold">${i[0].title}</h3>
+          <p class="mt-2 text-sm leading-7 text-stone-200">${i[0].text}</p>
         </div>
         <div class="grid divide-y divide-stone-200 md:grid-cols-2 md:divide-x md:divide-y-0">
           ${i.slice(1).map((e,t)=>`
-                <article class="px-6 py-6 ${t===0?`bg-stone-50/70`:`bg-white`}">
+                <article class="px-6 py-5 ${t===0?`bg-stone-50/70`:`bg-white`}">
                   <p class="text-xs font-semibold uppercase tracking-[0.28em] text-emerald-800">Schwerpunkt ${t+2}</p>
-                  <h3 class="mt-4 text-2xl font-semibold text-stone-950">${e.title}</h3>
-                  <p class="mt-3 text-sm leading-7 text-stone-600">${e.text}</p>
+                  <h3 class="mt-3 text-2xl font-semibold text-stone-950">${e.title}</h3>
+                  <p class="mt-2 text-sm leading-7 text-stone-600">${e.text}</p>
                 </article>
               `).join(``)}
         </div>
@@ -49,15 +49,15 @@ import{a as e,c as t,f as n,i as r,o as i,p as a,r as o,s,t as c}from"./shared-B
     </div>
   </section>
 
-  <section class="px-5 py-8 lg:px-6 lg:py-12">
-    <div class="mx-auto grid max-w-7xl gap-10 lg:grid-cols-[0.82fr_1.18fr] lg:items-start">
-      <div class="border-l-4 border-emerald-700 bg-emerald-50 px-6 py-6">
+  <section class="px-5 py-6 lg:px-6 lg:py-8">
+    <div class="mx-auto grid max-w-7xl gap-8 lg:grid-cols-[0.82fr_1.18fr] lg:items-start">
+      <div class="border-l-4 border-emerald-700 bg-emerald-50 px-6 py-5">
         <p class="text-xs font-semibold uppercase tracking-[0.32em] text-emerald-800">Science League</p>
-        <h2 class="mt-4 text-3xl font-semibold tracking-tight text-stone-950">Das Projekt bekommt Kontext, ohne wieder in viele Einzelkarten zu zerfallen.</h2>
-        <p class="mt-5 text-base leading-8 text-stone-700">
+        <h2 class="mt-3 text-3xl font-semibold tracking-tight text-stone-950">Das Projekt bekommt Kontext, ohne wieder in viele Einzelkarten zu zerfallen.</h2>
+        <p class="mt-4 text-base leading-8 text-stone-700">
           Die Wettbewerbsgeschichte bleibt präsent, sitzt aber in einem klaren Erzählstrang. So wirkt die Seite weniger zerstückelt und mehr wie ein zusammenhängendes Produkt.
         </p>
-        <div class="mt-6 flex flex-wrap gap-3">
+        <div class="mt-5 flex flex-wrap gap-3">
           <a href="${s.links.competition}" target="_blank" rel="noreferrer" class="inline-flex items-center justify-center rounded-full bg-emerald-800 px-4 py-3 text-sm font-medium text-white transition hover:bg-emerald-700">
             Science League Seite
           </a>
@@ -69,13 +69,13 @@ import{a as e,c as t,f as n,i as r,o as i,p as a,r as o,s,t as c}from"./shared-B
 
       <div class="border-l border-stone-300 pl-5 sm:pl-8">
         ${n.map((e,t)=>`
-              <article class="grid gap-4 border-b border-stone-200 py-6 last:border-b-0 sm:grid-cols-[5.5rem_1fr] sm:items-start">
+              <article class="grid gap-4 border-b border-stone-200 py-5 last:border-b-0 sm:grid-cols-[5.5rem_1fr] sm:items-start">
                 <div>
                   <p class="text-xs font-semibold uppercase tracking-[0.28em] text-emerald-800">Schritt ${t+1}</p>
                 </div>
                 <div>
                   <h3 class="text-2xl font-semibold text-stone-950">${e.title}</h3>
-                  <p class="mt-3 text-sm leading-7 text-stone-600">${e.text}</p>
+                  <p class="mt-2 text-sm leading-7 text-stone-600">${e.text}</p>
                 </div>
               </article>
             `).join(``)}
@@ -83,7 +83,7 @@ import{a as e,c as t,f as n,i as r,o as i,p as a,r as o,s,t as c}from"./shared-B
     </div>
   </section>
 
-  <section class="px-5 py-8 lg:px-6 lg:py-12">
+  <section class="px-5 py-6 lg:px-6 lg:py-8">
     <div class="mx-auto max-w-7xl border-y border-stone-300">
       <a href="soziales.html" class="grid gap-3 border-b border-stone-200 py-6 transition hover:bg-white/60 md:grid-cols-[12rem_1fr_auto] md:items-center md:gap-6">
         <p class="text-xs font-semibold uppercase tracking-[0.28em] text-amber-800">Weiter zu Soziales</p>

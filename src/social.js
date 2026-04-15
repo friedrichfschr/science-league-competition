@@ -22,14 +22,14 @@ const hero = renderHero({
 })
 
 const content = `
-  <section class="px-5 py-8 lg:px-6 lg:py-12">
-    <div class="mx-auto grid max-w-7xl gap-10 xl:grid-cols-[0.72fr_1.28fr] xl:items-start">
+  <section class="px-5 py-6 lg:px-6 lg:py-8">
+    <div class="mx-auto grid max-w-7xl gap-8 xl:grid-cols-[0.72fr_1.28fr] xl:items-start">
       <div>
         <p class="text-xs font-semibold uppercase tracking-[0.32em] text-amber-800">Kurz erklärt</p>
-        <h2 class="mt-4 text-3xl font-semibold tracking-tight text-stone-950 sm:text-4xl">
+        <h2 class="mt-3 text-3xl font-semibold tracking-tight text-stone-950 sm:text-4xl">
           Vier zentrale Angebote.
         </h2>
-        <ul class="mt-6 space-y-3 text-sm leading-7 text-stone-700">
+        <ul class="mt-5 space-y-2 text-sm leading-7 text-stone-700">
           <li>• mietbare Säle</li>
           <li>• Nachhilfe & Lernzeit</li>
           <li>• Kochklassen</li>
@@ -41,7 +41,7 @@ const content = `
         ${services
           .map(
             (service) => `
-              <article class="grid gap-4 border-b border-stone-200 px-0 py-6 last:border-b-0 md:grid-cols-[11rem_1fr] md:gap-6">
+              <article class="grid gap-4 border-b border-stone-200 px-0 py-5 last:border-b-0 md:grid-cols-[11rem_1fr] md:gap-5">
                 <div>
                   <span class="inline-flex rounded-full border border-stone-300 bg-white px-3 py-1 text-xs font-semibold uppercase tracking-[0.22em] text-stone-700">
                     ${service.badge}
@@ -49,8 +49,8 @@ const content = `
                 </div>
                 <div>
                   <h3 class="text-2xl font-semibold text-stone-950">${service.title}</h3>
-                  <p class="mt-3 text-sm leading-7 text-stone-600">${service.text}</p>
-                  <ul class="mt-4 grid gap-2 text-sm text-stone-600 sm:grid-cols-2">
+                  <p class="mt-2 text-sm leading-7 text-stone-600">${service.text}</p>
+                  <ul class="mt-3 grid gap-2 text-sm text-stone-600 sm:grid-cols-2">
                     ${service.details.map((detail) => `<li>• ${detail}</li>`).join('')}
                   </ul>
                 </div>

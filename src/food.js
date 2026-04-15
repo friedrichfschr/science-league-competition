@@ -265,7 +265,7 @@ function renderProductCard(product) {
   const quantity = state.cart[product.id] ?? 0
 
   return `
-    <article class="flex h-full flex-col rounded-[1.5rem] border border-stone-200 bg-white p-5 shadow-[0_10px_30px_rgba(41,37,36,0.05)] transition hover:-translate-y-0.5 hover:border-stone-300 hover:shadow-[0_16px_40px_rgba(41,37,36,0.08)]">
+    <article class="flex h-full flex-col rounded-[1.5rem] border border-stone-200 bg-white p-4 shadow-[0_10px_30px_rgba(41,37,36,0.05)] transition hover:-translate-y-0.5 hover:border-stone-300 hover:shadow-[0_16px_40px_rgba(41,37,36,0.08)]">
       <div class="flex flex-wrap items-start justify-between gap-3">
         <span class="rounded-full border border-stone-200 bg-stone-50 px-3 py-1 text-xs font-semibold uppercase tracking-[0.2em] text-stone-700">
           ${product.category}
@@ -275,15 +275,15 @@ function renderProductCard(product) {
         </span>
       </div>
 
-      <div class="mt-4 overflow-hidden rounded-[1.1rem] bg-stone-100">
+      <div class="mt-3 overflow-hidden rounded-[1.1rem] bg-stone-100">
         <img src="${product.image}" alt="${product.name}" class="aspect-[4/3] w-full object-cover" loading="lazy" />
       </div>
 
-      <div class="mt-4">
+      <div class="mt-3">
         <h3 class="text-2xl font-semibold text-stone-950">${product.name}</h3>
       </div>
 
-      <dl class="mt-5 grid grid-cols-2 gap-3 border-t border-stone-200 pt-4 text-sm">
+      <dl class="mt-4 grid grid-cols-2 gap-3 border-t border-stone-200 pt-3 text-sm">
         <div>
           <dt class="text-stone-500">Preis</dt>
           <dd class="mt-1 font-semibold text-stone-950">${currency.format(product.price)}</dd>
@@ -298,7 +298,7 @@ function renderProductCard(product) {
         </div>
       </dl>
 
-      <div class="mt-auto pt-6">
+      <div class="mt-auto pt-5">
         ${
           quantity > 0
             ? `
@@ -453,7 +453,7 @@ function render() {
   })
 
   const content = `
-    <section class="px-5 py-8 lg:px-6 lg:py-12">
+    <section class="px-5 py-6 lg:px-6 lg:py-8">
       <div class="mx-auto max-w-7xl">
         <div class="border-b border-stone-300 pb-5">
           <label class="block">
@@ -468,11 +468,11 @@ function render() {
           </label>
         </div>
 
-        <div class="mt-8 grid gap-8 lg:grid-cols-[17rem_minmax(0,1fr)_20rem] lg:items-start">
+        <div class="mt-6 grid gap-6 lg:grid-cols-[17rem_minmax(0,1fr)_20rem] lg:items-start">
           ${renderFilters()}
 
           <div>
-            <div class="mb-4 flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
+            <div class="mb-3 flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
               <p class="text-sm text-stone-600">${filteredProducts.length} Produkte sichtbar</p>
               <a href="${competitionFacts.links.team}" target="_blank" rel="noreferrer" class="text-sm font-medium text-emerald-800 transition hover:text-emerald-900">Teamprofil</a>
             </div>
