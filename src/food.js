@@ -438,14 +438,6 @@ function render() {
     title: 'Produkte suchen, filtern und direkt in den Warenkorb legen.',
     intro:
       'Der Food-Bereich zeigt nur das Nötige: Suche, Filter, Produktliste und Warenkorb.',
-    supportingCard: `
-      <p class="text-xs font-semibold uppercase tracking-[0.32em] text-emerald-300">Food</p>
-      <h2 class="mt-4 text-3xl font-semibold tracking-tight">Schneller Überblick</h2>
-      <div class="mt-6 border-t border-white/10">
-        <div class="border-b border-white/10 py-4 text-sm leading-7 text-stone-200">${filteredProducts.length} Produkte sichtbar</div>
-        <div class="py-4 text-sm leading-7 text-stone-200">${getCartCount()} Artikel im Warenkorb</div>
-      </div>
-    `,
   })
 
   const content = `

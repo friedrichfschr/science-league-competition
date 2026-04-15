@@ -40,9 +40,9 @@
         ${p(e)}
       </div>
     </header>
-  `}function h({eyebrow:e,title:t,intro:n,supportingCard:r,stats:i=[],actions:a=[]}){return`
+  `}function h({eyebrow:e,title:t,intro:n,supportingCard:r=``,stats:i=[],actions:a=[]}){let o=r.trim().length>0;return`
     <section class="px-5 pb-8 pt-6 lg:px-6 lg:pb-12 lg:pt-10">
-      <div class="mx-auto grid max-w-7xl gap-8 lg:grid-cols-[1.08fr_0.92fr] lg:items-end">
+      <div class="mx-auto grid max-w-7xl gap-8 ${o?`lg:grid-cols-[1.08fr_0.92fr] lg:items-end`:``}">
         <div class="border-b border-stone-300 pb-8">
           <p class="text-xs font-semibold uppercase tracking-[0.32em] text-emerald-800">${e}</p>
           <h1 class="mt-5 max-w-[13ch] text-4xl font-semibold tracking-tight text-stone-950 sm:text-5xl lg:text-6xl">
@@ -78,9 +78,11 @@
               `:``}
         </div>
 
-        <div class="rounded-[2rem] bg-stone-950 px-6 py-7 text-stone-50 shadow-[0_20px_60px_rgba(28,25,23,0.12)] sm:px-8 sm:py-8">
-          ${r}
-        </div>
+        ${o?`
+              <div class="rounded-[2rem] bg-stone-950 px-6 py-7 text-stone-50 shadow-[0_20px_60px_rgba(28,25,23,0.12)] sm:px-8 sm:py-8">
+                ${r}
+              </div>
+            `:``}
       </div>
     </section>
   `}function g(n){return`
