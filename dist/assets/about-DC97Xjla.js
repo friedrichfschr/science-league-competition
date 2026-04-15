@@ -1,43 +1,14 @@
-import './style.css'
-import {
-  aboutMetrics,
-  aboutPillars,
-  competitionFacts,
-  heroStats,
-  storyTimeline,
-  trustHighlights,
-} from './data.js'
-import { bindPageSelect, renderHero, renderPageFrame } from './shared.js'
-
-const app = document.querySelector('#app')
-
-const hero = renderHero({
-  eyebrow: competitionFacts.season,
-  title: 'FoodConnectMarkt mit klarer Story und echtem Nutzwert.',
-  intro: `${competitionFacts.subtitle} ${competitionFacts.description}`,
-  actions: [
-    { href: 'food.html', label: 'Zum Food-Bereich' },
-    { href: 'soziales.html', label: 'Soziale Angebote ansehen' },
-  ],
-  stats: heroStats,
-  supportingCard: `
+import{a as e,c as t,f as n,i as r,o as i,p as a,r as o,s,t as c}from"./shared-CxqreL70.js";var l=document.querySelector(`#app`);l.innerHTML=r({activePage:`about`,hero:o({eyebrow:s.season,title:`FoodConnectMarkt mit klarer Story und echtem Nutzwert.`,intro:`${s.subtitle} ${s.description}`,actions:[{href:`food.html`,label:`Zum Food-Bereich`},{href:`soziales.html`,label:`Soziale Angebote ansehen`}],stats:t,supportingCard:`
     <p class="text-xs font-semibold uppercase tracking-[0.32em] text-emerald-300">Über uns</p>
     <h2 class="mt-4 text-3xl font-semibold tracking-tight">Die Startseite erklärt erst das Projekt und verweist dann sauber weiter.</h2>
     <div class="mt-6 border-t border-white/10">
-      ${trustHighlights
-        .map(
-          (item) => `
+      ${a.map(e=>`
             <div class="border-b border-white/10 py-4 text-sm leading-7 text-stone-200 last:border-b-0">
-              ${item}
+              ${e}
             </div>
-          `,
-        )
-        .join('')}
+          `).join(``)}
     </div>
-  `,
-})
-
-const content = `
+  `}),content:`
   <section class="px-5 py-8 lg:px-6 lg:py-12">
     <div class="mx-auto grid max-w-7xl gap-10 lg:grid-cols-[0.86fr_1.14fr] lg:items-start">
       <div>
@@ -50,38 +21,29 @@ const content = `
         </p>
 
         <div class="mt-8 border-y border-stone-300">
-          ${aboutMetrics
-            .map(
-              (metric) => `
+          ${e.map(e=>`
                 <article class="grid gap-3 border-b border-stone-200 py-5 last:border-b-0 sm:grid-cols-[6rem_1fr] sm:items-start">
-                  <p class="text-lg font-semibold text-stone-950">${metric.value}</p>
-                  <p class="text-sm leading-7 text-stone-600">${metric.label}</p>
+                  <p class="text-lg font-semibold text-stone-950">${e.value}</p>
+                  <p class="text-sm leading-7 text-stone-600">${e.label}</p>
                 </article>
-              `,
-            )
-            .join('')}
+              `).join(``)}
         </div>
       </div>
 
       <div class="overflow-hidden rounded-[1.75rem] border border-stone-200 bg-white/80">
         <div class="bg-stone-950 px-6 py-7 text-stone-50 sm:px-8">
           <p class="text-xs font-semibold uppercase tracking-[0.28em] text-emerald-300">Schwerpunkt 1</p>
-          <h3 class="mt-4 text-2xl font-semibold">${aboutPillars[0].title}</h3>
-          <p class="mt-3 text-sm leading-7 text-stone-200">${aboutPillars[0].text}</p>
+          <h3 class="mt-4 text-2xl font-semibold">${i[0].title}</h3>
+          <p class="mt-3 text-sm leading-7 text-stone-200">${i[0].text}</p>
         </div>
         <div class="grid divide-y divide-stone-200 md:grid-cols-2 md:divide-x md:divide-y-0">
-          ${aboutPillars
-            .slice(1)
-            .map(
-              (pillar, index) => `
-                <article class="px-6 py-6 ${index === 0 ? 'bg-stone-50/70' : 'bg-white'}">
-                  <p class="text-xs font-semibold uppercase tracking-[0.28em] text-emerald-800">Schwerpunkt ${index + 2}</p>
-                  <h3 class="mt-4 text-2xl font-semibold text-stone-950">${pillar.title}</h3>
-                  <p class="mt-3 text-sm leading-7 text-stone-600">${pillar.text}</p>
+          ${i.slice(1).map((e,t)=>`
+                <article class="px-6 py-6 ${t===0?`bg-stone-50/70`:`bg-white`}">
+                  <p class="text-xs font-semibold uppercase tracking-[0.28em] text-emerald-800">Schwerpunkt ${t+2}</p>
+                  <h3 class="mt-4 text-2xl font-semibold text-stone-950">${e.title}</h3>
+                  <p class="mt-3 text-sm leading-7 text-stone-600">${e.text}</p>
                 </article>
-              `,
-            )
-            .join('')}
+              `).join(``)}
         </div>
       </div>
     </div>
@@ -96,31 +58,27 @@ const content = `
           Die Wettbewerbsgeschichte bleibt präsent, sitzt aber in einem klaren Erzählstrang. So wirkt die Seite weniger zerstückelt und mehr wie ein zusammenhängendes Produkt.
         </p>
         <div class="mt-6 flex flex-wrap gap-3">
-          <a href="${competitionFacts.links.competition}" target="_blank" rel="noreferrer" class="inline-flex items-center justify-center rounded-full bg-emerald-800 px-4 py-3 text-sm font-medium text-white transition hover:bg-emerald-700">
+          <a href="${s.links.competition}" target="_blank" rel="noreferrer" class="inline-flex items-center justify-center rounded-full bg-emerald-800 px-4 py-3 text-sm font-medium text-white transition hover:bg-emerald-700">
             Science League Seite
           </a>
-          <a href="${competitionFacts.links.team}" target="_blank" rel="noreferrer" class="inline-flex items-center justify-center rounded-full border border-stone-300 bg-white px-4 py-3 text-sm font-medium text-stone-900 transition hover:border-stone-400 hover:bg-stone-50">
+          <a href="${s.links.team}" target="_blank" rel="noreferrer" class="inline-flex items-center justify-center rounded-full border border-stone-300 bg-white px-4 py-3 text-sm font-medium text-stone-900 transition hover:border-stone-400 hover:bg-stone-50">
             Team bre-delicious
           </a>
         </div>
       </div>
 
       <div class="border-l border-stone-300 pl-5 sm:pl-8">
-        ${storyTimeline
-          .map(
-            (item, index) => `
+        ${n.map((e,t)=>`
               <article class="grid gap-4 border-b border-stone-200 py-6 last:border-b-0 sm:grid-cols-[5.5rem_1fr] sm:items-start">
                 <div>
-                  <p class="text-xs font-semibold uppercase tracking-[0.28em] text-emerald-800">Schritt ${index + 1}</p>
+                  <p class="text-xs font-semibold uppercase tracking-[0.28em] text-emerald-800">Schritt ${t+1}</p>
                 </div>
                 <div>
-                  <h3 class="text-2xl font-semibold text-stone-950">${item.title}</h3>
-                  <p class="mt-3 text-sm leading-7 text-stone-600">${item.text}</p>
+                  <h3 class="text-2xl font-semibold text-stone-950">${e.title}</h3>
+                  <p class="mt-3 text-sm leading-7 text-stone-600">${e.text}</p>
                 </div>
               </article>
-            `,
-          )
-          .join('')}
+            `).join(``)}
       </div>
     </div>
   </section>
@@ -145,12 +103,4 @@ const content = `
       </a>
     </div>
   </section>
-`
-
-app.innerHTML = renderPageFrame({
-  activePage: 'about',
-  hero,
-  content,
-})
-
-bindPageSelect(app)
+`}),c(l);

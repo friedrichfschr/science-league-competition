@@ -42,8 +42,8 @@
     </header>
   `}function h({eyebrow:e,title:t,intro:n,supportingCard:r,stats:i=[],actions:a=[]}){return`
     <section class="px-5 pb-8 pt-6 lg:px-6 lg:pb-12 lg:pt-10">
-      <div class="mx-auto grid max-w-7xl gap-6 lg:grid-cols-[1.05fr_0.95fr]">
-        <div class="rounded-[2rem] border border-stone-200 bg-white px-6 py-7 shadow-[0_18px_50px_rgba(41,37,36,0.06)] sm:px-8 sm:py-9">
+      <div class="mx-auto grid max-w-7xl gap-8 lg:grid-cols-[1.08fr_0.92fr] lg:items-end">
+        <div class="border-b border-stone-300 pb-8">
           <p class="text-xs font-semibold uppercase tracking-[0.32em] text-emerald-800">${e}</p>
           <h1 class="mt-5 max-w-[13ch] text-4xl font-semibold tracking-tight text-stone-950 sm:text-5xl lg:text-6xl">
             ${t}
@@ -67,25 +67,25 @@
               `:``}
 
           ${i.length>0?`
-                <div class="mt-8 grid gap-3 sm:grid-cols-3">
+                <div class="mt-10 grid gap-5 border-t border-stone-200 pt-6 sm:grid-cols-3">
                   ${i.map(e=>`
-                        <article class="rounded-[1.4rem] border border-stone-200 bg-stone-50 px-4 py-4">
+                        <div class="border-t border-stone-300 pt-4 sm:border-t-0 sm:border-l sm:pl-4 first:border-l-0 first:pl-0">
                           <p class="text-2xl font-semibold text-stone-950">${e.value}</p>
                           <p class="mt-2 text-sm leading-6 text-stone-600">${e.label}</p>
-                        </article>
+                        </div>
                       `).join(``)}
                 </div>
               `:``}
         </div>
 
-        <div class="rounded-[2rem] border border-stone-200 bg-stone-950 px-6 py-7 text-stone-50 shadow-[0_20px_60px_rgba(28,25,23,0.12)] sm:px-8 sm:py-8">
+        <div class="rounded-[2rem] bg-stone-950 px-6 py-7 text-stone-50 shadow-[0_20px_60px_rgba(28,25,23,0.12)] sm:px-8 sm:py-8">
           ${r}
         </div>
       </div>
     </section>
   `}function g(n){return`
-    <footer class="px-5 pb-10 pt-8 lg:px-6 lg:pb-14">
-      <div class="mx-auto grid max-w-7xl gap-6 rounded-[2rem] border border-stone-200 bg-white px-6 py-7 shadow-[0_18px_50px_rgba(41,37,36,0.05)] lg:grid-cols-[1fr_auto] lg:items-start">
+    <footer class="px-5 pb-10 pt-10 lg:px-6 lg:pb-14">
+      <div class="mx-auto flex max-w-7xl flex-col gap-6 border-t border-stone-300 pt-6 lg:flex-row lg:items-start lg:justify-between">
         <div>
           <p class="text-xs font-semibold uppercase tracking-[0.32em] text-emerald-800">${t.brand}</p>
           <h2 class="mt-4 text-2xl font-semibold text-stone-950">${t.title} für die ${t.season}</h2>

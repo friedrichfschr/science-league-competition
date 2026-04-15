@@ -1,34 +1,4 @@
-import './style.css'
-import { services } from './data.js'
-import { bindPageSelect, renderHero, renderPageFrame } from './shared.js'
-
-const app = document.querySelector('#app')
-
-const socialMoments = [
-  {
-    title: 'Nach der Schule',
-    text: 'Lerninseln, ruhige Tische und Nachhilfe machen den Markt für Schülerinnen und Schüler direkt nutzbar.',
-  },
-  {
-    title: 'Am Wochenende',
-    text: 'Kochklassen, offene Marktaktionen oder kleine Events holen Familien und Nachbarschaft zusammen.',
-  },
-  {
-    title: 'Für Initiativen',
-    text: 'Mietbare Räume geben Vereinen, Gruppen und lokalen Projekten einen sichtbaren Ort im Quartier.',
-  },
-]
-
-const hero = renderHero({
-  eyebrow: 'Soziales & Community',
-  title: 'Der Markt funktioniert auch als Treffpunkt, Lernort und Raum für Beteiligung.',
-  intro:
-    'Soziale Angebote stehen hier nicht am Rand. Sie sind als eigene Seite organisiert, damit Menschen schnell erkennen, welche Formate der FoodConnectMarkt neben dem Einkauf anbietet.',
-  actions: [
-    { href: 'food.html', label: 'Food ansehen' },
-    { href: 'index.html', label: 'Zurück zu Über uns' },
-  ],
-  supportingCard: `
+import{d as e,i as t,r as n,t as r}from"./shared-CxqreL70.js";var i=document.querySelector(`#app`);i.innerHTML=t({activePage:`social`,hero:n({eyebrow:`Soziales & Community`,title:`Der Markt funktioniert auch als Treffpunkt, Lernort und Raum für Beteiligung.`,intro:`Soziale Angebote stehen hier nicht am Rand. Sie sind als eigene Seite organisiert, damit Menschen schnell erkennen, welche Formate der FoodConnectMarkt neben dem Einkauf anbietet.`,actions:[{href:`food.html`,label:`Food ansehen`},{href:`index.html`,label:`Zurück zu Über uns`}],supportingCard:`
     <p class="text-xs font-semibold uppercase tracking-[0.32em] text-amber-300">Soziales</p>
     <h2 class="mt-4 text-3xl font-semibold tracking-tight">Ein glaubwürdiger Markt braucht auch Gründe, dort zu bleiben.</h2>
     <p class="mt-5 text-base leading-8 text-stone-200">
@@ -38,10 +8,7 @@ const hero = renderHero({
       <div class="border-b border-white/10 py-4 text-sm leading-7 text-stone-200">Soziale Angebote sind eigenständig sichtbar statt irgendwo mitten im Fließtext versteckt.</div>
       <div class="py-4 text-sm leading-7 text-stone-200">Die Seite nutzt dieselbe Designsprache wie Food und Über uns, bleibt aber thematisch klar.</div>
     </div>
-  `,
-})
-
-const content = `
+  `}),content:`
   <section class="px-5 py-8 lg:px-6 lg:py-12">
     <div class="mx-auto grid max-w-7xl gap-10 xl:grid-cols-[0.82fr_1.18fr] xl:items-start">
       <div>
@@ -64,43 +31,35 @@ const content = `
       </div>
 
       <div class="border-y border-stone-300 bg-white/60">
-        ${services
-          .map(
-            (service) => `
+        ${e.map(e=>`
               <article class="grid gap-4 border-b border-stone-200 px-0 py-6 last:border-b-0 md:grid-cols-[11rem_1fr] md:gap-6">
                 <div>
                   <span class="inline-flex rounded-full border border-stone-300 bg-white px-3 py-1 text-xs font-semibold uppercase tracking-[0.22em] text-stone-700">
-                    ${service.badge}
+                    ${e.badge}
                   </span>
                 </div>
                 <div>
-                  <h3 class="text-2xl font-semibold text-stone-950">${service.title}</h3>
-                  <p class="mt-3 text-sm leading-7 text-stone-600">${service.text}</p>
+                  <h3 class="text-2xl font-semibold text-stone-950">${e.title}</h3>
+                  <p class="mt-3 text-sm leading-7 text-stone-600">${e.text}</p>
                   <ul class="mt-4 grid gap-2 text-sm text-stone-600 sm:grid-cols-2">
-                    ${service.details.map((detail) => `<li>• ${detail}</li>`).join('')}
+                    ${e.details.map(e=>`<li>• ${e}</li>`).join(``)}
                   </ul>
                 </div>
               </article>
-            `,
-          )
-          .join('')}
+            `).join(``)}
       </div>
     </div>
   </section>
 
   <section class="px-5 py-8 lg:px-6 lg:py-12">
     <div class="mx-auto max-w-7xl overflow-hidden border-y border-stone-300 bg-white/50 md:grid md:grid-cols-3 md:divide-x md:divide-stone-200">
-      ${socialMoments
-        .map(
-          (moment) => `
+      ${[{title:`Nach der Schule`,text:`Lerninseln, ruhige Tische und Nachhilfe machen den Markt für Schülerinnen und Schüler direkt nutzbar.`},{title:`Am Wochenende`,text:`Kochklassen, offene Marktaktionen oder kleine Events holen Familien und Nachbarschaft zusammen.`},{title:`Für Initiativen`,text:`Mietbare Räume geben Vereinen, Gruppen und lokalen Projekten einen sichtbaren Ort im Quartier.`}].map(e=>`
             <article class="border-b border-stone-200 px-0 py-6 last:border-b-0 md:border-b-0 md:px-6">
               <p class="text-xs font-semibold uppercase tracking-[0.28em] text-amber-800">Nutzungsszenario</p>
-              <h3 class="mt-4 text-2xl font-semibold text-stone-950">${moment.title}</h3>
-              <p class="mt-3 text-sm leading-7 text-stone-600">${moment.text}</p>
+              <h3 class="mt-4 text-2xl font-semibold text-stone-950">${e.title}</h3>
+              <p class="mt-3 text-sm leading-7 text-stone-600">${e.text}</p>
             </article>
-          `,
-        )
-        .join('')}
+          `).join(``)}
     </div>
   </section>
 
@@ -124,12 +83,4 @@ const content = `
       </a>
     </div>
   </section>
-`
-
-app.innerHTML = renderPageFrame({
-  activePage: 'social',
-  hero,
-  content,
-})
-
-bindPageSelect(app)
+`}),r(i);
