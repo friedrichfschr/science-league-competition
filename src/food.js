@@ -174,7 +174,7 @@ function getStockBadge(product) {
 
 function renderFilters() {
   return `
-    <aside class="lg:sticky lg:top-24">
+    <div>
       <div class="py-2">
         <div class="rounded-2xl border border-stone-300 bg-white px-4 py-3">
           <div class="flex items-center gap-3">
@@ -199,7 +199,7 @@ function renderFilters() {
               ? `
                 <div class="mt-5 pt-1">
                   <p class="text-xs font-semibold uppercase tracking-[0.28em] text-stone-500">Sortierung</p>
-                  <select id="sort-select" class="mt-3 w-full rounded-2xl border border-stone-300 bg-stone-50 px-4 py-3 text-sm text-stone-900 outline-none transition focus:border-emerald-400 focus:bg-white focus:ring-4 focus:ring-emerald-100">
+                  <select data-action="set-sort" class="mt-3 w-full rounded-2xl border border-stone-300 bg-stone-50 px-4 py-3 text-sm text-stone-900 outline-none transition focus:border-emerald-400 focus:bg-white focus:ring-4 focus:ring-emerald-100">
                     ${SORT_OPTIONS.map((option) => `<option value="${option.value}" ${state.sort === option.value ? 'selected' : ''}>${option.label}</option>`).join('')}
                   </select>
                 </div>
@@ -257,7 +257,7 @@ function renderFilters() {
           }
         </div>
       </div>
-    </aside>
+    </div>
   `
 }
 
@@ -468,10 +468,12 @@ function render() {
           </label>
         </div>
 
-        <div class="mt-5 grid gap-5 lg:grid-cols-[17rem_minmax(0,1fr)_20rem] lg:items-start">
-          ${renderFilters()}
-
+        <div class="mt-5 grid gap-5 lg:grid-cols-[minmax(0,1fr)_20rem] lg:items-start">
           <div>
+            <div class="lg:hidden">
+              ${renderFilters()}
+            </div>
+
             <div class="mb-3 flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
               <p class="text-sm text-stone-600">${filteredProducts.length} Produkte sichtbar</p>
               <a href="${competitionFacts.links.team}" target="_blank" rel="noreferrer" class="text-sm font-medium text-emerald-800 transition hover:text-emerald-900">Teamprofil</a>
@@ -479,7 +481,8 @@ function render() {
             ${renderProductsList()}
           </div>
 
-          <aside class="hidden lg:block lg:sticky lg:top-24">
+          <aside class="hidden lg:flex lg:flex-col lg:gap-4 lg:sticky lg:top-24">
+            ${renderFilters()}
             ${renderCartContent()}
           </aside>
         </div>
@@ -548,7 +551,7 @@ function handleInput(event) {
 }
 
 function handleChange(event) {
-  if (event.target.id === 'sort-select') {
+  if (event.target.closest('[data-action="set-sort"]')) {
     state.sort = event.target.value
     render()
   }

@@ -5,18 +5,34 @@ import { bindPageSelect, renderHero, renderPageFrame } from './shared.js'
 const app = document.querySelector('#app')
 
 const hero = renderHero({
-  eyebrow: 'Soziales & Community',
-  title: 'Räume, Lernangebote und Kochformate auf einen Blick.',
+  eyebrow: 'Der ConnectMarkt',
+  title: 'Fünf Etagen für Gemeinschaft, Lernen und Begegnung.',
   intro:
-    'Hier stehen die sozialen Angebote des FoodConnectMarkts: mietbare Säle, Nachhilfe, Kochklassen und offene Formate.',
+    'Der kreisförmige Turm des FoodConnectMarkts ist dem sozialen Miteinander gewidmet — barrierefrei, mehrzweckfähig und offen für alle.',
   supportingCard: `
-    <p class="text-xs font-semibold uppercase tracking-[0.32em] text-amber-300">Soziales</p>
-    <h2 class="mt-4 text-3xl font-semibold tracking-tight">Wofür der Bereich da ist</h2>
-    <div class="mt-6 border-t border-white/10">
-      <div class="border-b border-white/10 py-4 text-sm leading-7 text-stone-200">Säle für Gruppen, Vereine und Treffen</div>
-      <div class="border-b border-white/10 py-4 text-sm leading-7 text-stone-200">Nachhilfe und Lernzeit im Markt</div>
-      <div class="border-b border-white/10 py-4 text-sm leading-7 text-stone-200">Kochklassen und Mitmachformate</div>
-      <div class="py-4 text-sm leading-7 text-stone-200">Offene Events für Nachbarschaft und Initiativen</div>
+    <p class="text-xs font-semibold uppercase tracking-[0.32em] text-amber-300">Aufbau des ConnectMarkts</p>
+    <h2 class="mt-4 text-2xl font-semibold tracking-tight">5 Etagen, ein Konzept</h2>
+    <div class="mt-5 space-y-0 border-t border-white/10">
+      <div class="flex gap-4 border-b border-white/10 py-3.5">
+        <span class="w-24 shrink-0 text-xs font-semibold uppercase tracking-wide text-amber-300/80">EG</span>
+        <span class="text-sm leading-6 text-stone-200">Kinderecke, Lernplätze, Infostände</span>
+      </div>
+      <div class="flex gap-4 border-b border-white/10 py-3.5">
+        <span class="w-24 shrink-0 text-xs font-semibold uppercase tracking-wide text-amber-300/80">1. Etage</span>
+        <span class="text-sm leading-6 text-stone-200">Verkaufsfläche — barrierefreie Regale & smarte Einkaufswagen</span>
+      </div>
+      <div class="flex gap-4 border-b border-white/10 py-3.5">
+        <span class="w-24 shrink-0 text-xs font-semibold uppercase tracking-wide text-amber-300/80">3. Etage</span>
+        <span class="text-sm leading-6 text-stone-200">Restaurant mit eigenem Gemüse, Weiterverarbeitung</span>
+      </div>
+      <div class="flex gap-4 border-b border-white/10 py-3.5">
+        <span class="w-24 shrink-0 text-xs font-semibold uppercase tracking-wide text-amber-300/80">4. Etage</span>
+        <span class="text-sm leading-6 text-stone-200">Seminarräume — Workshops, Nachhilfe, Feiern</span>
+      </div>
+      <div class="flex gap-4 py-3.5">
+        <span class="w-24 shrink-0 text-xs font-semibold uppercase tracking-wide text-amber-300/80">5. Etage</span>
+        <span class="text-sm leading-6 text-stone-200">Praxisanbau — Selbstversorgung erleben und lernen</span>
+      </div>
     </div>
   `,
 })
@@ -25,16 +41,16 @@ const content = `
   <section class="px-5 py-6 lg:px-6 lg:py-8">
     <div class="mx-auto grid max-w-7xl gap-8 xl:grid-cols-[0.72fr_1.28fr] xl:items-start">
       <div>
-        <p class="text-xs font-semibold uppercase tracking-[0.32em] text-amber-800">Kurz erklärt</p>
+        <p class="text-xs font-semibold uppercase tracking-[0.32em] text-amber-800">Was wir anbieten</p>
         <h2 class="mt-3 text-3xl font-semibold tracking-tight text-stone-950 sm:text-4xl">
-          Vier zentrale Angebote.
+          Mehr als einkaufen.
         </h2>
-        <ul class="mt-5 space-y-2 text-sm leading-7 text-stone-700">
-          <li>• mietbare Säle</li>
-          <li>• Nachhilfe & Lernzeit</li>
-          <li>• Kochklassen</li>
-          <li>• offene Community-Formate</li>
-        </ul>
+        <p class="mt-4 text-sm leading-7 text-stone-600">
+          Der ConnectMarkt ist kein klassischer Supermarkt. Jede Etage hat eine eigene Funktion — und alle zusammen ergeben einen Ort, der Versorgung, Bildung und Begegnung vereint.
+        </p>
+        <p class="mt-3 text-sm leading-7 text-stone-600">
+          Barrierefreiheit ist dabei kein Zusatz, sondern von Anfang an mitgedacht: smarte Einkaufswagen, bewusst niedrige Regale und drei Fahrstühle machen den Markt für alle zugänglich.
+        </p>
       </div>
 
       <div class="space-y-3">

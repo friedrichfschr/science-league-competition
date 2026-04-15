@@ -72,28 +72,28 @@ export const aboutMetrics = [
 
 export const services = [
   {
-    badge: 'Raum & Begegnung',
-    title: 'Mietbare Säle',
-    text: 'Flexible Räume für Vereine, kleine Feiern, Initiativen oder Workshops. Der Markt bleibt dadurch auch außerhalb des Einkaufs relevant.',
-    details: ['verschiedene Raumgrößen', 'für Gruppen, Vereine und Familien', 'mit Technik und Bestuhlung planbar'],
+    badge: 'Erdgeschoss',
+    title: 'Gemeinschaft & offene Räume',
+    text: 'Das Erdgeschoss ist offen für alle: eine betreute Kinderecke, ruhige Lernplätze und Informationsstände laden ein, ohne Einkaufsdruck.',
+    details: ['betreute Kinderecke', 'ruhige Lerninseln für Schüler*innen', 'Infostände zu allen Angeboten'],
   },
   {
-    badge: 'Bildung',
-    title: 'Nachhilfe & Lernzeit',
-    text: 'Schülerinnen und Schüler können Lerninseln, Hausaufgabenhilfe und praktische MINT-Bezüge rund um Ernährung und Anbau nutzen.',
-    details: ['Lernzeiten nach der Schule', 'MINT-Bezug durch Vertical Farming', 'ruhige Arbeitsplätze im Markt'],
+    badge: 'Restaurant · 3. Etage',
+    title: 'Restaurant mit eigenem Gemüse',
+    text: 'Frisch gekocht aus dem eigenen Anbau. Die Ernte aus dem Gemüseturm landet direkt in der Küche — und als Produkt im Regal, zum Beispiel als Tomatensauce.',
+    details: ['Gerichte aus vertikalem Anbau', 'Weiterverarbeitung zu Marktprodukten', 'lokal produziert, kurze Wege'],
   },
   {
-    badge: 'Food & Community',
-    title: 'Kochklassen',
-    text: 'Aus frischen Zutaten werden gemeinsame Kochformate für Kinder, Familien und Interessierte. Einkauf und Anwendung rücken näher zusammen.',
-    details: ['saisonale Rezepte', 'gemeinsames Kochen mit Marktgemüse', 'praxisnah und niedrigschwellig'],
+    badge: 'Workshops · 4. & 5. Etage',
+    title: 'Selbstversorgung lernen',
+    text: 'Wir sind realistisch: Unser Markt allein kann keine ganze Stadt versorgen. Deshalb zeigen wir, wie man selbst auf dem Balkon oder in der Wohnung Gemüse anbaut.',
+    details: ['Theorie in Seminarräumen (4. Etage)', 'Praxis an echten Anbauanlagen (5. Etage)', 'Ernte wird im Markt verkauft'],
   },
   {
-    badge: 'Mitmachen',
-    title: 'Events & offene Formate',
-    text: 'Workshops, Infotage und Mitmach-Aktionen bringen Nachbarschaft, Nachhaltigkeit und Ernährung in einen gemeinsamen Rahmen.',
-    details: ['Workshops und Themenabende', 'Mitmachformate für Schulklassen', 'offene Nachbarschaftstreffen'],
+    badge: 'Flexible Nutzung',
+    title: 'Seminare, Nachhilfe & Feiern',
+    text: 'Kein Raum soll leer stehen. Die Seminarräume sind mehrzweckfähig — für Kurse, Nachhilfe, Geburtstagsfeiern oder Vereinstreffen.',
+    details: ['mietbare Seminarräume', 'Nachhilfe und Lernzeit', 'private Veranstaltungen möglich'],
   },
 ]
 
