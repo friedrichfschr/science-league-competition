@@ -1,4 +1,4 @@
-import{a as e,c as t,f as n,i as r,o as i,p as a,r as o,s,t as c}from"./shared-CDTXKEAo.js";var l=document.querySelector(`#app`);l.innerHTML=r({activePage:`about`,hero:o({eyebrow:s.season,title:`FoodConnectMarkt: Projekt, Angebot und Nutzung klar erklärt.`,intro:`Der FoodConnectMarkt verbindet Einkauf, soziale Angebote und Science-League-Projektidee auf drei klar getrennten Seiten.`,stats:t,supportingCard:`
+import{a as e,c as t,f as n,i as r,o as i,p as a,r as o,s,t as c}from"./shared-C82yiro9.js";var l=document.querySelector(`#app`);l.innerHTML=r({activePage:`about`,hero:o({eyebrow:s.season,title:`FoodConnectMarkt: Projekt, Angebot und Nutzung klar erklärt.`,intro:`Der FoodConnectMarkt verbindet Einkauf, soziale Angebote und Science-League-Projektidee auf drei klar getrennten Seiten.`,stats:t,supportingCard:`
     <p class="text-xs font-semibold uppercase tracking-[0.32em] text-emerald-300">Über uns</p>
     <h2 class="mt-4 text-3xl font-semibold tracking-tight">Kurzüberblick</h2>
     <div class="mt-6 border-t border-white/10">

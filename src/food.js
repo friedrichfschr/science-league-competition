@@ -120,7 +120,7 @@ function getFilteredProducts() {
     const stockMatch = state.stock === 'Alle' || product.stockLevel === state.stock
     const queryMatch =
       query.length === 0 ||
-      [product.name, product.description, product.category, product.origin, product.badge, ...product.tags]
+      [product.name, product.category, product.origin, product.stockLabel]
         .join(' ')
         .toLowerCase()
         .includes(query)
@@ -277,10 +277,12 @@ function renderProductCard(product) {
         </span>
       </div>
 
+      <div class="mt-4 overflow-hidden rounded-[1.1rem] bg-stone-100">
+        <img src="${product.image}" alt="${product.name}" class="aspect-[4/3] w-full object-cover" loading="lazy" />
+      </div>
+
       <div class="mt-4">
-        <p class="text-xs font-semibold uppercase tracking-[0.24em] text-emerald-800">${product.badge}</p>
-        <h3 class="mt-2 text-2xl font-semibold text-stone-950">${product.name}</h3>
-        <p class="mt-3 text-sm leading-7 text-stone-600">${product.description}</p>
+        <h3 class="text-2xl font-semibold text-stone-950">${product.name}</h3>
       </div>
 
       <dl class="mt-5 grid grid-cols-2 gap-3 border-t border-stone-200 pt-4 text-sm">
@@ -297,18 +299,6 @@ function renderProductCard(product) {
           <dd class="mt-1 font-medium text-stone-800">${product.origin}</dd>
         </div>
       </dl>
-
-      <div class="mt-4 flex flex-wrap gap-2">
-        ${product.tags
-          .map(
-            (tag) => `
-              <span class="rounded-full bg-stone-100 px-3 py-1 text-xs font-medium text-stone-600">
-                ${tag}
-              </span>
-            `,
-          )
-          .join('')}
-      </div>
 
       <div class="mt-auto pt-6">
         ${
