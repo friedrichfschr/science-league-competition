@@ -9,10 +9,6 @@ const hero = renderHero({
   title: 'Räume, Lernangebote und Kochformate auf einen Blick.',
   intro:
     'Hier stehen die sozialen Angebote des FoodConnectMarkts: mietbare Säle, Nachhilfe, Kochklassen und offene Formate.',
-  actions: [
-    { href: 'food.html', label: 'Food ansehen' },
-    { href: 'index.html', label: 'Zurück zu Über uns' },
-  ],
   supportingCard: `
     <p class="text-xs font-semibold uppercase tracking-[0.32em] text-amber-300">Soziales</p>
     <h2 class="mt-4 text-3xl font-semibold tracking-tight">Wofür der Bereich da ist</h2>

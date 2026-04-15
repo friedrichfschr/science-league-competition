@@ -432,10 +432,6 @@ function render() {
     title: 'Produkte suchen, filtern und direkt in den Warenkorb legen.',
     intro:
       'Der Food-Bereich zeigt nur das Nötige: Suche, Filter, Produktliste und Warenkorb.',
-    actions: [
-      { href: 'index.html', label: 'Zurück zu Über uns' },
-      { href: 'soziales.html', label: 'Soziales ansehen' },
-    ],
     supportingCard: `
       <p class="text-xs font-semibold uppercase tracking-[0.32em] text-emerald-300">Food</p>
       <h2 class="mt-4 text-3xl font-semibold tracking-tight">Schneller Überblick</h2>

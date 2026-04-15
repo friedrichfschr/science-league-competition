@@ -15,10 +15,6 @@ const hero = renderHero({
   eyebrow: competitionFacts.season,
   title: 'FoodConnectMarkt: Projekt, Angebot und Nutzung klar erklärt.',
   intro: 'Der FoodConnectMarkt verbindet Einkauf, soziale Angebote und Science-League-Projektidee auf drei klar getrennten Seiten.',
-  actions: [
-    { href: 'food.html', label: 'Zum Food-Bereich' },
-    { href: 'soziales.html', label: 'Soziale Angebote ansehen' },
-  ],
   stats: heroStats,
   supportingCard: `
     <p class="text-xs font-semibold uppercase tracking-[0.32em] text-emerald-300">Über uns</p>
