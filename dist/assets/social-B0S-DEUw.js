@@ -1,4 +1,4 @@
-import{d as e,i as t,r as n,t as r}from"./shared-D5DCt2-a.js";var i=document.querySelector(`#app`);i.innerHTML=t({activePage:`social`,hero:n({eyebrow:`Der ConnectMarkt`,title:`Fünf Etagen für Gemeinschaft, Lernen und Begegnung.`,intro:`Der kreisförmige Turm des FoodConnectMarkts ist dem sozialen Miteinander gewidmet — barrierefrei, mehrzweckfähig und offen für alle.`,supportingCard:`
+import{d as e,i as t,r as n,t as r}from"./shared-CwnMZZ-T.js";var i=document.querySelector(`#app`);i.innerHTML=t({activePage:`social`,hero:n({eyebrow:`Der ConnectMarkt`,title:`Fünf Etagen für Gemeinschaft, Lernen und Begegnung.`,intro:`Der kreisförmige Turm des FoodConnectMarkts ist dem sozialen Miteinander gewidmet — barrierefrei, mehrzweckfähig und offen für alle.`,supportingCard:`
     <p class="text-xs font-semibold uppercase tracking-[0.32em] text-amber-300">Aufbau des ConnectMarkts</p>
     <h2 class="mt-4 text-2xl font-semibold tracking-tight">5 Etagen, ein Konzept</h2>
     <div class="mt-5 space-y-0 border-t border-white/10">
