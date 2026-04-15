@@ -8,5 +8,17 @@ export default defineConfig({
     port: 5173,
     strictPort: true,
     allowedHosts: ['preview.fschr.me'],
+    cors: {
+      origin: ['http://preview.fschr.me', 'https://preview.fschr.me'],
+    },
+  },
+  preview: {
+    host: '127.0.0.1',
+    port: 5173,
+    strictPort: true,
+    allowedHosts: ['preview.fschr.me'],
+    cors: {
+      origin: ['http://preview.fschr.me', 'https://preview.fschr.me'],
+    },
   },
 })
