@@ -240,48 +240,54 @@ function renderProductCard(product) {
   const quantity = state.cart[product.id] ?? 0
 
   return `
-    <article class="flex h-full flex-col border-b border-stone-300 py-5 first:border-t first:border-stone-300 md:first:border-t-0 xl:grid xl:grid-cols-[1fr_auto] xl:gap-6 xl:py-6">
-      <div>
-        <div class="flex flex-wrap items-center gap-2">
-          <span class="rounded-full border border-stone-200 bg-stone-50 px-3 py-1 text-xs font-semibold uppercase tracking-[0.2em] text-stone-700">
-            ${product.category}
-          </span>
-          <span class="rounded-full border px-3 py-1 text-xs font-medium ${getStockBadge(product)}">
-            ${product.stockLabel}
-          </span>
-          <span class="text-xs font-semibold uppercase tracking-[0.24em] text-emerald-800">${product.badge}</span>
-        </div>
-
-        <div class="mt-4 grid gap-4 lg:grid-cols-[minmax(0,1fr)_15rem] lg:items-start">
-          <div>
-            <h3 class="text-2xl font-semibold text-stone-950">${product.name}</h3>
-            <p class="mt-3 max-w-2xl text-sm leading-7 text-stone-600">${product.description}</p>
-          </div>
-          <div class="grid gap-2 text-sm text-stone-600 lg:justify-items-end">
-            <p><span class="text-stone-500">Preis:</span> <span class="font-semibold text-stone-950">${currency.format(product.price)}</span></p>
-            <p><span class="text-stone-500">Einheit:</span> <span class="font-medium text-stone-800">${product.unit}</span></p>
-            <p class="lg:text-right"><span class="text-stone-500">Herkunft:</span> <span class="font-medium text-stone-800">${product.origin}</span></p>
-          </div>
-        </div>
-
-        <div class="mt-4 flex flex-wrap gap-2">
-          ${product.tags
-            .map(
-              (tag) => `
-                <span class="rounded-full bg-stone-100 px-3 py-1 text-xs font-medium text-stone-600">
-                  ${tag}
-                </span>
-              `,
-            )
-            .join('')}
-        </div>
+    <article class="flex h-full flex-col rounded-[1.5rem] border border-stone-200 bg-white p-5 shadow-[0_10px_30px_rgba(41,37,36,0.05)] transition hover:-translate-y-0.5 hover:border-stone-300 hover:shadow-[0_16px_40px_rgba(41,37,36,0.08)]">
+      <div class="flex flex-wrap items-start justify-between gap-3">
+        <span class="rounded-full border border-stone-200 bg-stone-50 px-3 py-1 text-xs font-semibold uppercase tracking-[0.2em] text-stone-700">
+          ${product.category}
+        </span>
+        <span class="rounded-full border px-3 py-1 text-xs font-medium ${getStockBadge(product)}">
+          ${product.stockLabel}
+        </span>
       </div>
 
-      <div class="mt-5 flex items-center xl:mt-0 xl:justify-end">
+      <div class="mt-4">
+        <p class="text-xs font-semibold uppercase tracking-[0.24em] text-emerald-800">${product.badge}</p>
+        <h3 class="mt-2 text-2xl font-semibold text-stone-950">${product.name}</h3>
+        <p class="mt-3 text-sm leading-7 text-stone-600">${product.description}</p>
+      </div>
+
+      <dl class="mt-5 grid grid-cols-2 gap-3 border-t border-stone-200 pt-4 text-sm">
+        <div>
+          <dt class="text-stone-500">Preis</dt>
+          <dd class="mt-1 font-semibold text-stone-950">${currency.format(product.price)}</dd>
+        </div>
+        <div>
+          <dt class="text-stone-500">Einheit</dt>
+          <dd class="mt-1 font-medium text-stone-800">${product.unit}</dd>
+        </div>
+        <div class="col-span-2">
+          <dt class="text-stone-500">Herkunft</dt>
+          <dd class="mt-1 font-medium text-stone-800">${product.origin}</dd>
+        </div>
+      </dl>
+
+      <div class="mt-4 flex flex-wrap gap-2">
+        ${product.tags
+          .map(
+            (tag) => `
+              <span class="rounded-full bg-stone-100 px-3 py-1 text-xs font-medium text-stone-600">
+                ${tag}
+              </span>
+            `,
+          )
+          .join('')}
+      </div>
+
+      <div class="mt-auto pt-6">
         ${
           quantity > 0
             ? `
-              <div class="flex w-full items-center justify-between gap-3 xl:w-auto xl:flex-col xl:items-end">
+              <div class="flex items-center justify-between gap-3">
                 <div class="inline-flex items-center gap-2 rounded-full border border-stone-300 bg-stone-50 px-2 py-2">
                   <button type="button" data-action="decrease" data-id="${product.id}" class="grid h-8 w-8 place-items-center rounded-full bg-white text-lg text-stone-900 transition hover:bg-stone-200" aria-label="Menge verringern">−</button>
                   <span class="min-w-7 text-center text-sm font-semibold text-stone-900">${quantity}</span>
@@ -291,7 +297,7 @@ function renderProductCard(product) {
               </div>
             `
             : `
-              <button type="button" data-action="add-to-cart" data-id="${product.id}" class="inline-flex w-full items-center justify-center rounded-full bg-stone-950 px-4 py-3 text-sm font-medium text-white transition hover:bg-emerald-800 xl:w-auto">
+              <button type="button" data-action="add-to-cart" data-id="${product.id}" class="inline-flex w-full items-center justify-center rounded-full bg-stone-950 px-4 py-3 text-sm font-medium text-white transition hover:bg-emerald-800">
                 In den Warenkorb
               </button>
             `
@@ -314,7 +320,7 @@ function renderProductsList() {
   }
 
   return `
-    <div>
+    <div class="grid gap-4 md:grid-cols-2 xl:grid-cols-3">
       ${filteredProducts.map((product) => renderProductCard(product)).join('')}
     </div>
   `

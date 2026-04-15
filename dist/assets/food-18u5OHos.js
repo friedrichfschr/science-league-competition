@@ -1,4 +1,4 @@
-import{i as e,l as t,n,r,s as i,t as a,u as o}from"./shared-57kKlwyV.js";var s=`foodconnect-cart-v2`,c=new Intl.NumberFormat(`de-DE`,{style:`currency`,currency:`EUR`}),l=[{value:`Alle`,label:`Alle Bestände`},{value:`fresh`,label:`Frisch geerntet`},{value:`ready`,label:`Sofort verfügbar`},{value:`limited`,label:`Nur kleine Menge`}],u=[{value:`empfohlen`,label:`Empfohlen`},{value:`preis-aufsteigend`,label:`Preis: niedrig zuerst`},{value:`preis-absteigend`,label:`Preis: hoch zuerst`},{value:`name-a-z`,label:`Name A–Z`}],d=document.querySelector(`#app`),f={query:``,category:`Alle`,stock:`Alle`,sort:`empfohlen`,cart:p(),cartDrawerOpen:!1};function p(){try{let e=window.localStorage.getItem(s);return e?JSON.parse(e):{}}catch{return{}}}function m(){window.localStorage.setItem(s,JSON.stringify(f.cart))}function h(e){return o.find(t=>t.id===e)}function g(){return Object.entries(f.cart).map(([e,t])=>{let n=h(e);return!n||t<=0?null:{...n,quantity:t,total:n.price*t}}).filter(Boolean)}function _(){return Object.values(f.cart).reduce((e,t)=>e+t,0)}function v(){return g().reduce((e,t)=>e+t.total,0)}function y(){let e=0;return f.query.trim()&&(e+=1),f.category!==`Alle`&&(e+=1),f.stock!==`Alle`&&(e+=1),e}function b(e){return{fresh:3,ready:2,limited:1}[e.stockLevel]+(e.badge===`Heute empfohlen`?2:0)}function x(e){switch(f.sort){case`preis-aufsteigend`:return[...e].sort((e,t)=>e.price-t.price);case`preis-absteigend`:return[...e].sort((e,t)=>t.price-e.price);case`name-a-z`:return[...e].sort((e,t)=>e.name.localeCompare(t.name,`de`));default:return[...e].sort((e,t)=>{let n=b(e),r=b(t);return r===n?e.name.localeCompare(t.name,`de`):r-n})}}function S(){let e=f.query.trim().toLowerCase();return x(o.filter(t=>{let n=f.category===`Alle`||t.category===f.category,r=f.stock===`Alle`||t.stockLevel===f.stock,i=e.length===0||[t.name,t.description,t.category,t.origin,t.badge,...t.tags].join(` `).toLowerCase().includes(e);return n&&r&&i}))}function C(e){f.cart[e]=(f.cart[e]??0)+1,m(),P()}function w(e,t){t<=0?delete f.cart[e]:f.cart[e]=t,m(),P()}function T(){f.cart={},m(),P()}function E(){f.query=``,f.category=`Alle`,f.stock=`Alle`,f.sort=`empfohlen`,P()}function D(e){return{fresh:`border-emerald-200 bg-emerald-50 text-emerald-800`,ready:`border-sky-200 bg-sky-50 text-sky-800`,limited:`border-amber-200 bg-amber-50 text-amber-800`}[e.stockLevel]??`border-stone-200 bg-stone-100 text-stone-700`}function O(){return`
+import{i as e,l as t,n,r,s as i,t as a,u as o}from"./shared-BmgJHTnX.js";var s=`foodconnect-cart-v2`,c=new Intl.NumberFormat(`de-DE`,{style:`currency`,currency:`EUR`}),l=[{value:`Alle`,label:`Alle Bestände`},{value:`fresh`,label:`Frisch geerntet`},{value:`ready`,label:`Sofort verfügbar`},{value:`limited`,label:`Nur kleine Menge`}],u=[{value:`empfohlen`,label:`Empfohlen`},{value:`preis-aufsteigend`,label:`Preis: niedrig zuerst`},{value:`preis-absteigend`,label:`Preis: hoch zuerst`},{value:`name-a-z`,label:`Name A–Z`}],d=document.querySelector(`#app`),f={query:``,category:`Alle`,stock:`Alle`,sort:`empfohlen`,cart:p(),cartDrawerOpen:!1};function p(){try{let e=window.localStorage.getItem(s);return e?JSON.parse(e):{}}catch{return{}}}function m(){window.localStorage.setItem(s,JSON.stringify(f.cart))}function h(e){return o.find(t=>t.id===e)}function g(){return Object.entries(f.cart).map(([e,t])=>{let n=h(e);return!n||t<=0?null:{...n,quantity:t,total:n.price*t}}).filter(Boolean)}function _(){return Object.values(f.cart).reduce((e,t)=>e+t,0)}function v(){return g().reduce((e,t)=>e+t.total,0)}function y(){let e=0;return f.query.trim()&&(e+=1),f.category!==`Alle`&&(e+=1),f.stock!==`Alle`&&(e+=1),e}function b(e){return{fresh:3,ready:2,limited:1}[e.stockLevel]+(e.badge===`Heute empfohlen`?2:0)}function x(e){switch(f.sort){case`preis-aufsteigend`:return[...e].sort((e,t)=>e.price-t.price);case`preis-absteigend`:return[...e].sort((e,t)=>t.price-e.price);case`name-a-z`:return[...e].sort((e,t)=>e.name.localeCompare(t.name,`de`));default:return[...e].sort((e,t)=>{let n=b(e),r=b(t);return r===n?e.name.localeCompare(t.name,`de`):r-n})}}function S(){let e=f.query.trim().toLowerCase();return x(o.filter(t=>{let n=f.category===`Alle`||t.category===f.category,r=f.stock===`Alle`||t.stockLevel===f.stock,i=e.length===0||[t.name,t.description,t.category,t.origin,t.badge,...t.tags].join(` `).toLowerCase().includes(e);return n&&r&&i}))}function C(e){f.cart[e]=(f.cart[e]??0)+1,m(),P()}function w(e,t){t<=0?delete f.cart[e]:f.cart[e]=t,m(),P()}function T(){f.cart={},m(),P()}function E(){f.query=``,f.category=`Alle`,f.stock=`Alle`,f.sort=`empfohlen`,P()}function D(e){return{fresh:`border-emerald-200 bg-emerald-50 text-emerald-800`,ready:`border-sky-200 bg-sky-50 text-sky-800`,limited:`border-amber-200 bg-amber-50 text-amber-800`}[e.stockLevel]??`border-stone-200 bg-stone-100 text-stone-700`}function O(){return`
     <aside class="lg:sticky lg:top-24">
       <div class="border-y border-stone-300 py-5">
         <div class="flex items-center justify-between gap-3">
@@ -44,42 +44,48 @@ import{i as e,l as t,n,r,s as i,t as a,u as o}from"./shared-57kKlwyV.js";var s=`
       </div>
     </aside>
   `}function k(e){let t=f.cart[e.id]??0;return`
-    <article class="flex h-full flex-col border-b border-stone-300 py-5 first:border-t first:border-stone-300 md:first:border-t-0 xl:grid xl:grid-cols-[1fr_auto] xl:gap-6 xl:py-6">
-      <div>
-        <div class="flex flex-wrap items-center gap-2">
-          <span class="rounded-full border border-stone-200 bg-stone-50 px-3 py-1 text-xs font-semibold uppercase tracking-[0.2em] text-stone-700">
-            ${e.category}
-          </span>
-          <span class="rounded-full border px-3 py-1 text-xs font-medium ${D(e)}">
-            ${e.stockLabel}
-          </span>
-          <span class="text-xs font-semibold uppercase tracking-[0.24em] text-emerald-800">${e.badge}</span>
-        </div>
-
-        <div class="mt-4 grid gap-4 lg:grid-cols-[minmax(0,1fr)_15rem] lg:items-start">
-          <div>
-            <h3 class="text-2xl font-semibold text-stone-950">${e.name}</h3>
-            <p class="mt-3 max-w-2xl text-sm leading-7 text-stone-600">${e.description}</p>
-          </div>
-          <div class="grid gap-2 text-sm text-stone-600 lg:justify-items-end">
-            <p><span class="text-stone-500">Preis:</span> <span class="font-semibold text-stone-950">${c.format(e.price)}</span></p>
-            <p><span class="text-stone-500">Einheit:</span> <span class="font-medium text-stone-800">${e.unit}</span></p>
-            <p class="lg:text-right"><span class="text-stone-500">Herkunft:</span> <span class="font-medium text-stone-800">${e.origin}</span></p>
-          </div>
-        </div>
-
-        <div class="mt-4 flex flex-wrap gap-2">
-          ${e.tags.map(e=>`
-                <span class="rounded-full bg-stone-100 px-3 py-1 text-xs font-medium text-stone-600">
-                  ${e}
-                </span>
-              `).join(``)}
-        </div>
+    <article class="flex h-full flex-col rounded-[1.5rem] border border-stone-200 bg-white p-5 shadow-[0_10px_30px_rgba(41,37,36,0.05)] transition hover:-translate-y-0.5 hover:border-stone-300 hover:shadow-[0_16px_40px_rgba(41,37,36,0.08)]">
+      <div class="flex flex-wrap items-start justify-between gap-3">
+        <span class="rounded-full border border-stone-200 bg-stone-50 px-3 py-1 text-xs font-semibold uppercase tracking-[0.2em] text-stone-700">
+          ${e.category}
+        </span>
+        <span class="rounded-full border px-3 py-1 text-xs font-medium ${D(e)}">
+          ${e.stockLabel}
+        </span>
       </div>
 
-      <div class="mt-5 flex items-center xl:mt-0 xl:justify-end">
+      <div class="mt-4">
+        <p class="text-xs font-semibold uppercase tracking-[0.24em] text-emerald-800">${e.badge}</p>
+        <h3 class="mt-2 text-2xl font-semibold text-stone-950">${e.name}</h3>
+        <p class="mt-3 text-sm leading-7 text-stone-600">${e.description}</p>
+      </div>
+
+      <dl class="mt-5 grid grid-cols-2 gap-3 border-t border-stone-200 pt-4 text-sm">
+        <div>
+          <dt class="text-stone-500">Preis</dt>
+          <dd class="mt-1 font-semibold text-stone-950">${c.format(e.price)}</dd>
+        </div>
+        <div>
+          <dt class="text-stone-500">Einheit</dt>
+          <dd class="mt-1 font-medium text-stone-800">${e.unit}</dd>
+        </div>
+        <div class="col-span-2">
+          <dt class="text-stone-500">Herkunft</dt>
+          <dd class="mt-1 font-medium text-stone-800">${e.origin}</dd>
+        </div>
+      </dl>
+
+      <div class="mt-4 flex flex-wrap gap-2">
+        ${e.tags.map(e=>`
+              <span class="rounded-full bg-stone-100 px-3 py-1 text-xs font-medium text-stone-600">
+                ${e}
+              </span>
+            `).join(``)}
+      </div>
+
+      <div class="mt-auto pt-6">
         ${t>0?`
-              <div class="flex w-full items-center justify-between gap-3 xl:w-auto xl:flex-col xl:items-end">
+              <div class="flex items-center justify-between gap-3">
                 <div class="inline-flex items-center gap-2 rounded-full border border-stone-300 bg-stone-50 px-2 py-2">
                   <button type="button" data-action="decrease" data-id="${e.id}" class="grid h-8 w-8 place-items-center rounded-full bg-white text-lg text-stone-900 transition hover:bg-stone-200" aria-label="Menge verringern">−</button>
                   <span class="min-w-7 text-center text-sm font-semibold text-stone-900">${t}</span>
@@ -88,7 +94,7 @@ import{i as e,l as t,n,r,s as i,t as a,u as o}from"./shared-57kKlwyV.js";var s=`
                 <p class="text-sm font-medium text-emerald-800">Im Warenkorb</p>
               </div>
             `:`
-              <button type="button" data-action="add-to-cart" data-id="${e.id}" class="inline-flex w-full items-center justify-center rounded-full bg-stone-950 px-4 py-3 text-sm font-medium text-white transition hover:bg-emerald-800 xl:w-auto">
+              <button type="button" data-action="add-to-cart" data-id="${e.id}" class="inline-flex w-full items-center justify-center rounded-full bg-stone-950 px-4 py-3 text-sm font-medium text-white transition hover:bg-emerald-800">
                 In den Warenkorb
               </button>
             `}
@@ -100,7 +106,7 @@ import{i as e,l as t,n,r,s as i,t as a,u as o}from"./shared-57kKlwyV.js";var s=`
         <p class="mt-3 text-sm leading-7 text-stone-600">Versuche eine andere Kategorie oder lösche die aktiven Filter.</p>
       </div>
     `:`
-    <div>
+    <div class="grid gap-4 md:grid-cols-2 xl:grid-cols-3">
       ${e.map(e=>k(e)).join(``)}
     </div>
   `}function j(){let e=g(),t=_(),n=v();return`
