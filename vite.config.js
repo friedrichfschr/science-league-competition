@@ -1,5 +1,6 @@
 import { defineConfig } from 'vite'
 import tailwindcss from '@tailwindcss/vite'
+import { resolve } from 'node:path'
 
 export default defineConfig({
   plugins: [tailwindcss()],
@@ -19,6 +20,15 @@ export default defineConfig({
     allowedHosts: ['preview.fschr.me'],
     cors: {
       origin: ['http://preview.fschr.me', 'https://preview.fschr.me'],
+    },
+  },
+  build: {
+    rollupOptions: {
+      input: {
+        about: resolve(__dirname, 'index.html'),
+        social: resolve(__dirname, 'soziales.html'),
+        food: resolve(__dirname, 'food.html'),
+      },
     },
   },
 })

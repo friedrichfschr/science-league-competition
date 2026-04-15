@@ -1,7 +1,7 @@
 export const siteNav = [
-  { label: 'Über uns', href: '#ueber-uns' },
-  { label: 'Soziales', href: '#soziales' },
-  { label: 'Food', href: '#food' },
+  { key: 'about', label: 'Über uns', href: 'index.html' },
+  { key: 'social', label: 'Soziales', href: 'soziales.html' },
+  { key: 'food', label: 'Food', href: 'food.html' },
 ]
 
 export const competitionFacts = {

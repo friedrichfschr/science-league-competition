@@ -1,43 +1,14 @@
-import './style.css'
-import {
-  aboutMetrics,
-  aboutPillars,
-  competitionFacts,
-  heroStats,
-  storyTimeline,
-  trustHighlights,
-} from './data.js'
-import { bindPageSelect, renderHero, renderPageFrame } from './shared.js'
-
-const app = document.querySelector('#app')
-
-const hero = renderHero({
-  eyebrow: competitionFacts.season,
-  title: 'FoodConnectMarkt mit klarer Story und echtem Nutzwert.',
-  intro: `${competitionFacts.subtitle} ${competitionFacts.description}`,
-  actions: [
-    { href: 'food.html', label: 'Zum Food-Bereich' },
-    { href: 'soziales.html', label: 'Soziale Angebote ansehen' },
-  ],
-  stats: heroStats,
-  supportingCard: `
+import{a as e,c as t,f as n,i as r,o as i,p as a,r as o,s,t as c}from"./shared-DAgsaNh7.js";var l=document.querySelector(`#app`);l.innerHTML=r({activePage:`about`,hero:o({eyebrow:s.season,title:`FoodConnectMarkt mit klarer Story und echtem Nutzwert.`,intro:`${s.subtitle} ${s.description}`,actions:[{href:`food.html`,label:`Zum Food-Bereich`},{href:`soziales.html`,label:`Soziale Angebote ansehen`}],stats:t,supportingCard:`
     <p class="text-xs font-semibold uppercase tracking-[0.32em] text-emerald-300">Über uns</p>
     <h2 class="mt-4 text-3xl font-semibold tracking-tight">Die Startseite erklärt erst das Projekt und verweist dann sauber weiter.</h2>
     <div class="mt-6 space-y-3">
-      ${trustHighlights
-        .map(
-          (item) => `
+      ${a.map(e=>`
             <div class="rounded-[1.3rem] border border-white/10 bg-white/5 px-4 py-4 text-sm leading-7 text-stone-200">
-              ${item}
+              ${e}
             </div>
-          `,
-        )
-        .join('')}
+          `).join(``)}
     </div>
-  `,
-})
-
-const content = `
+  `}),content:`
   <section class="px-5 py-8 lg:px-6 lg:py-12">
     <div class="mx-auto max-w-7xl">
       <div class="grid gap-6 lg:grid-cols-[0.95fr_1.05fr]">
@@ -51,37 +22,25 @@ const content = `
           </p>
 
           <div class="mt-8 grid gap-3">
-            ${aboutMetrics
-              .map(
-                (metric) => `
+            ${e.map(e=>`
                   <article class="grid gap-3 rounded-[1.5rem] border border-stone-200 bg-stone-50 px-4 py-4 sm:grid-cols-[6rem_1fr] sm:items-start">
-                    <p class="text-lg font-semibold text-stone-950">${metric.value}</p>
-                    <p class="text-sm leading-7 text-stone-600">${metric.label}</p>
+                    <p class="text-lg font-semibold text-stone-950">${e.value}</p>
+                    <p class="text-sm leading-7 text-stone-600">${e.label}</p>
                   </article>
-                `,
-              )
-              .join('')}
+                `).join(``)}
           </div>
         </div>
 
         <div class="grid gap-4 md:grid-cols-2">
-          ${aboutPillars
-            .map(
-              (pillar, index) => `
-                <article class="rounded-[2rem] border border-stone-200 ${
-                  index === 0 ? 'bg-stone-950 text-stone-50 md:col-span-2' : 'bg-white text-stone-900'
-                } px-6 py-6 shadow-[0_18px_50px_rgba(41,37,36,0.05)]">
-                  <p class="text-xs font-semibold uppercase tracking-[0.28em] ${
-                    index === 0 ? 'text-emerald-300' : 'text-emerald-800'
-                  }">Schwerpunkt ${index + 1}</p>
-                  <h3 class="mt-4 text-2xl font-semibold ${index === 0 ? 'text-white' : 'text-stone-950'}">${pillar.title}</h3>
-                  <p class="mt-3 text-sm leading-7 ${index === 0 ? 'text-stone-200' : 'text-stone-600'}">
-                    ${pillar.text}
+          ${i.map((e,t)=>`
+                <article class="rounded-[2rem] border border-stone-200 ${t===0?`bg-stone-950 text-stone-50 md:col-span-2`:`bg-white text-stone-900`} px-6 py-6 shadow-[0_18px_50px_rgba(41,37,36,0.05)]">
+                  <p class="text-xs font-semibold uppercase tracking-[0.28em] ${t===0?`text-emerald-300`:`text-emerald-800`}">Schwerpunkt ${t+1}</p>
+                  <h3 class="mt-4 text-2xl font-semibold ${t===0?`text-white`:`text-stone-950`}">${e.title}</h3>
+                  <p class="mt-3 text-sm leading-7 ${t===0?`text-stone-200`:`text-stone-600`}">
+                    ${e.text}
                   </p>
                 </article>
-              `,
-            )
-            .join('')}
+              `).join(``)}
         </div>
       </div>
     </div>
@@ -97,27 +56,23 @@ const content = `
             Die Wettbewerbsgeschichte gehört dazu, aber sie steht jetzt an einem passenden Ort. So bleibt die Startseite verständlich und trotzdem vollständig.
           </p>
           <div class="mt-6 flex flex-wrap gap-3">
-            <a href="${competitionFacts.links.competition}" target="_blank" rel="noreferrer" class="inline-flex items-center justify-center rounded-full bg-emerald-500 px-4 py-3 text-sm font-medium text-white transition hover:bg-emerald-400">
+            <a href="${s.links.competition}" target="_blank" rel="noreferrer" class="inline-flex items-center justify-center rounded-full bg-emerald-500 px-4 py-3 text-sm font-medium text-white transition hover:bg-emerald-400">
               Science League Seite
             </a>
-            <a href="${competitionFacts.links.team}" target="_blank" rel="noreferrer" class="inline-flex items-center justify-center rounded-full border border-white/15 px-4 py-3 text-sm font-medium text-white transition hover:bg-white/10">
+            <a href="${s.links.team}" target="_blank" rel="noreferrer" class="inline-flex items-center justify-center rounded-full border border-white/15 px-4 py-3 text-sm font-medium text-white transition hover:bg-white/10">
               Team bre-delicious
             </a>
           </div>
         </article>
 
         <div class="grid gap-4 md:grid-cols-2">
-          ${storyTimeline
-            .map(
-              (item, index) => `
+          ${n.map((e,t)=>`
                 <article class="rounded-[2rem] border border-stone-200 bg-white px-6 py-6 shadow-[0_18px_50px_rgba(41,37,36,0.05)]">
-                  <p class="text-xs font-semibold uppercase tracking-[0.28em] text-emerald-800">Schritt ${index + 1}</p>
-                  <h3 class="mt-4 text-2xl font-semibold text-stone-950">${item.title}</h3>
-                  <p class="mt-3 text-sm leading-7 text-stone-600">${item.text}</p>
+                  <p class="text-xs font-semibold uppercase tracking-[0.28em] text-emerald-800">Schritt ${t+1}</p>
+                  <h3 class="mt-4 text-2xl font-semibold text-stone-950">${e.title}</h3>
+                  <p class="mt-3 text-sm leading-7 text-stone-600">${e.text}</p>
                 </article>
-              `,
-            )
-            .join('')}
+              `).join(``)}
         </div>
       </div>
     </div>
@@ -137,12 +92,4 @@ const content = `
       </a>
     </div>
   </section>
-`
-
-app.innerHTML = renderPageFrame({
-  activePage: 'about',
-  hero,
-  content,
-})
-
-bindPageSelect(app)
+`}),c(l);
