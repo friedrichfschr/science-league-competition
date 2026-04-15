@@ -184,10 +184,8 @@ function renderFilters() {
               aria-expanded="${state.filtersOpen ? 'true' : 'false'}"
               class="flex min-w-0 flex-1 items-center justify-between gap-3 text-left transition"
             >
-              <div>
-                <p class="text-sm text-stone-600">${getActiveFilterCount()} aktiv</p>
-              </div>
-              <span class="text-sm font-medium text-stone-700">${state.filtersOpen ? 'Schließen' : 'Filter öffnen'}</span>
+              <p class="text-sm font-medium text-stone-900">Filter</p>
+              <span class="text-sm font-medium text-stone-700">${state.filtersOpen ? 'Schließen' : 'Öffnen'}</span>
             </button>
             ${
               getActiveFilterCount() > 0
@@ -468,13 +466,6 @@ function render() {
               class="w-full rounded-2xl border border-stone-300 bg-stone-50 px-4 py-3 text-stone-900 outline-none transition placeholder:text-stone-400 focus:border-emerald-400 focus:bg-white focus:ring-4 focus:ring-emerald-100"
             />
           </label>
-        </div>
-
-        <div class="mt-4 flex flex-wrap items-center gap-2 text-sm text-stone-600">
-          ${state.category !== 'Alle' ? `<span class="rounded-full bg-stone-100 px-3 py-1">${state.category}</span>` : ''}
-          ${state.stock !== 'Alle' ? `<span class="rounded-full bg-stone-100 px-3 py-1">${STOCK_FILTERS.find((filter) => filter.value === state.stock)?.label}</span>` : ''}
-          ${state.query.trim() ? `<span class="rounded-full bg-stone-100 px-3 py-1">„${escapeHtml(state.query.trim())}“</span>` : ''}
-          ${getActiveFilterCount() === 0 ? '<span class="rounded-full bg-emerald-50 px-3 py-1 text-emerald-800">Keine Filter aktiv</span>' : ''}
         </div>
 
         <div class="mt-8 grid gap-8 lg:grid-cols-[17rem_minmax(0,1fr)_20rem] lg:items-start">
