@@ -1,19 +1,4 @@
-import './style.css'
-import { services } from './data.js'
-import { bindPageSelect, renderHero, renderPageFrame } from './shared.js'
-
-const app = document.querySelector('#app')
-
-const hero = renderHero({
-  eyebrow: 'Soziales & Community',
-  title: 'Räume, Lernangebote und Kochformate auf einen Blick.',
-  intro:
-    'Hier stehen die sozialen Angebote des FoodConnectMarkts: mietbare Säle, Nachhilfe, Kochklassen und offene Formate.',
-  actions: [
-    { href: 'food.html', label: 'Food ansehen' },
-    { href: 'index.html', label: 'Zurück zu Über uns' },
-  ],
-  supportingCard: `
+import{d as e,i as t,r as n,t as r}from"./shared-wHxlVnZb.js";var i=document.querySelector(`#app`);i.innerHTML=t({activePage:`social`,hero:n({eyebrow:`Soziales & Community`,title:`Räume, Lernangebote und Kochformate auf einen Blick.`,intro:`Hier stehen die sozialen Angebote des FoodConnectMarkts: mietbare Säle, Nachhilfe, Kochklassen und offene Formate.`,actions:[{href:`food.html`,label:`Food ansehen`},{href:`index.html`,label:`Zurück zu Über uns`}],supportingCard:`
     <p class="text-xs font-semibold uppercase tracking-[0.32em] text-amber-300">Soziales</p>
     <h2 class="mt-4 text-3xl font-semibold tracking-tight">Wofür der Bereich da ist</h2>
     <div class="mt-6 border-t border-white/10">
@@ -22,10 +7,7 @@ const hero = renderHero({
       <div class="border-b border-white/10 py-4 text-sm leading-7 text-stone-200">Kochklassen und Mitmachformate</div>
       <div class="py-4 text-sm leading-7 text-stone-200">Offene Events für Nachbarschaft und Initiativen</div>
     </div>
-  `,
-})
-
-const content = `
+  `}),content:`
   <section class="px-5 py-8 lg:px-6 lg:py-12">
     <div class="mx-auto grid max-w-7xl gap-10 xl:grid-cols-[0.72fr_1.28fr] xl:items-start">
       <div>
@@ -42,35 +24,23 @@ const content = `
       </div>
 
       <div class="border-y border-stone-300 bg-white/60">
-        ${services
-          .map(
-            (service) => `
+        ${e.map(e=>`
               <article class="grid gap-4 border-b border-stone-200 px-0 py-6 last:border-b-0 md:grid-cols-[11rem_1fr] md:gap-6">
                 <div>
                   <span class="inline-flex rounded-full border border-stone-300 bg-white px-3 py-1 text-xs font-semibold uppercase tracking-[0.22em] text-stone-700">
-                    ${service.badge}
+                    ${e.badge}
                   </span>
                 </div>
                 <div>
-                  <h3 class="text-2xl font-semibold text-stone-950">${service.title}</h3>
-                  <p class="mt-3 text-sm leading-7 text-stone-600">${service.text}</p>
+                  <h3 class="text-2xl font-semibold text-stone-950">${e.title}</h3>
+                  <p class="mt-3 text-sm leading-7 text-stone-600">${e.text}</p>
                   <ul class="mt-4 grid gap-2 text-sm text-stone-600 sm:grid-cols-2">
-                    ${service.details.map((detail) => `<li>• ${detail}</li>`).join('')}
+                    ${e.details.map(e=>`<li>• ${e}</li>`).join(``)}
                   </ul>
                 </div>
               </article>
-            `,
-          )
-          .join('')}
+            `).join(``)}
       </div>
     </div>
   </section>
-`
-
-app.innerHTML = renderPageFrame({
-  activePage: 'social',
-  hero,
-  content,
-})
-
-bindPageSelect(app)
+`}),r(i);

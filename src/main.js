@@ -13,8 +13,8 @@ const app = document.querySelector('#app')
 
 const hero = renderHero({
   eyebrow: competitionFacts.season,
-  title: 'FoodConnectMarkt mit klarer Story und echtem Nutzwert.',
-  intro: `${competitionFacts.subtitle} ${competitionFacts.description}`,
+  title: 'FoodConnectMarkt: Projekt, Angebot und Nutzung klar erklärt.',
+  intro: 'Der FoodConnectMarkt verbindet Einkauf, soziale Angebote und Science-League-Projektidee auf drei klar getrennten Seiten.',
   actions: [
     { href: 'food.html', label: 'Zum Food-Bereich' },
     { href: 'soziales.html', label: 'Soziale Angebote ansehen' },
@@ -22,7 +22,7 @@ const hero = renderHero({
   stats: heroStats,
   supportingCard: `
     <p class="text-xs font-semibold uppercase tracking-[0.32em] text-emerald-300">Über uns</p>
-    <h2 class="mt-4 text-3xl font-semibold tracking-tight">Die Startseite erklärt erst das Projekt und verweist dann sauber weiter.</h2>
+    <h2 class="mt-4 text-3xl font-semibold tracking-tight">Kurzüberblick</h2>
     <div class="mt-6 border-t border-white/10">
       ${trustHighlights
         .map(
@@ -43,10 +43,10 @@ const content = `
       <div>
         <p class="text-xs font-semibold uppercase tracking-[0.32em] text-emerald-800">Projektidee</p>
         <h2 class="mt-4 max-w-[13ch] text-3xl font-semibold tracking-tight text-stone-950 sm:text-4xl">
-          Ein Ort für Einkauf, Lernen und Nachbarschaft statt einer reinen Marktfläche.
+          Ein Markt für Einkauf, Lernen und Nachbarschaft.
         </h2>
         <p class="mt-5 text-base leading-8 text-stone-600">
-          Der FoodConnectMarkt verbindet Frische, Nahversorgung, Bildung und Begegnung. Die neue Struktur trennt deshalb nicht nur Inhalte sauber, sondern macht auch die Nutzung einfacher: Über uns erklärt das Warum, Soziales zeigt die Community-Angebote und Food bildet den Einkaufsfluss ab.
+          Über uns erklärt das Projekt. Soziales zeigt die Community-Angebote. Food zeigt den Einkaufsbereich.
         </p>
 
         <div class="mt-8 border-y border-stone-300">

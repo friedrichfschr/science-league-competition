@@ -365,7 +365,7 @@ function renderCartContent() {
                 .join('')
             : `
               <div class="border border-dashed border-white/15 px-4 py-6 text-sm leading-7 text-stone-300">
-                Noch nichts im Warenkorb. Wähle Produkte aus dem Food-Bereich aus.
+                Noch nichts im Warenkorb.
               </div>
             `
         }
@@ -429,20 +429,19 @@ function render() {
 
   const hero = renderHero({
     eyebrow: 'Food & Einkauf',
-    title: 'Eine eigene Food-Seite für Suche, Filter und vertraute Shop-Muster.',
+    title: 'Produkte suchen, filtern und direkt in den Warenkorb legen.',
     intro:
-      'Der Einkaufsbereich ist aus der langen Gesamtseite herausgelöst und bekommt jetzt eine eigene, klar fokussierte Seite. So wirken Produkte, Filter und Warenkorb wesentlich geordneter.',
+      'Der Food-Bereich zeigt nur das Nötige: Suche, Filter, Produktliste und Warenkorb.',
     actions: [
       { href: 'index.html', label: 'Zurück zu Über uns' },
       { href: 'soziales.html', label: 'Soziales ansehen' },
     ],
     supportingCard: `
       <p class="text-xs font-semibold uppercase tracking-[0.32em] text-emerald-300">Food</p>
-      <h2 class="mt-4 text-3xl font-semibold tracking-tight">Weniger Ablenkung, mehr Einkaufsklarheit.</h2>
+      <h2 class="mt-4 text-3xl font-semibold tracking-tight">Schneller Überblick</h2>
       <div class="mt-6 border-t border-white/10">
-        <div class="border-b border-white/10 py-4 text-sm leading-7 text-stone-200">${filteredProducts.length} Produkte im aktuellen Suchergebnis</div>
-        <div class="border-b border-white/10 py-4 text-sm leading-7 text-stone-200">${getCartCount()} Artikel im Warenkorb</div>
-        <div class="py-4 text-sm leading-7 text-stone-200">Klar sichtbare Preise, Herkunft, Bestand und CTAs</div>
+        <div class="border-b border-white/10 py-4 text-sm leading-7 text-stone-200">${filteredProducts.length} Produkte sichtbar</div>
+        <div class="py-4 text-sm leading-7 text-stone-200">${getCartCount()} Artikel im Warenkorb</div>
       </div>
     `,
   })
@@ -471,10 +470,9 @@ function render() {
         </div>
 
         <div class="mt-4 flex flex-wrap items-center gap-2 text-sm text-stone-600">
-          <span class="font-medium text-stone-800">Aktive Auswahl:</span>
-          ${state.category !== 'Alle' ? `<span class="rounded-full bg-stone-100 px-3 py-1">Kategorie: ${state.category}</span>` : ''}
-          ${state.stock !== 'Alle' ? `<span class="rounded-full bg-stone-100 px-3 py-1">Bestand: ${STOCK_FILTERS.find((filter) => filter.value === state.stock)?.label}</span>` : ''}
-          ${state.query.trim() ? `<span class="rounded-full bg-stone-100 px-3 py-1">Suche: „${escapeHtml(state.query.trim())}“</span>` : ''}
+          ${state.category !== 'Alle' ? `<span class="rounded-full bg-stone-100 px-3 py-1">${state.category}</span>` : ''}
+          ${state.stock !== 'Alle' ? `<span class="rounded-full bg-stone-100 px-3 py-1">${STOCK_FILTERS.find((filter) => filter.value === state.stock)?.label}</span>` : ''}
+          ${state.query.trim() ? `<span class="rounded-full bg-stone-100 px-3 py-1">„${escapeHtml(state.query.trim())}“</span>` : ''}
           ${getActiveFilterCount() === 0 ? '<span class="rounded-full bg-emerald-50 px-3 py-1 text-emerald-800">Keine Filter aktiv</span>' : ''}
         </div>
 
@@ -483,8 +481,8 @@ function render() {
 
           <div>
             <div class="mb-4 flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
-              <p class="text-sm text-stone-600">${filteredProducts.length} Produkte sichtbar · klare Preis-, Kategorie- und Bestandsanzeige</p>
-              <a href="${competitionFacts.links.team}" target="_blank" rel="noreferrer" class="text-sm font-medium text-emerald-800 transition hover:text-emerald-900">Zum Teamprofil</a>
+              <p class="text-sm text-stone-600">${filteredProducts.length} Produkte sichtbar</p>
+              <a href="${competitionFacts.links.team}" target="_blank" rel="noreferrer" class="text-sm font-medium text-emerald-800 transition hover:text-emerald-900">Teamprofil</a>
             </div>
             ${renderProductsList()}
           </div>

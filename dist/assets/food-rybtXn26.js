@@ -1,4 +1,4 @@
-import{i as e,l as t,n,r,s as i,t as a,u as o}from"./shared-CxqreL70.js";var s=`foodconnect-cart-v2`,c=new Intl.NumberFormat(`de-DE`,{style:`currency`,currency:`EUR`}),l=[{value:`Alle`,label:`Alle Bestände`},{value:`fresh`,label:`Frisch geerntet`},{value:`ready`,label:`Sofort verfügbar`},{value:`limited`,label:`Nur kleine Menge`}],u=[{value:`empfohlen`,label:`Empfohlen`},{value:`preis-aufsteigend`,label:`Preis: niedrig zuerst`},{value:`preis-absteigend`,label:`Preis: hoch zuerst`},{value:`name-a-z`,label:`Name A–Z`}],d=document.querySelector(`#app`),f={query:``,category:`Alle`,stock:`Alle`,sort:`empfohlen`,cart:p(),cartDrawerOpen:!1};function p(){try{let e=window.localStorage.getItem(s);return e?JSON.parse(e):{}}catch{return{}}}function m(){window.localStorage.setItem(s,JSON.stringify(f.cart))}function h(e){return o.find(t=>t.id===e)}function g(){return Object.entries(f.cart).map(([e,t])=>{let n=h(e);return!n||t<=0?null:{...n,quantity:t,total:n.price*t}}).filter(Boolean)}function _(){return Object.values(f.cart).reduce((e,t)=>e+t,0)}function v(){return g().reduce((e,t)=>e+t.total,0)}function y(){let e=0;return f.query.trim()&&(e+=1),f.category!==`Alle`&&(e+=1),f.stock!==`Alle`&&(e+=1),e}function b(e){return{fresh:3,ready:2,limited:1}[e.stockLevel]+(e.badge===`Heute empfohlen`?2:0)}function x(e){switch(f.sort){case`preis-aufsteigend`:return[...e].sort((e,t)=>e.price-t.price);case`preis-absteigend`:return[...e].sort((e,t)=>t.price-e.price);case`name-a-z`:return[...e].sort((e,t)=>e.name.localeCompare(t.name,`de`));default:return[...e].sort((e,t)=>{let n=b(e),r=b(t);return r===n?e.name.localeCompare(t.name,`de`):r-n})}}function S(){let e=f.query.trim().toLowerCase();return x(o.filter(t=>{let n=f.category===`Alle`||t.category===f.category,r=f.stock===`Alle`||t.stockLevel===f.stock,i=e.length===0||[t.name,t.description,t.category,t.origin,t.badge,...t.tags].join(` `).toLowerCase().includes(e);return n&&r&&i}))}function C(e){f.cart[e]=(f.cart[e]??0)+1,m(),P()}function w(e,t){t<=0?delete f.cart[e]:f.cart[e]=t,m(),P()}function T(){f.cart={},m(),P()}function E(){f.query=``,f.category=`Alle`,f.stock=`Alle`,f.sort=`empfohlen`,P()}function D(e){return{fresh:`border-emerald-200 bg-emerald-50 text-emerald-800`,ready:`border-sky-200 bg-sky-50 text-sky-800`,limited:`border-amber-200 bg-amber-50 text-amber-800`}[e.stockLevel]??`border-stone-200 bg-stone-100 text-stone-700`}function O(){return`
+import{i as e,l as t,n,r,s as i,t as a,u as o}from"./shared-wHxlVnZb.js";var s=`foodconnect-cart-v2`,c=new Intl.NumberFormat(`de-DE`,{style:`currency`,currency:`EUR`}),l=[{value:`Alle`,label:`Alle Bestände`},{value:`fresh`,label:`Frisch geerntet`},{value:`ready`,label:`Sofort verfügbar`},{value:`limited`,label:`Nur kleine Menge`}],u=[{value:`empfohlen`,label:`Empfohlen`},{value:`preis-aufsteigend`,label:`Preis: niedrig zuerst`},{value:`preis-absteigend`,label:`Preis: hoch zuerst`},{value:`name-a-z`,label:`Name A–Z`}],d=document.querySelector(`#app`),f={query:``,category:`Alle`,stock:`Alle`,sort:`empfohlen`,cart:p(),cartDrawerOpen:!1};function p(){try{let e=window.localStorage.getItem(s);return e?JSON.parse(e):{}}catch{return{}}}function m(){window.localStorage.setItem(s,JSON.stringify(f.cart))}function h(e){return o.find(t=>t.id===e)}function g(){return Object.entries(f.cart).map(([e,t])=>{let n=h(e);return!n||t<=0?null:{...n,quantity:t,total:n.price*t}}).filter(Boolean)}function _(){return Object.values(f.cart).reduce((e,t)=>e+t,0)}function v(){return g().reduce((e,t)=>e+t.total,0)}function y(){let e=0;return f.query.trim()&&(e+=1),f.category!==`Alle`&&(e+=1),f.stock!==`Alle`&&(e+=1),e}function b(e){return{fresh:3,ready:2,limited:1}[e.stockLevel]+(e.badge===`Heute empfohlen`?2:0)}function x(e){switch(f.sort){case`preis-aufsteigend`:return[...e].sort((e,t)=>e.price-t.price);case`preis-absteigend`:return[...e].sort((e,t)=>t.price-e.price);case`name-a-z`:return[...e].sort((e,t)=>e.name.localeCompare(t.name,`de`));default:return[...e].sort((e,t)=>{let n=b(e),r=b(t);return r===n?e.name.localeCompare(t.name,`de`):r-n})}}function S(){let e=f.query.trim().toLowerCase();return x(o.filter(t=>{let n=f.category===`Alle`||t.category===f.category,r=f.stock===`Alle`||t.stockLevel===f.stock,i=e.length===0||[t.name,t.description,t.category,t.origin,t.badge,...t.tags].join(` `).toLowerCase().includes(e);return n&&r&&i}))}function C(e){f.cart[e]=(f.cart[e]??0)+1,m(),P()}function w(e,t){t<=0?delete f.cart[e]:f.cart[e]=t,m(),P()}function T(){f.cart={},m(),P()}function E(){f.query=``,f.category=`Alle`,f.stock=`Alle`,f.sort=`empfohlen`,P()}function D(e){return{fresh:`border-emerald-200 bg-emerald-50 text-emerald-800`,ready:`border-sky-200 bg-sky-50 text-sky-800`,limited:`border-amber-200 bg-amber-50 text-amber-800`}[e.stockLevel]??`border-stone-200 bg-stone-100 text-stone-700`}function O(){return`
     <aside class="lg:sticky lg:top-24">
       <div class="border-y border-stone-300 py-5">
         <div class="flex items-center justify-between gap-3">
@@ -136,7 +136,7 @@ import{i as e,l as t,n,r,s as i,t as a,u as o}from"./shared-CxqreL70.js";var s=`
                     </article>
                   `).join(``):`
               <div class="border border-dashed border-white/15 px-4 py-6 text-sm leading-7 text-stone-300">
-                Noch nichts im Warenkorb. Wähle Produkte aus dem Food-Bereich aus.
+                Noch nichts im Warenkorb.
               </div>
             `}
       </div>
@@ -179,13 +179,12 @@ import{i as e,l as t,n,r,s as i,t as a,u as o}from"./shared-CxqreL70.js";var s=`
         <span class="rounded-full bg-stone-950 px-3 py-1 text-sm font-medium text-white">Ansehen</span>
       </button>
     </div>
-  `}function P(){let t=S();d.innerHTML=e({activePage:`food`,hero:r({eyebrow:`Food & Einkauf`,title:`Eine eigene Food-Seite für Suche, Filter und vertraute Shop-Muster.`,intro:`Der Einkaufsbereich ist aus der langen Gesamtseite herausgelöst und bekommt jetzt eine eigene, klar fokussierte Seite. So wirken Produkte, Filter und Warenkorb wesentlich geordneter.`,actions:[{href:`index.html`,label:`Zurück zu Über uns`},{href:`soziales.html`,label:`Soziales ansehen`}],supportingCard:`
+  `}function P(){let t=S();d.innerHTML=e({activePage:`food`,hero:r({eyebrow:`Food & Einkauf`,title:`Produkte suchen, filtern und direkt in den Warenkorb legen.`,intro:`Der Food-Bereich zeigt nur das Nötige: Suche, Filter, Produktliste und Warenkorb.`,actions:[{href:`index.html`,label:`Zurück zu Über uns`},{href:`soziales.html`,label:`Soziales ansehen`}],supportingCard:`
       <p class="text-xs font-semibold uppercase tracking-[0.32em] text-emerald-300">Food</p>
-      <h2 class="mt-4 text-3xl font-semibold tracking-tight">Weniger Ablenkung, mehr Einkaufsklarheit.</h2>
+      <h2 class="mt-4 text-3xl font-semibold tracking-tight">Schneller Überblick</h2>
       <div class="mt-6 border-t border-white/10">
-        <div class="border-b border-white/10 py-4 text-sm leading-7 text-stone-200">${t.length} Produkte im aktuellen Suchergebnis</div>
-        <div class="border-b border-white/10 py-4 text-sm leading-7 text-stone-200">${_()} Artikel im Warenkorb</div>
-        <div class="py-4 text-sm leading-7 text-stone-200">Klar sichtbare Preise, Herkunft, Bestand und CTAs</div>
+        <div class="border-b border-white/10 py-4 text-sm leading-7 text-stone-200">${t.length} Produkte sichtbar</div>
+        <div class="py-4 text-sm leading-7 text-stone-200">${_()} Artikel im Warenkorb</div>
       </div>
     `}),content:`
     <section class="px-5 py-8 lg:px-6 lg:py-12">
@@ -211,10 +210,9 @@ import{i as e,l as t,n,r,s as i,t as a,u as o}from"./shared-CxqreL70.js";var s=`
         </div>
 
         <div class="mt-4 flex flex-wrap items-center gap-2 text-sm text-stone-600">
-          <span class="font-medium text-stone-800">Aktive Auswahl:</span>
-          ${f.category===`Alle`?``:`<span class="rounded-full bg-stone-100 px-3 py-1">Kategorie: ${f.category}</span>`}
-          ${f.stock===`Alle`?``:`<span class="rounded-full bg-stone-100 px-3 py-1">Bestand: ${l.find(e=>e.value===f.stock)?.label}</span>`}
-          ${f.query.trim()?`<span class="rounded-full bg-stone-100 px-3 py-1">Suche: „${n(f.query.trim())}“</span>`:``}
+          ${f.category===`Alle`?``:`<span class="rounded-full bg-stone-100 px-3 py-1">${f.category}</span>`}
+          ${f.stock===`Alle`?``:`<span class="rounded-full bg-stone-100 px-3 py-1">${l.find(e=>e.value===f.stock)?.label}</span>`}
+          ${f.query.trim()?`<span class="rounded-full bg-stone-100 px-3 py-1">„${n(f.query.trim())}“</span>`:``}
           ${y()===0?`<span class="rounded-full bg-emerald-50 px-3 py-1 text-emerald-800">Keine Filter aktiv</span>`:``}
         </div>
 
@@ -223,8 +221,8 @@ import{i as e,l as t,n,r,s as i,t as a,u as o}from"./shared-CxqreL70.js";var s=`
 
           <div>
             <div class="mb-4 flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
-              <p class="text-sm text-stone-600">${t.length} Produkte sichtbar · klare Preis-, Kategorie- und Bestandsanzeige</p>
-              <a href="${i.links.team}" target="_blank" rel="noreferrer" class="text-sm font-medium text-emerald-800 transition hover:text-emerald-900">Zum Teamprofil</a>
+              <p class="text-sm text-stone-600">${t.length} Produkte sichtbar</p>
+              <a href="${i.links.team}" target="_blank" rel="noreferrer" class="text-sm font-medium text-emerald-800 transition hover:text-emerald-900">Teamprofil</a>
             </div>
             ${A()}
           </div>
