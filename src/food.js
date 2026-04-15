@@ -32,6 +32,7 @@ const state = {
   sort: 'empfohlen',
   cart: loadCart(),
   cartDrawerOpen: false,
+  filtersOpen: false,
 }
 
 function loadCart() {
@@ -175,62 +176,80 @@ function renderFilters() {
   return `
     <aside class="lg:sticky lg:top-24">
       <div class="border-y border-stone-300 py-5">
-        <div class="flex items-center justify-between gap-3">
-          <div>
-            <p class="text-sm font-semibold text-stone-950">Filter</p>
-            <p class="mt-1 text-sm text-stone-600">${getActiveFilterCount()} aktiv</p>
-          </div>
-          <button type="button" data-action="clear-filters" class="text-sm font-medium text-stone-600 transition hover:text-stone-950">Zurücksetzen</button>
+        <div class="flex items-center gap-3">
+          <button
+            type="button"
+            data-action="toggle-filters"
+            aria-expanded="${state.filtersOpen ? 'true' : 'false'}"
+            class="flex min-w-0 flex-1 items-center justify-between gap-3 rounded-2xl border border-stone-300 bg-white px-4 py-3 text-left transition hover:border-stone-400 hover:bg-stone-50"
+          >
+            <div>
+              <p class="text-sm font-semibold text-stone-950">Filter</p>
+              <p class="mt-1 text-sm text-stone-600">${getActiveFilterCount()} aktiv</p>
+            </div>
+            <span class="text-sm font-medium text-stone-600">${state.filtersOpen ? 'Schließen' : 'Öffnen'}</span>
+          </button>
+          ${
+            getActiveFilterCount() > 0
+              ? '<button type="button" data-action="clear-filters" class="shrink-0 text-sm font-medium text-stone-600 transition hover:text-stone-950">Zurücksetzen</button>'
+              : ''
+          }
         </div>
 
-        <div class="mt-6 border-t border-stone-200 pt-6">
-          <p class="text-xs font-semibold uppercase tracking-[0.28em] text-stone-500">Kategorie</p>
-          <div class="mt-3 flex flex-wrap gap-2 lg:flex-col">
-            ${productCategories
-              .map(
-                (category) => `
-                  <button
-                    type="button"
-                    data-action="set-category"
-                    data-value="${category}"
-                    class="rounded-full border px-4 py-2 text-sm font-medium transition ${
-                      state.category === category
-                        ? 'border-stone-950 bg-stone-950 text-white'
-                        : 'border-stone-300 bg-white text-stone-700 hover:border-stone-400 hover:bg-stone-100'
-                    }"
-                  >
-                    ${category}
-                  </button>
-                `,
-              )
-              .join('')}
-          </div>
-        </div>
+        ${
+          state.filtersOpen
+            ? `
+              <div class="mt-6 border-t border-stone-200 pt-6">
+                <p class="text-xs font-semibold uppercase tracking-[0.28em] text-stone-500">Kategorie</p>
+                <div class="mt-3 flex flex-wrap gap-2 lg:flex-col">
+                  ${productCategories
+                    .map(
+                      (category) => `
+                        <button
+                          type="button"
+                          data-action="set-category"
+                          data-value="${category}"
+                          class="rounded-full border px-4 py-2 text-sm font-medium transition ${
+                            state.category === category
+                              ? 'border-stone-950 bg-stone-950 text-white'
+                              : 'border-stone-300 bg-white text-stone-700 hover:border-stone-400 hover:bg-stone-100'
+                          }"
+                        >
+                          ${category}
+                        </button>
+                      `,
+                    )
+                    .join('')}
+                </div>
+              </div>
 
-        <div class="mt-6 border-t border-stone-200 pt-6">
-          <p class="text-xs font-semibold uppercase tracking-[0.28em] text-stone-500">Bestand</p>
-          <div class="mt-3 grid gap-2">
-            ${STOCK_FILTERS
-              .map(
-                (filter) => `
-                  <button
-                    type="button"
-                    data-action="set-stock"
-                    data-value="${filter.value}"
-                    class="flex items-center justify-between rounded-2xl border px-4 py-3 text-left text-sm transition ${
-                      state.stock === filter.value
-                        ? 'border-emerald-300 bg-emerald-50 text-emerald-900'
-                        : 'border-stone-300 bg-white text-stone-700 hover:border-stone-400 hover:bg-stone-100'
-                    }"
-                  >
-                    <span>${filter.label}</span>
-                    <span class="text-xs uppercase tracking-[0.2em]">${filter.value === 'Alle' ? 'ALL' : filter.value}</span>
-                  </button>
-                `,
-              )
-              .join('')}
-          </div>
-        </div>
+              <div class="mt-6 border-t border-stone-200 pt-6">
+                <p class="text-xs font-semibold uppercase tracking-[0.28em] text-stone-500">Bestand</p>
+                <div class="mt-3 grid gap-2">
+                  ${STOCK_FILTERS
+                    .map(
+                      (filter) => `
+                        <button
+                          type="button"
+                          data-action="set-stock"
+                          data-value="${filter.value}"
+                          class="flex items-center justify-between rounded-2xl border px-4 py-3 text-left text-sm transition ${
+                            state.stock === filter.value
+                              ? 'border-emerald-300 bg-emerald-50 text-emerald-900'
+                              : 'border-stone-300 bg-white text-stone-700 hover:border-stone-400 hover:bg-stone-100'
+                          }"
+                        >
+                          <span>${filter.label}</span>
+                          <span class="text-xs uppercase tracking-[0.2em]">${filter.value === 'Alle' ? 'ALL' : filter.value}</span>
+                        </button>
+                      `,
+                    )
+                    .join('')}
+                </div>
+              </div>
+            `
+            : ''
+        }
       </div>
     </aside>
   `
@@ -504,6 +523,10 @@ function handleClick(event) {
   const { action, value, id } = target.dataset
 
   switch (action) {
+    case 'toggle-filters':
+      state.filtersOpen = !state.filtersOpen
+      render()
+      break
     case 'set-category':
       state.category = value
       render()
