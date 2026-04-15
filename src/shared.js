@@ -94,7 +94,7 @@ export function renderHero({ eyebrow = '', title, intro = '', supportingCard = '
   return `
     <section class="px-5 pb-6 pt-5 lg:px-6 lg:pb-8 lg:pt-7">
       <div class="mx-auto grid max-w-7xl gap-6 ${hasSupportingCard ? 'lg:grid-cols-[1.08fr_0.92fr] lg:items-end' : ''}">
-        <div class="border-b border-stone-300 pb-6">
+        <div class="pb-2">
           ${
             hasEyebrow
               ? `<p class="text-xs font-semibold uppercase tracking-[0.32em] text-emerald-800">${eyebrow}</p>`
@@ -176,7 +176,7 @@ export function renderHero({ eyebrow = '', title, intro = '', supportingCard = '
 export function renderFooter(activePage) {
   return `
     <footer class="px-5 pb-8 pt-8 lg:px-6 lg:pb-10">
-      <div class="mx-auto flex max-w-7xl flex-col gap-5 border-t border-stone-300 pt-5 lg:flex-row lg:items-start lg:justify-between">
+      <div class="mx-auto flex max-w-7xl flex-col gap-5 pt-2 lg:flex-row lg:items-start lg:justify-between">
         <div>
           <p class="text-xs font-semibold uppercase tracking-[0.32em] text-emerald-800">${competitionFacts.brand}</p>
           <h2 class="mt-4 text-2xl font-semibold text-stone-950">${competitionFacts.title} für die ${competitionFacts.season}</h2>

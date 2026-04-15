@@ -175,7 +175,7 @@ function getStockBadge(product) {
 function renderFilters() {
   return `
     <aside class="lg:sticky lg:top-24">
-      <div class="border-y border-stone-300 py-5">
+      <div class="py-2">
         <div class="rounded-2xl border border-stone-300 bg-white px-4 py-3">
           <div class="flex items-center gap-3">
             <button
@@ -197,14 +197,14 @@ function renderFilters() {
           ${
             state.filtersOpen
               ? `
-                <div class="mt-6 border-t border-stone-200 pt-6">
+                <div class="mt-5 pt-1">
                   <p class="text-xs font-semibold uppercase tracking-[0.28em] text-stone-500">Sortierung</p>
                   <select id="sort-select" class="mt-3 w-full rounded-2xl border border-stone-300 bg-stone-50 px-4 py-3 text-sm text-stone-900 outline-none transition focus:border-emerald-400 focus:bg-white focus:ring-4 focus:ring-emerald-100">
                     ${SORT_OPTIONS.map((option) => `<option value="${option.value}" ${state.sort === option.value ? 'selected' : ''}>${option.label}</option>`).join('')}
                   </select>
                 </div>
 
-                <div class="mt-6 border-t border-stone-200 pt-6">
+                <div class="mt-5 pt-1">
                   <p class="text-xs font-semibold uppercase tracking-[0.28em] text-stone-500">Kategorie</p>
                   <div class="mt-3 flex flex-wrap gap-2 lg:flex-col">
                     ${productCategories
@@ -228,7 +228,7 @@ function renderFilters() {
                   </div>
                 </div>
 
-                <div class="mt-6 border-t border-stone-200 pt-6">
+                <div class="mt-5 pt-1">
                   <p class="text-xs font-semibold uppercase tracking-[0.28em] text-stone-500">Bestand</p>
                   <div class="mt-3 grid gap-2">
                     ${STOCK_FILTERS
@@ -455,7 +455,7 @@ function render() {
   const content = `
     <section class="px-5 py-6 lg:px-6 lg:py-8">
       <div class="mx-auto max-w-7xl">
-        <div class="border-b border-stone-300 pb-5">
+        <div class="pb-3">
           <label class="block">
             <span class="mb-2 block text-sm font-medium text-stone-700">Produkte suchen</span>
             <input
@@ -468,7 +468,7 @@ function render() {
           </label>
         </div>
 
-        <div class="mt-6 grid gap-6 lg:grid-cols-[17rem_minmax(0,1fr)_20rem] lg:items-start">
+        <div class="mt-5 grid gap-5 lg:grid-cols-[17rem_minmax(0,1fr)_20rem] lg:items-start">
           ${renderFilters()}
 
           <div>

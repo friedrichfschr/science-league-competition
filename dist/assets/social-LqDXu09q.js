@@ -1,4 +1,4 @@
-import{d as e,i as t,r as n,t as r}from"./shared-BX1T5XKg.js";var i=document.querySelector(`#app`);i.innerHTML=t({activePage:`social`,hero:n({eyebrow:`Soziales & Community`,title:`Räume, Lernangebote und Kochformate auf einen Blick.`,intro:`Hier stehen die sozialen Angebote des FoodConnectMarkts: mietbare Säle, Nachhilfe, Kochklassen und offene Formate.`,supportingCard:`
+import{d as e,i as t,r as n,t as r}from"./shared-CkGW7q7w.js";var i=document.querySelector(`#app`);i.innerHTML=t({activePage:`social`,hero:n({eyebrow:`Soziales & Community`,title:`Räume, Lernangebote und Kochformate auf einen Blick.`,intro:`Hier stehen die sozialen Angebote des FoodConnectMarkts: mietbare Säle, Nachhilfe, Kochklassen und offene Formate.`,supportingCard:`
     <p class="text-xs font-semibold uppercase tracking-[0.32em] text-amber-300">Soziales</p>
     <h2 class="mt-4 text-3xl font-semibold tracking-tight">Wofür der Bereich da ist</h2>
     <div class="mt-6 border-t border-white/10">
@@ -23,9 +23,9 @@ import{d as e,i as t,r as n,t as r}from"./shared-BX1T5XKg.js";var i=document.que
         </ul>
       </div>
 
-      <div class="border-y border-stone-300 bg-white/60">
+      <div class="space-y-3">
         ${e.map(e=>`
-              <article class="grid gap-4 border-b border-stone-200 px-0 py-5 last:border-b-0 md:grid-cols-[11rem_1fr] md:gap-5">
+              <article class="grid gap-4 rounded-2xl bg-white/75 px-4 py-5 md:grid-cols-[11rem_1fr] md:gap-5">
                 <div>
                   <span class="inline-flex rounded-full border border-stone-300 bg-white px-3 py-1 text-xs font-semibold uppercase tracking-[0.22em] text-stone-700">
                     ${e.badge}

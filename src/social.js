@@ -37,11 +37,11 @@ const content = `
         </ul>
       </div>
 
-      <div class="border-y border-stone-300 bg-white/60">
+      <div class="space-y-3">
         ${services
           .map(
             (service) => `
-              <article class="grid gap-4 border-b border-stone-200 px-0 py-5 last:border-b-0 md:grid-cols-[11rem_1fr] md:gap-5">
+              <article class="grid gap-4 rounded-2xl bg-white/75 px-4 py-5 md:grid-cols-[11rem_1fr] md:gap-5">
                 <div>
                   <span class="inline-flex rounded-full border border-stone-300 bg-white px-3 py-1 text-xs font-semibold uppercase tracking-[0.22em] text-stone-700">
                     ${service.badge}

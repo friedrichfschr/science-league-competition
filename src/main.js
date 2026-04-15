@@ -45,11 +45,11 @@ const content = `
           Über uns erklärt das Projekt. Soziales zeigt die Community-Angebote. Food zeigt den Einkaufsbereich.
         </p>
 
-        <div class="mt-6 border-y border-stone-300">
+        <div class="mt-6 space-y-3">
           ${aboutMetrics
             .map(
               (metric) => `
-                <article class="grid gap-3 border-b border-stone-200 py-4 last:border-b-0 sm:grid-cols-[6rem_1fr] sm:items-start">
+                <article class="grid gap-3 rounded-2xl bg-white/75 px-4 py-4 sm:grid-cols-[6rem_1fr] sm:items-start">
                   <p class="text-lg font-semibold text-stone-950">${metric.value}</p>
                   <p class="text-sm leading-7 text-stone-600">${metric.label}</p>
                 </article>
@@ -101,11 +101,11 @@ const content = `
         </div>
       </div>
 
-      <div class="border-l border-stone-300 pl-5 sm:pl-8">
+      <div class="space-y-4 sm:pl-2">
         ${storyTimeline
           .map(
             (item, index) => `
-              <article class="grid gap-4 border-b border-stone-200 py-5 last:border-b-0 sm:grid-cols-[5.5rem_1fr] sm:items-start">
+              <article class="grid gap-4 rounded-2xl bg-white/70 px-4 py-4 sm:grid-cols-[5.5rem_1fr] sm:items-start">
                 <div>
                   <p class="text-xs font-semibold uppercase tracking-[0.28em] text-emerald-800">Schritt ${index + 1}</p>
                 </div>
@@ -122,8 +122,8 @@ const content = `
   </section>
 
   <section class="px-5 py-6 lg:px-6 lg:py-8">
-    <div class="mx-auto max-w-7xl border-y border-stone-300">
-      <a href="soziales.html" class="grid gap-3 border-b border-stone-200 py-6 transition hover:bg-white/60 md:grid-cols-[12rem_1fr_auto] md:items-center md:gap-6">
+    <div class="mx-auto max-w-7xl space-y-3">
+      <a href="soziales.html" class="grid gap-3 rounded-2xl bg-white/75 px-4 py-5 transition hover:bg-white md:grid-cols-[12rem_1fr_auto] md:items-center md:gap-6">
         <p class="text-xs font-semibold uppercase tracking-[0.28em] text-amber-800">Weiter zu Soziales</p>
         <div>
           <h3 class="text-2xl font-semibold text-stone-950">Räume, Lernangebote und Community-Formate</h3>
@@ -131,7 +131,7 @@ const content = `
         </div>
         <span class="text-sm font-medium text-stone-500">Öffnen →</span>
       </a>
-      <a href="food.html" class="grid gap-3 py-6 transition hover:bg-white/60 md:grid-cols-[12rem_1fr_auto] md:items-center md:gap-6">
+      <a href="food.html" class="grid gap-3 rounded-2xl bg-white/75 px-4 py-5 transition hover:bg-white md:grid-cols-[12rem_1fr_auto] md:items-center md:gap-6">
         <p class="text-xs font-semibold uppercase tracking-[0.28em] text-emerald-800">Weiter zu Food</p>
         <div>
           <h3 class="text-2xl font-semibold text-stone-950">Produktsuche, Filter und Warenkorb</h3>

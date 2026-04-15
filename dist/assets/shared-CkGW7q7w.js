@@ -43,7 +43,7 @@
   `}function h({eyebrow:e=``,title:t,intro:n=``,supportingCard:r=``,stats:i=[],actions:a=[]}){let o=r.trim().length>0,s=e.trim().length>0,c=n.trim().length>0;return`
     <section class="px-5 pb-6 pt-5 lg:px-6 lg:pb-8 lg:pt-7">
       <div class="mx-auto grid max-w-7xl gap-6 ${o?`lg:grid-cols-[1.08fr_0.92fr] lg:items-end`:``}">
-        <div class="border-b border-stone-300 pb-6">
+        <div class="pb-2">
           ${s?`<p class="text-xs font-semibold uppercase tracking-[0.32em] text-emerald-800">${e}</p>`:``}
           <h1 class="${s?`mt-4`:``} max-w-[13ch] text-4xl font-semibold tracking-tight text-stone-950 sm:text-5xl lg:text-6xl">
             ${t}
@@ -89,7 +89,7 @@
     </section>
   `}function g(n){return`
     <footer class="px-5 pb-8 pt-8 lg:px-6 lg:pb-10">
-      <div class="mx-auto flex max-w-7xl flex-col gap-5 border-t border-stone-300 pt-5 lg:flex-row lg:items-start lg:justify-between">
+      <div class="mx-auto flex max-w-7xl flex-col gap-5 pt-2 lg:flex-row lg:items-start lg:justify-between">
         <div>
           <p class="text-xs font-semibold uppercase tracking-[0.32em] text-emerald-800">${t.brand}</p>
           <h2 class="mt-4 text-2xl font-semibold text-stone-950">${t.title} für die ${t.season}</h2>

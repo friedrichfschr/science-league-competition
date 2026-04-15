@@ -1,6 +1,6 @@
-import{i as e,l as t,n,r,s as i,t as a,u as o}from"./shared-BX1T5XKg.js";var s=`foodconnect-cart-v2`,c=new Intl.NumberFormat(`de-DE`,{style:`currency`,currency:`EUR`}),l=[{value:`Alle`,label:`Alle Bestände`},{value:`fresh`,label:`Frisch geerntet`},{value:`ready`,label:`Sofort verfügbar`},{value:`limited`,label:`Nur kleine Menge`}],u=[{value:`empfohlen`,label:`Empfohlen`},{value:`preis-aufsteigend`,label:`Preis: niedrig zuerst`},{value:`preis-absteigend`,label:`Preis: hoch zuerst`},{value:`name-a-z`,label:`Name A–Z`}],d=document.querySelector(`#app`),f={query:``,category:`Alle`,stock:`Alle`,sort:`empfohlen`,cart:p(),cartDrawerOpen:!1,filtersOpen:!1};function p(){try{let e=window.localStorage.getItem(s);return e?JSON.parse(e):{}}catch{return{}}}function m(){window.localStorage.setItem(s,JSON.stringify(f.cart))}function h(e){return o.find(t=>t.id===e)}function g(){return Object.entries(f.cart).map(([e,t])=>{let n=h(e);return!n||t<=0?null:{...n,quantity:t,total:n.price*t}}).filter(Boolean)}function _(){return Object.values(f.cart).reduce((e,t)=>e+t,0)}function v(){return g().reduce((e,t)=>e+t.total,0)}function y(){let e=0;return f.query.trim()&&(e+=1),f.category!==`Alle`&&(e+=1),f.stock!==`Alle`&&(e+=1),e}function b(e){return{fresh:3,ready:2,limited:1}[e.stockLevel]+(e.badge===`Heute empfohlen`?2:0)}function x(e){switch(f.sort){case`preis-aufsteigend`:return[...e].sort((e,t)=>e.price-t.price);case`preis-absteigend`:return[...e].sort((e,t)=>t.price-e.price);case`name-a-z`:return[...e].sort((e,t)=>e.name.localeCompare(t.name,`de`));default:return[...e].sort((e,t)=>{let n=b(e),r=b(t);return r===n?e.name.localeCompare(t.name,`de`):r-n})}}function S(){let e=f.query.trim().toLowerCase();return x(o.filter(t=>{let n=f.category===`Alle`||t.category===f.category,r=f.stock===`Alle`||t.stockLevel===f.stock,i=e.length===0||[t.name,t.category,t.origin,t.stockLabel].join(` `).toLowerCase().includes(e);return n&&r&&i}))}function C(e){f.cart[e]=(f.cart[e]??0)+1,m(),P()}function w(e,t){t<=0?delete f.cart[e]:f.cart[e]=t,m(),P()}function T(){f.cart={},m(),P()}function E(){f.query=``,f.category=`Alle`,f.stock=`Alle`,f.sort=`empfohlen`,P()}function D(e){return{fresh:`border-emerald-200 bg-emerald-50 text-emerald-800`,ready:`border-sky-200 bg-sky-50 text-sky-800`,limited:`border-amber-200 bg-amber-50 text-amber-800`}[e.stockLevel]??`border-stone-200 bg-stone-100 text-stone-700`}function O(){return`
+import{i as e,l as t,n,r,s as i,t as a,u as o}from"./shared-CkGW7q7w.js";var s=`foodconnect-cart-v2`,c=new Intl.NumberFormat(`de-DE`,{style:`currency`,currency:`EUR`}),l=[{value:`Alle`,label:`Alle Bestände`},{value:`fresh`,label:`Frisch geerntet`},{value:`ready`,label:`Sofort verfügbar`},{value:`limited`,label:`Nur kleine Menge`}],u=[{value:`empfohlen`,label:`Empfohlen`},{value:`preis-aufsteigend`,label:`Preis: niedrig zuerst`},{value:`preis-absteigend`,label:`Preis: hoch zuerst`},{value:`name-a-z`,label:`Name A–Z`}],d=document.querySelector(`#app`),f={query:``,category:`Alle`,stock:`Alle`,sort:`empfohlen`,cart:p(),cartDrawerOpen:!1,filtersOpen:!1};function p(){try{let e=window.localStorage.getItem(s);return e?JSON.parse(e):{}}catch{return{}}}function m(){window.localStorage.setItem(s,JSON.stringify(f.cart))}function h(e){return o.find(t=>t.id===e)}function g(){return Object.entries(f.cart).map(([e,t])=>{let n=h(e);return!n||t<=0?null:{...n,quantity:t,total:n.price*t}}).filter(Boolean)}function _(){return Object.values(f.cart).reduce((e,t)=>e+t,0)}function v(){return g().reduce((e,t)=>e+t.total,0)}function y(){let e=0;return f.query.trim()&&(e+=1),f.category!==`Alle`&&(e+=1),f.stock!==`Alle`&&(e+=1),e}function b(e){return{fresh:3,ready:2,limited:1}[e.stockLevel]+(e.badge===`Heute empfohlen`?2:0)}function x(e){switch(f.sort){case`preis-aufsteigend`:return[...e].sort((e,t)=>e.price-t.price);case`preis-absteigend`:return[...e].sort((e,t)=>t.price-e.price);case`name-a-z`:return[...e].sort((e,t)=>e.name.localeCompare(t.name,`de`));default:return[...e].sort((e,t)=>{let n=b(e),r=b(t);return r===n?e.name.localeCompare(t.name,`de`):r-n})}}function S(){let e=f.query.trim().toLowerCase();return x(o.filter(t=>{let n=f.category===`Alle`||t.category===f.category,r=f.stock===`Alle`||t.stockLevel===f.stock,i=e.length===0||[t.name,t.category,t.origin,t.stockLabel].join(` `).toLowerCase().includes(e);return n&&r&&i}))}function C(e){f.cart[e]=(f.cart[e]??0)+1,m(),P()}function w(e,t){t<=0?delete f.cart[e]:f.cart[e]=t,m(),P()}function T(){f.cart={},m(),P()}function E(){f.query=``,f.category=`Alle`,f.stock=`Alle`,f.sort=`empfohlen`,P()}function D(e){return{fresh:`border-emerald-200 bg-emerald-50 text-emerald-800`,ready:`border-sky-200 bg-sky-50 text-sky-800`,limited:`border-amber-200 bg-amber-50 text-amber-800`}[e.stockLevel]??`border-stone-200 bg-stone-100 text-stone-700`}function O(){return`
     <aside class="lg:sticky lg:top-24">
-      <div class="border-y border-stone-300 py-5">
+      <div class="py-2">
         <div class="rounded-2xl border border-stone-300 bg-white px-4 py-3">
           <div class="flex items-center gap-3">
             <button
@@ -16,14 +16,14 @@ import{i as e,l as t,n,r,s as i,t as a,u as o}from"./shared-BX1T5XKg.js";var s=`
           </div>
 
           ${f.filtersOpen?`
-                <div class="mt-6 border-t border-stone-200 pt-6">
+                <div class="mt-5 pt-1">
                   <p class="text-xs font-semibold uppercase tracking-[0.28em] text-stone-500">Sortierung</p>
                   <select id="sort-select" class="mt-3 w-full rounded-2xl border border-stone-300 bg-stone-50 px-4 py-3 text-sm text-stone-900 outline-none transition focus:border-emerald-400 focus:bg-white focus:ring-4 focus:ring-emerald-100">
                     ${u.map(e=>`<option value="${e.value}" ${f.sort===e.value?`selected`:``}>${e.label}</option>`).join(``)}
                   </select>
                 </div>
 
-                <div class="mt-6 border-t border-stone-200 pt-6">
+                <div class="mt-5 pt-1">
                   <p class="text-xs font-semibold uppercase tracking-[0.28em] text-stone-500">Kategorie</p>
                   <div class="mt-3 flex flex-wrap gap-2 lg:flex-col">
                     ${t.map(e=>`
@@ -39,7 +39,7 @@ import{i as e,l as t,n,r,s as i,t as a,u as o}from"./shared-BX1T5XKg.js";var s=`
                   </div>
                 </div>
 
-                <div class="mt-6 border-t border-stone-200 pt-6">
+                <div class="mt-5 pt-1">
                   <p class="text-xs font-semibold uppercase tracking-[0.28em] text-stone-500">Bestand</p>
                   <div class="mt-3 grid gap-2">
                     ${l.map(e=>`
@@ -198,7 +198,7 @@ import{i as e,l as t,n,r,s as i,t as a,u as o}from"./shared-BX1T5XKg.js";var s=`
   `}function P(){let t=S();d.innerHTML=e({activePage:`food`,hero:r({title:`Produkte`}),content:`
     <section class="px-5 py-6 lg:px-6 lg:py-8">
       <div class="mx-auto max-w-7xl">
-        <div class="border-b border-stone-300 pb-5">
+        <div class="pb-3">
           <label class="block">
             <span class="mb-2 block text-sm font-medium text-stone-700">Produkte suchen</span>
             <input
@@ -211,7 +211,7 @@ import{i as e,l as t,n,r,s as i,t as a,u as o}from"./shared-BX1T5XKg.js";var s=`
           </label>
         </div>
 
-        <div class="mt-6 grid gap-6 lg:grid-cols-[17rem_minmax(0,1fr)_20rem] lg:items-start">
+        <div class="mt-5 grid gap-5 lg:grid-cols-[17rem_minmax(0,1fr)_20rem] lg:items-start">
           ${O()}
 
           <div>

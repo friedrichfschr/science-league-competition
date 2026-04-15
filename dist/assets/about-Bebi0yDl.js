@@ -1,4 +1,4 @@
-import{a as e,c as t,f as n,i as r,o as i,p as a,r as o,s,t as c}from"./shared-BX1T5XKg.js";var l=document.querySelector(`#app`);l.innerHTML=r({activePage:`about`,hero:o({eyebrow:s.season,title:`FoodConnectMarkt: Projekt, Angebot und Nutzung klar erklärt.`,intro:`Der FoodConnectMarkt verbindet Einkauf, soziale Angebote und Science-League-Projektidee auf drei klar getrennten Seiten.`,stats:t,supportingCard:`
+import{a as e,c as t,f as n,i as r,o as i,p as a,r as o,s,t as c}from"./shared-CkGW7q7w.js";var l=document.querySelector(`#app`);l.innerHTML=r({activePage:`about`,hero:o({eyebrow:s.season,title:`FoodConnectMarkt: Projekt, Angebot und Nutzung klar erklärt.`,intro:`Der FoodConnectMarkt verbindet Einkauf, soziale Angebote und Science-League-Projektidee auf drei klar getrennten Seiten.`,stats:t,supportingCard:`
     <p class="text-xs font-semibold uppercase tracking-[0.32em] text-emerald-300">Über uns</p>
     <h2 class="mt-4 text-3xl font-semibold tracking-tight">Kurzüberblick</h2>
     <div class="mt-6 border-t border-white/10">
@@ -20,9 +20,9 @@ import{a as e,c as t,f as n,i as r,o as i,p as a,r as o,s,t as c}from"./shared-B
           Über uns erklärt das Projekt. Soziales zeigt die Community-Angebote. Food zeigt den Einkaufsbereich.
         </p>
 
-        <div class="mt-6 border-y border-stone-300">
+        <div class="mt-6 space-y-3">
           ${e.map(e=>`
-                <article class="grid gap-3 border-b border-stone-200 py-4 last:border-b-0 sm:grid-cols-[6rem_1fr] sm:items-start">
+                <article class="grid gap-3 rounded-2xl bg-white/75 px-4 py-4 sm:grid-cols-[6rem_1fr] sm:items-start">
                   <p class="text-lg font-semibold text-stone-950">${e.value}</p>
                   <p class="text-sm leading-7 text-stone-600">${e.label}</p>
                 </article>
@@ -67,9 +67,9 @@ import{a as e,c as t,f as n,i as r,o as i,p as a,r as o,s,t as c}from"./shared-B
         </div>
       </div>
 
-      <div class="border-l border-stone-300 pl-5 sm:pl-8">
+      <div class="space-y-4 sm:pl-2">
         ${n.map((e,t)=>`
-              <article class="grid gap-4 border-b border-stone-200 py-5 last:border-b-0 sm:grid-cols-[5.5rem_1fr] sm:items-start">
+              <article class="grid gap-4 rounded-2xl bg-white/70 px-4 py-4 sm:grid-cols-[5.5rem_1fr] sm:items-start">
                 <div>
                   <p class="text-xs font-semibold uppercase tracking-[0.28em] text-emerald-800">Schritt ${t+1}</p>
                 </div>
@@ -84,8 +84,8 @@ import{a as e,c as t,f as n,i as r,o as i,p as a,r as o,s,t as c}from"./shared-B
   </section>
 
   <section class="px-5 py-6 lg:px-6 lg:py-8">
-    <div class="mx-auto max-w-7xl border-y border-stone-300">
-      <a href="soziales.html" class="grid gap-3 border-b border-stone-200 py-6 transition hover:bg-white/60 md:grid-cols-[12rem_1fr_auto] md:items-center md:gap-6">
+    <div class="mx-auto max-w-7xl space-y-3">
+      <a href="soziales.html" class="grid gap-3 rounded-2xl bg-white/75 px-4 py-5 transition hover:bg-white md:grid-cols-[12rem_1fr_auto] md:items-center md:gap-6">
         <p class="text-xs font-semibold uppercase tracking-[0.28em] text-amber-800">Weiter zu Soziales</p>
         <div>
           <h3 class="text-2xl font-semibold text-stone-950">Räume, Lernangebote und Community-Formate</h3>
@@ -93,7 +93,7 @@ import{a as e,c as t,f as n,i as r,o as i,p as a,r as o,s,t as c}from"./shared-B
         </div>
         <span class="text-sm font-medium text-stone-500">Öffnen →</span>
       </a>
-      <a href="food.html" class="grid gap-3 py-6 transition hover:bg-white/60 md:grid-cols-[12rem_1fr_auto] md:items-center md:gap-6">
+      <a href="food.html" class="grid gap-3 rounded-2xl bg-white/75 px-4 py-5 transition hover:bg-white md:grid-cols-[12rem_1fr_auto] md:items-center md:gap-6">
         <p class="text-xs font-semibold uppercase tracking-[0.28em] text-emerald-800">Weiter zu Food</p>
         <div>
           <h3 class="text-2xl font-semibold text-stone-950">Produktsuche, Filter und Warenkorb</h3>
