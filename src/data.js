@@ -1,48 +1,118 @@
+export const siteNav = [
+  { label: 'Über uns', href: '#ueber-uns' },
+  { label: 'Soziales', href: '#soziales' },
+  { label: 'Food', href: '#food' },
+]
+
 export const competitionFacts = {
   season: 'Science League 2025/2026',
+  brand: 'bre-delicious',
   title: 'FoodConnectMarkt',
-  subtitle: 'Urban Farming, Verkauf, Bildung und soziales Miteinander an einem Ort.',
+  subtitle: 'Ein Markt für frisches Essen, gemeinsames Lernen und echte Nachbarschaft.',
   description:
-    'Für die zdi Science League entwickeln wir als Team bre-delicious einen FoodConnectMarkt, in dem Vertical Farming, smarter Gemüseverkauf und soziale Angebote zusammenfinden.',
-  highlights: [
-    'Wettbewerb: Science League 2025/2026',
-    'Team: bre-delicious',
-    'Fokus: FoodConnectMarkt mit Vertical Farming',
-    'Idee: Gemüseverkauf, Bildung und Begegnung in einem urbanen Konzept',
-  ],
+    'Für die zdi Science League entwickelt das Team bre-delicious einen FoodConnectMarkt, der Vertical Farming, Einkauf, Bildung und soziale Angebote in einem praktischen Konzept verbindet.',
+  intro:
+    'Die Website soll nicht nur erklären, was die Idee ist, sondern zeigen, wie sie sich im Alltag anfühlt: klar, vertrauenswürdig, nutzbar und offen für verschiedene Zielgruppen.',
   links: {
     competition: 'https://mint-community.de/scienceleague/',
     team: 'https://mint-community.de/science-league-teams/bre-delicious-saison-2025-2026/',
   },
 }
 
-export const marketFeatures = [
+export const heroStats = [
   {
-    title: 'Vertical Farming mitten im Markt',
-    text: 'Frische Kräuter, Salate und Gemüse wachsen direkt vor Ort in platzsparenden vertikalen Systemen. So verbinden wir nachhaltigen Anbau mit einem modernen Einkaufserlebnis.',
+    value: '9',
+    label: 'Produkte im Demo-Markt',
   },
   {
-    title: 'Gemüseverkauf mit smarter Auswahl',
-    text: 'Kundinnen und Kunden können Produkte suchen, vergleichen und direkt in den Warenkorb legen. Der Markt wird dadurch zu einer zugänglichen Verkaufsplattform für frische Lebensmittel.',
+    value: '4',
+    label: 'Soziale und Bildungsangebote',
   },
   {
-    title: 'Bildung und Soziales gehören dazu',
-    text: 'Neben dem Verkauf schaffen wir Raum für Nachhilfe, Kochkurse, gemeinschaftliche Veranstaltungen und mietbare Säle. Der Markt ist nicht nur Laden, sondern Treffpunkt.',
+    value: '1',
+    label: 'Ort für Food, Lernen und Gemeinschaft',
   },
 ]
 
-export const timeline = [
+export const trustHighlights = [
+  'Transparente Produktinfos statt Deko-Overload',
+  'Klare Food-Suche mit Filtern, Warenkorb und Zustandsanzeige',
+  'Projektpräsentation, Community-Angebote und Einkauf in einem System',
+]
+
+export const aboutPillars = [
   {
-    title: 'Wettbewerb & Idee',
-    text: 'Die Science League 2025/2026 stellt den FoodConnectMarkt in den Mittelpunkt: Technik, Nachhaltigkeit und Gemeinschaft sollen zu einem funktionierenden Ort zusammenfinden.',
+    title: 'FoodConnectMarkt als echter Ort',
+    text: 'Der Markt ist nicht nur Verkaufsfläche, sondern verbindet Anbau, Beratung, Begegnung und Teilhabe an einem Standort.',
   },
   {
-    title: 'Unser Team bre-delicious',
-    text: 'Wir treten als Team bre-delicious an und entwickeln eine urbane Marktidee, die frische Produkte, soziale Nutzung und Bildungsangebote sichtbar zusammenbringt.',
+    title: 'Urban Farming sichtbar machen',
+    text: 'Vertical Farming wird nicht im Hintergrund versteckt, sondern als Teil des Einkaufserlebnisses und der Bildungsarbeit erklärt.',
   },
   {
-    title: 'Unser Konzept',
-    text: 'Unser FoodConnectMarkt verbindet Vertical Farming, einen digitalen Gemüseverkauf, soziale Angebote und Lernräume für eine lebensnahe, nachhaltige Zukunftsidee.',
+    title: 'Niedrige Einstiegshürden',
+    text: 'Menschen sollen schnell verstehen, was angeboten wird, wie Produkte gefunden werden und welche sozialen Formate es gibt.',
+  },
+]
+
+export const aboutMetrics = [
+  {
+    value: 'Food',
+    label: 'Frisches Gemüse und Kräuter mit klarer Produktsuche, Lagerstatus und Warenkorb.',
+  },
+  {
+    value: 'Soziales',
+    label: 'Mietbare Räume, Kochklassen, Lernangebote und offene Events für die Nachbarschaft.',
+  },
+  {
+    value: 'Projekt',
+    label: 'Science League Kontext, Teamstory und Mission verständlich aufbereitet.',
+  },
+]
+
+export const services = [
+  {
+    badge: 'Raum & Begegnung',
+    title: 'Mietbare Säle',
+    text: 'Flexible Räume für Vereine, kleine Feiern, Initiativen oder Workshops. Der Markt bleibt dadurch auch außerhalb des Einkaufs relevant.',
+    details: ['verschiedene Raumgrößen', 'für Gruppen, Vereine und Familien', 'mit Technik und Bestuhlung planbar'],
+  },
+  {
+    badge: 'Bildung',
+    title: 'Nachhilfe & Lernzeit',
+    text: 'Schülerinnen und Schüler können Lerninseln, Hausaufgabenhilfe und praktische MINT-Bezüge rund um Ernährung und Anbau nutzen.',
+    details: ['Lernzeiten nach der Schule', 'MINT-Bezug durch Vertical Farming', 'ruhige Arbeitsplätze im Markt'],
+  },
+  {
+    badge: 'Food & Community',
+    title: 'Kochklassen',
+    text: 'Aus frischen Zutaten werden gemeinsame Kochformate für Kinder, Familien und Interessierte. Einkauf und Anwendung rücken näher zusammen.',
+    details: ['saisonale Rezepte', 'gemeinsames Kochen mit Marktgemüse', 'praxisnah und niedrigschwellig'],
+  },
+  {
+    badge: 'Mitmachen',
+    title: 'Events & offene Formate',
+    text: 'Workshops, Infotage und Mitmach-Aktionen bringen Nachbarschaft, Nachhaltigkeit und Ernährung in einen gemeinsamen Rahmen.',
+    details: ['Workshops und Themenabende', 'Mitmachformate für Schulklassen', 'offene Nachbarschaftstreffen'],
+  },
+]
+
+export const storyTimeline = [
+  {
+    title: 'Science League Briefing',
+    text: 'Die Aufgabe stellt einen FoodConnectMarkt in den Mittelpunkt, der Technik, Nachhaltigkeit und Alltagsnutzen zusammenbringt.',
+  },
+  {
+    title: 'Team bre-delicious',
+    text: 'Das Team entwickelt daraus ein Konzept, das Gemüseverkauf, Community-Angebote und Bildung nicht trennt, sondern gemeinsam denkt.',
+  },
+  {
+    title: 'Digitale Nutzerführung',
+    text: 'Die Website übersetzt das Marktmodell in eine nachvollziehbare Navigation mit klarem Einstieg für Über uns, Soziales und Food.',
+  },
+  {
+    title: 'Praktischer Demo-Flow',
+    text: 'Produkte können gefiltert, verglichen und in einen Warenkorb gelegt werden, damit die Idee nicht abstrakt bleibt.',
   },
 ]
 
@@ -55,9 +125,12 @@ export const products = [
     category: 'Blattgemüse',
     price: 2.9,
     unit: 'pro Kopf',
-    stock: 'Erntebereit',
-    description: 'Knackig, frisch und direkt aus unserem Vertical-Farming-Regal.',
-    tags: ['Regional', 'Hydroponisch', 'Frisch geerntet'],
+    stockLabel: 'Erntebereit',
+    stockLevel: 'fresh',
+    description: 'Knackiger Salat direkt aus dem Vertical-Farming-Regal für Bowls, Sandwiches und schnelle Alltagsküche.',
+    origin: 'Anbau im FoodConnectMarkt',
+    badge: 'Heute empfohlen',
+    tags: ['hydroponisch', 'regional', 'frisch geerntet'],
   },
   {
     id: 'basilikum',
@@ -65,9 +138,12 @@ export const products = [
     category: 'Kräuter',
     price: 1.8,
     unit: 'pro Bund',
-    stock: 'Auf Lager',
-    description: 'Intensives Aroma für Pasta, Bowls und unsere Kochklassen.',
-    tags: ['Aromatisch', 'Urban Farm', 'Beliebt'],
+    stockLabel: 'Auf Lager',
+    stockLevel: 'ready',
+    description: 'Aromatisches Basilikum für Pasta, Sandwiches, Pesto oder Kochklassen im Markt.',
+    origin: 'Marktregal Kräuterzone',
+    badge: 'Küchenklassiker',
+    tags: ['aromatisch', 'urban farm', 'beliebt'],
   },
   {
     id: 'kirschtomaten',
@@ -75,9 +151,12 @@ export const products = [
     category: 'Fruchtgemüse',
     price: 3.7,
     unit: 'pro 500 g',
-    stock: 'Auf Lager',
-    description: 'Süß, saftig und ideal für Snackboxen oder Salate.',
-    tags: ['Snack', 'Sonnig', 'Lokal'],
+    stockLabel: 'Auf Lager',
+    stockLevel: 'ready',
+    description: 'Süß, saftig und gut für Snackboxen, Salate oder kleine Marktverkostungen.',
+    origin: 'Gewächshaus nah am Markt',
+    badge: 'Familienfreundlich',
+    tags: ['snack', 'lokal', 'sommerlich'],
   },
   {
     id: 'gurke',
@@ -85,9 +164,12 @@ export const products = [
     category: 'Fruchtgemüse',
     price: 2.6,
     unit: 'pro 400 g',
-    stock: 'Auf Lager',
-    description: 'Kühl, frisch und perfekt für schnelle, gesunde Gerichte.',
-    tags: ['Knackig', 'Frisch', 'Alltag'],
+    stockLabel: 'Auf Lager',
+    stockLevel: 'ready',
+    description: 'Kühle, frische Gurken für Brotdosen, Salate und einfache gesunde Gerichte.',
+    origin: 'Tagesfrische Lieferung',
+    badge: 'Schnell vergriffen',
+    tags: ['knackig', 'alltag', 'frisch'],
   },
   {
     id: 'microgreens',
@@ -95,9 +177,12 @@ export const products = [
     category: 'Blattgemüse',
     price: 3.2,
     unit: 'pro Schale',
-    stock: 'Frisch geschnitten',
-    description: 'Kleine Blätter mit viel Geschmack und starkem Nährstoffprofil.',
-    tags: ['Premium', 'Nährstoffreich', 'Modern'],
+    stockLabel: 'Frisch geschnitten',
+    stockLevel: 'fresh',
+    description: 'Kleine Blätter mit viel Geschmack und hohem Nährstoffprofil für Bowls und kreative Küche.',
+    origin: 'Indoor Farm',
+    badge: 'Premium',
+    tags: ['nährstoffreich', 'modern', 'fein'],
   },
   {
     id: 'petersilie',
@@ -105,9 +190,12 @@ export const products = [
     category: 'Kräuter',
     price: 1.5,
     unit: 'pro Bund',
-    stock: 'Auf Lager',
-    description: 'Ein Küchenklassiker für Suppen, Gemüsepfannen und Dips.',
-    tags: ['Klassiker', 'Würzig', 'Erntefrisch'],
+    stockLabel: 'Auf Lager',
+    stockLevel: 'ready',
+    description: 'Vielseitig einsetzbar für Suppen, Dips, Gemüsepfannen und Kochkurse.',
+    origin: 'Kräuterstation',
+    badge: 'Preiswert',
+    tags: ['würzig', 'klassiker', 'erntefrisch'],
   },
   {
     id: 'radieschen',
@@ -115,9 +203,12 @@ export const products = [
     category: 'Wurzelgemüse',
     price: 2.2,
     unit: 'pro Bund',
-    stock: 'Auf Lager',
-    description: 'Leicht scharf, knackig und ideal für Brote oder Salate.',
-    tags: ['Saisonal', 'Knackig', 'Regional'],
+    stockLabel: 'Auf Lager',
+    stockLevel: 'ready',
+    description: 'Leicht scharf und knackig für Brote, Salate oder kleine Snackteller.',
+    origin: 'Regionaler Partnerbetrieb',
+    badge: 'Wochenmarkt-Gefühl',
+    tags: ['saisonal', 'regional', 'knackig'],
   },
   {
     id: 'seitlinge',
@@ -125,35 +216,24 @@ export const products = [
     category: 'Pilze',
     price: 4.4,
     unit: 'pro 300 g',
-    stock: 'Kleine Ernte',
-    description: 'Herzhaft und vielseitig für Pfanne, Pasta und Workshops.',
-    tags: ['Umami', 'Pilzzucht', 'Kochkurs-Favorit'],
-  },
-]
-
-export const services = [
-  {
-    title: 'Mietbare Säle',
-    badge: 'Soziales Angebot',
-    text: 'Unsere Räume können für Treffen, Vereine, Familienfeiern oder lokale Initiativen genutzt werden. Der Markt wird so zum urbanen Treffpunkt.',
-    details: ['Flexible Raumgrößen', 'Für Gruppen und Vereine', 'Technik & Bestuhlung denkbar'],
+    stockLabel: 'Kleine Ernte',
+    stockLevel: 'limited',
+    description: 'Herzhafte Pilze für Pfanne, Pasta oder Workshops rund um nachhaltige Ernährung.',
+    origin: 'Pilzzucht-Partner',
+    badge: 'Nur kleine Menge',
+    tags: ['umami', 'kochkurs-favorit', 'besonders'],
   },
   {
-    title: 'Nachhilfe & Lernzeit',
-    badge: 'Bildung',
-    text: 'Schülerinnen und Schüler bekommen Raum für Nachhilfe, Lerninseln und praktische Einblicke in Ernährung, Nachhaltigkeit und moderne Anbausysteme.',
-    details: ['Hausaufgabenhilfe', 'MINT-Bezug', 'Lernen mitten im Markt'],
-  },
-  {
-    title: 'Kochklassen',
-    badge: 'Food & Community',
-    text: 'Mit unseren frischen Produkten entstehen Kochkurse für Kinder, Familien und Interessierte. Aus dem Anbau wird direkt gemeinsames Erleben.',
-    details: ['Saisonale Rezepte', 'Gemüse direkt aus dem Markt', 'Gemeinschaftliches Kochen'],
-  },
-  {
-    title: 'Beratung & FoodConnect Events',
-    badge: 'Community',
-    text: 'Workshops, Infotage und Marktaktionen erklären Vertical Farming, nachhaltigen Konsum und urbane Ernährung auf eine zugängliche Weise.',
-    details: ['Workshops', 'Info-Abende', 'Mitmach-Formate'],
+    id: 'mangold',
+    name: 'Bunter Mangold',
+    category: 'Blattgemüse',
+    price: 3.4,
+    unit: 'pro Bund',
+    stockLabel: 'Erntebereit',
+    stockLevel: 'fresh',
+    description: 'Farbenfroher Mangold für Pfanne, Ofengerichte und sichtbare Frische im Regal.',
+    origin: 'Vertical-Farming-Modul',
+    badge: 'Saisonal',
+    tags: ['farbig', 'frisch geerntet', 'regional'],
   },
 ]
