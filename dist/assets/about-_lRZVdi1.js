@@ -1,4 +1,4 @@
-import{a as e,c as t,f as n,i as r,o as i,p as a,r as o,s,t as c}from"./shared-DAgsaNh7.js";var l=document.querySelector(`#app`);l.innerHTML=r({activePage:`about`,hero:o({eyebrow:s.season,title:`FoodConnectMarkt mit klarer Story und echtem Nutzwert.`,intro:`${s.subtitle} ${s.description}`,actions:[{href:`food.html`,label:`Zum Food-Bereich`},{href:`soziales.html`,label:`Soziale Angebote ansehen`}],stats:t,supportingCard:`
+import{a as e,c as t,f as n,i as r,o as i,p as a,r as o,s,t as c}from"./shared-Bwz3Fiqb.js";var l=document.querySelector(`#app`);l.innerHTML=r({activePage:`about`,hero:o({eyebrow:s.season,title:`FoodConnectMarkt mit klarer Story und echtem Nutzwert.`,intro:`${s.subtitle} ${s.description}`,actions:[{href:`food.html`,label:`Zum Food-Bereich`},{href:`soziales.html`,label:`Soziale Angebote ansehen`}],stats:t,supportingCard:`
     <p class="text-xs font-semibold uppercase tracking-[0.32em] text-emerald-300">Über uns</p>
     <h2 class="mt-4 text-3xl font-semibold tracking-tight">Die Startseite erklärt erst das Projekt und verweist dann sauber weiter.</h2>
     <div class="mt-6 space-y-3">
@@ -56,7 +56,7 @@ import{a as e,c as t,f as n,i as r,o as i,p as a,r as o,s,t as c}from"./shared-D
             Die Wettbewerbsgeschichte gehört dazu, aber sie steht jetzt an einem passenden Ort. So bleibt die Startseite verständlich und trotzdem vollständig.
           </p>
           <div class="mt-6 flex flex-wrap gap-3">
-            <a href="${s.links.competition}" target="_blank" rel="noreferrer" class="inline-flex items-center justify-center rounded-full bg-emerald-500 px-4 py-3 text-sm font-medium text-white transition hover:bg-emerald-400">
+            <a href="${s.links.competition}" target="_blank" rel="noreferrer" class="inline-flex items-center justify-center rounded-full bg-emerald-800 px-4 py-3 text-sm font-medium text-white transition hover:bg-emerald-700">
               Science League Seite
             </a>
             <a href="${s.links.team}" target="_blank" rel="noreferrer" class="inline-flex items-center justify-center rounded-full border border-white/15 px-4 py-3 text-sm font-medium text-white transition hover:bg-white/10">

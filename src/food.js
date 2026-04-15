@@ -359,7 +359,7 @@ function renderCartContent() {
                         <div class="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-2 py-2">
                           <button type="button" data-action="decrease" data-id="${item.id}" class="grid h-8 w-8 place-items-center rounded-full bg-white/10 text-lg text-white transition hover:bg-white/20">−</button>
                           <span class="min-w-7 text-center text-sm font-semibold text-white">${item.quantity}</span>
-                          <button type="button" data-action="increase" data-id="${item.id}" class="grid h-8 w-8 place-items-center rounded-full bg-emerald-500 text-lg text-white transition hover:bg-emerald-400">+</button>
+                          <button type="button" data-action="increase" data-id="${item.id}" class="grid h-8 w-8 place-items-center rounded-full bg-emerald-800 text-lg text-white transition hover:bg-emerald-700">+</button>
                         </div>
                         <button type="button" data-action="remove" data-id="${item.id}" class="text-sm text-stone-300 transition hover:text-white">Entfernen</button>
                       </div>
@@ -384,7 +384,7 @@ function renderCartContent() {
           <span>Gesamt</span>
           <span>${currency.format(total)}</span>
         </div>
-        <button type="button" class="mt-4 inline-flex w-full items-center justify-center rounded-full bg-emerald-500 px-4 py-3 text-sm font-medium text-white transition hover:bg-emerald-400">
+        <button type="button" class="mt-4 inline-flex w-full items-center justify-center rounded-full bg-emerald-800 px-4 py-3 text-sm font-medium text-white transition hover:bg-emerald-700">
           Demo-Checkout starten
         </button>
       </div>
