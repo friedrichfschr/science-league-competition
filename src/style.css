@@ -1,10 +1,40 @@
 @import 'tailwindcss';
 
 :root {
-  color: #1c1917;
-  background: #f6f3ee;
-  font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-  line-height: 1.5;
+  /* Typography */
+  --font-display:
+    'Inter Tight', Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI',
+    sans-serif;
+  --font-body:
+    Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+
+  /* Palette */
+  --ink: #1a1715;
+  --ink-muted: #57534e;
+  --cream: #f7f4ee;
+  --cream-warm: #efebe3;
+  --emerald: #065f46;
+  --emerald-bright: #10b981;
+  --amber: #b45309;
+
+  /* Motion */
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-out-quart: cubic-bezier(0.25, 1, 0.5, 1);
+  --dur-fast: 180ms;
+  --dur-base: 320ms;
+  --dur-slow: 640ms;
+
+  /* Shadows */
+  --shadow-sm: 0 1px 2px rgba(26, 23, 21, 0.04);
+  --shadow-md: 0 1px 2px rgba(26, 23, 21, 0.05), 0 12px 28px -8px rgba(26, 23, 21, 0.08);
+  --shadow-lg: 0 2px 4px rgba(26, 23, 21, 0.06), 0 28px 56px -12px rgba(26, 23, 21, 0.14);
+  --shadow-emerald: 0 10px 40px -10px rgba(6, 95, 70, 0.35);
+
+  color: var(--ink);
+  background: var(--cream);
+  font-family: var(--font-body);
+  font-feature-settings: 'cv11', 'ss01', 'ss03';
+  line-height: 1.6;
   font-weight: 400;
   font-synthesis: none;
   text-rendering: optimizeLegibility;
@@ -20,9 +50,13 @@ body {
   margin: 0;
   min-width: 320px;
   min-height: 100vh;
-  background:
-    radial-gradient(circle at top left, rgba(255, 255, 255, 0.95), transparent 24%),
-    linear-gradient(180deg, #f7f4ef 0%, #f4f1eb 32%, #f0f5ef 100%);
+  background-color: var(--cream);
+  background-image:
+    radial-gradient(1100px 520px at 12% -8%, rgba(16, 185, 129, 0.1), transparent 60%),
+    radial-gradient(860px 440px at 92% 8%, rgba(245, 158, 11, 0.07), transparent 62%),
+    radial-gradient(720px 540px at 50% 120%, rgba(6, 95, 70, 0.06), transparent 65%),
+    linear-gradient(180deg, #f7f4ee 0%, #f3efe7 55%, #edf2ec 100%);
+  background-attachment: fixed;
 }
 
 * {
@@ -49,10 +83,276 @@ main section[id] {
 }
 
 ::selection {
-  background: rgba(22, 163, 74, 0.18);
+  background: rgba(16, 185, 129, 0.22);
   color: #052e16;
 }
 
 #app {
   min-height: 100vh;
+}
+
+/* Display font class */
+.font-display {
+  font-family: var(--font-display);
+  letter-spacing: -0.02em;
+}
+
+/* Focus styles — visible, friendly, accessible */
+:focus {
+  outline: none;
+}
+
+:focus-visible {
+  outline: 2px solid var(--emerald);
+  outline-offset: 3px;
+  border-radius: 10px;
+  transition: outline-offset var(--dur-fast) var(--ease-out-quart);
+}
+
+button:focus-visible,
+a:focus-visible {
+  outline-offset: 4px;
+}
+
+/* Skip link */
+.skip-link {
+  position: fixed;
+  top: 0.75rem;
+  left: 50%;
+  transform: translate(-50%, calc(-100% - 1rem));
+  z-index: 100;
+  padding: 0.625rem 1.25rem;
+  border-radius: 999px;
+  background: var(--ink);
+  color: #fff;
+  font-weight: 500;
+  font-size: 0.875rem;
+  box-shadow: var(--shadow-lg);
+  transition: transform var(--dur-base) var(--ease-out-expo);
+}
+
+.skip-link:focus {
+  transform: translate(-50%, 0);
+}
+
+/* Scroll reveal */
+.reveal {
+  opacity: 0;
+  transform: translateY(18px);
+  transition:
+    opacity var(--dur-slow) var(--ease-out-expo),
+    transform var(--dur-slow) var(--ease-out-expo);
+  will-change: opacity, transform;
+}
+
+.reveal.is-visible {
+  opacity: 1;
+  transform: none;
+}
+
+.reveal-d1 {
+  transition-delay: 80ms;
+}
+.reveal-d2 {
+  transition-delay: 160ms;
+}
+.reveal-d3 {
+  transition-delay: 240ms;
+}
+.reveal-d4 {
+  transition-delay: 320ms;
+}
+
+/* Hero entrance animation */
+@keyframes hero-rise {
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+.hero-rise {
+  animation: hero-rise var(--dur-slow) var(--ease-out-expo) both;
+}
+
+.hero-rise-d1 {
+  animation-delay: 80ms;
+}
+.hero-rise-d2 {
+  animation-delay: 180ms;
+}
+.hero-rise-d3 {
+  animation-delay: 280ms;
+}
+.hero-rise-d4 {
+  animation-delay: 380ms;
+}
+
+/* Subtle floating for decorative elements */
+@keyframes float-soft {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-6px);
+  }
+}
+
+.float-soft {
+  animation: float-soft 5.5s ease-in-out infinite;
+}
+
+/* Card hover lift */
+.card-lift {
+  transition:
+    transform var(--dur-base) var(--ease-out-quart),
+    box-shadow var(--dur-base) var(--ease-out-quart),
+    border-color var(--dur-base) var(--ease-out-quart);
+}
+
+.card-lift:hover {
+  transform: translateY(-3px);
+}
+
+/* Nav pill indicator */
+.nav-pill {
+  position: relative;
+  transition:
+    background-color var(--dur-fast) var(--ease-out-quart),
+    color var(--dur-fast) var(--ease-out-quart);
+}
+
+.nav-pill::after {
+  content: '';
+  position: absolute;
+  left: 50%;
+  bottom: -10px;
+  width: 4px;
+  height: 4px;
+  background: var(--emerald-bright);
+  border-radius: 999px;
+  opacity: 0;
+  transform: translate(-50%, -4px);
+  transition:
+    opacity var(--dur-base) var(--ease-out-quart),
+    transform var(--dur-base) var(--ease-out-quart);
+}
+
+.nav-pill.is-active::after {
+  opacity: 1;
+  transform: translate(-50%, 0);
+}
+
+/* Building tower SVG decoration */
+.tower-stripes rect {
+  animation: stripe-fade 2.4s var(--ease-out-expo) both;
+}
+
+@keyframes stripe-fade {
+  from {
+    opacity: 0;
+    transform: scaleY(0);
+  }
+  to {
+    opacity: 1;
+    transform: scaleY(1);
+  }
+}
+
+/* Dotted scroll marker */
+.scroll-hint {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.75rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--ink-muted);
+}
+
+.scroll-hint::before {
+  content: '';
+  width: 24px;
+  height: 1px;
+  background: currentColor;
+  opacity: 0.4;
+}
+
+/* Floor diagram visual */
+.floor-row {
+  transition:
+    background-color var(--dur-base) var(--ease-out-quart),
+    transform var(--dur-base) var(--ease-out-quart);
+}
+
+.floor-row:hover,
+.floor-row:focus-within {
+  background-color: rgba(255, 255, 255, 0.06);
+  transform: translateX(4px);
+}
+
+/* Button press */
+.btn-press:active {
+  transform: translateY(1px);
+}
+
+/* Media: respect reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  .reveal {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* Scrollbar styling */
+@supports (scrollbar-color: auto) {
+  html {
+    scrollbar-color: rgba(26, 23, 21, 0.22) transparent;
+    scrollbar-width: thin;
+  }
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(26, 23, 21, 0.22);
+  border-radius: 999px;
+  border: 2px solid transparent;
+  background-clip: content-box;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(26, 23, 21, 0.36);
+  background-clip: content-box;
+}
+
+/* Accessible visually-hidden helper (if not provided by Tailwind's sr-only) */
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
 }
