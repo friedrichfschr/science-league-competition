@@ -21,52 +21,43 @@ export const competitionFacts = {
 
 export const heroStats = [
   {
-    value: '9',
-    label: 'Produkte im Demo-Markt',
+    value: '68 %',
+    label: 'der Weltbevölkerung werden bis 2050 in Städten leben',
   },
   {
-    value: '4',
-    label: 'Soziale und Bildungsangebote',
+    value: '~20 %',
+    label: 'der CO₂-Emissionen aus Lebensmitteln entstehen durch Transport',
   },
   {
-    value: '1',
-    label: 'Ort für Food, Lernen und Gemeinschaft',
+    value: '2 Türme',
+    label: 'und ein Keller bilden den FoodConnectMarkt',
   },
 ]
 
 export const trustHighlights = [
-  'Transparente Produktinfos statt Deko-Overload',
-  'Klare Food-Suche mit Filtern, Warenkorb und Zustandsanzeige',
-  'Projektpräsentation, Community-Angebote und Einkauf in einem System',
+  'Lokal anbauen: frische Produkte direkt am Verkaufsort, ohne weite Transportwege',
+  'Gemeinschaft stärken: fünf barrierefreie Etagen für Einkauf, Lernen und Begegnung',
+  'Selbstversorgung fördern: Workshops zum Anbau auf Balkon und in der Wohnung',
 ]
 
-export const aboutPillars = [
+export const buildingParts = [
   {
-    title: 'FoodConnectMarkt als echter Ort',
-    text: 'Der Markt ist nicht nur Verkaufsfläche, sondern verbindet Anbau, Beratung, Begegnung und Teilhabe an einem Standort.',
+    badge: 'ConnectMarkt',
+    sublabel: '5 Etagen · Kreisförmig',
+    heading: 'Begegnung & Verkauf',
+    text: 'Der soziale Turm. Kinderecke und Lernplätze im Erdgeschoss, barrierefreie Verkaufsfläche mit smarten Einkaufswagen im ersten Stock, Restaurant mit eigenem Gemüse im dritten Stock, Seminarräume und Praxisanbauflächen in den oberen Etagen.',
   },
   {
-    title: 'Urban Farming sichtbar machen',
-    text: 'Vertical Farming wird nicht im Hintergrund versteckt, sondern als Teil des Einkaufserlebnisses und der Bildungsarbeit erklärt.',
+    badge: 'Gemüseturm',
+    sublabel: '10 Etagen · Bohnenform',
+    heading: 'Vertical Farming',
+    text: 'Der Produktionsturm. Die Bohnenform maximiert die horizontale Fläche und behält die Windresistenz eines ovalen Querschnitts. Alle Etagen sind dem kontrollierten Gemüseanbau gewidmet — mit automatischer Bewässerung und optimiertem Licht.',
   },
   {
-    title: 'Niedrige Einstiegshürden',
-    text: 'Menschen sollen schnell verstehen, was angeboten wird, wie Produkte gefunden werden und welche sozialen Formate es gibt.',
-  },
-]
-
-export const aboutMetrics = [
-  {
-    value: 'Food',
-    label: 'Frisches Gemüse und Kräuter mit klarer Produktsuche, Lagerstatus und Warenkorb.',
-  },
-  {
-    value: 'Soziales',
-    label: 'Mietbare Räume, Kochklassen, Lernangebote und offene Events für die Nachbarschaft.',
-  },
-  {
-    value: 'Projekt',
-    label: 'Science League Kontext, Teamstory und Mission verständlich aufbereitet.',
+    badge: 'Keller',
+    sublabel: 'Logistik & Technik',
+    heading: 'Das Rückgrat',
+    text: 'Warenlager, Heizung, Strom- und Wasserversorgung sowie Kontrolleinheiten liegen im Untergrund — damit oberirdisch jeder Quadratmeter für Grünanlagen und soziale Räume frei bleibt.',
   },
 ]
 
@@ -97,24 +88,6 @@ export const services = [
   },
 ]
 
-export const storyTimeline = [
-  {
-    title: 'Science League Briefing',
-    text: 'Die Aufgabe stellt einen FoodConnectMarkt in den Mittelpunkt, der Technik, Nachhaltigkeit und Alltagsnutzen zusammenbringt.',
-  },
-  {
-    title: 'Team bre-delicious',
-    text: 'Das Team entwickelt daraus ein Konzept, das Gemüseverkauf, Community-Angebote und Bildung nicht trennt, sondern gemeinsam denkt.',
-  },
-  {
-    title: 'Digitale Nutzerführung',
-    text: 'Die Website übersetzt das Marktmodell in eine nachvollziehbare Navigation mit klarem Einstieg für Über uns, Soziales und Food.',
-  },
-  {
-    title: 'Praktischer Demo-Flow',
-    text: 'Produkte können gefiltert, verglichen und in einen Warenkorb gelegt werden, damit die Idee nicht abstrakt bleibt.',
-  },
-]
 
 export const productCategories = ['Alle', 'Blattgemüse', 'Kräuter', 'Fruchtgemüse', 'Wurzelgemüse', 'Pilze']
 
