@@ -135,7 +135,7 @@ const content = `
 
   <section class="px-5 py-12 lg:px-6 lg:py-20" aria-labelledby="newsletter-heading">
     <div class="mx-auto max-w-7xl">
-      <div class="grid gap-6 lg:grid-cols-[1.2fr_0.8fr] lg:items-start">
+      <div class="grid gap-6">
 
         <!-- Newsletter signup -->
         <article class="reveal relative overflow-hidden rounded-[1.75rem] bg-gradient-to-br from-stone-950 via-stone-900 to-emerald-950 p-8 shadow-[0_30px_80px_-20px_rgba(6,95,70,0.5)] ring-1 ring-inset ring-white/5 sm:p-10">
@@ -215,25 +215,6 @@ const content = `
           </div>
         </article>
 
-        <!-- Page navigation tiles -->
-        <nav aria-label="Weitere Seiten" class="space-y-3">
-          <a href="soziales.html" class="reveal reveal-d1 card-lift group flex items-center justify-between gap-4 rounded-2xl border border-stone-200 bg-white/80 px-6 py-5 shadow-[var(--shadow-sm)] transition hover:border-amber-300 hover:bg-white">
-            <div>
-              <p class="text-[0.7rem] font-semibold uppercase tracking-[0.3em] text-amber-800">Soziales</p>
-              <h3 class="font-display mt-1.5 text-xl font-semibold text-stone-950">ConnectMarkt</h3>
-              <p class="mt-1 text-sm leading-6 text-stone-600">Fünf Etagen für Gemeinschaft, Lernen und Begegnung.</p>
-            </div>
-            <span aria-hidden="true" class="grid h-10 w-10 shrink-0 place-items-center rounded-full bg-amber-50 text-amber-800 transition group-hover:translate-x-1 group-hover:bg-amber-100">→</span>
-          </a>
-          <a href="food.html" class="reveal reveal-d2 card-lift group flex items-center justify-between gap-4 rounded-2xl border border-stone-200 bg-white/80 px-6 py-5 shadow-[var(--shadow-sm)] transition hover:border-emerald-300 hover:bg-white">
-            <div>
-              <p class="text-[0.7rem] font-semibold uppercase tracking-[0.3em] text-emerald-800">Food</p>
-              <h3 class="font-display mt-1.5 text-xl font-semibold text-stone-950">Gemüseturm</h3>
-              <p class="mt-1 text-sm leading-6 text-stone-600">Produktsuche, Filter und Warenkorb mit allen Produkten.</p>
-            </div>
-            <span aria-hidden="true" class="grid h-10 w-10 shrink-0 place-items-center rounded-full bg-emerald-50 text-emerald-800 transition group-hover:translate-x-1 group-hover:bg-emerald-100">→</span>
-          </a>
-        </nav>
       </div>
     </div>
   </section>

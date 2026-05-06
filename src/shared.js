@@ -112,6 +112,22 @@ export function renderHeader(activePage) {
 
         ${renderDesktopNav(activePage)}
         ${renderMobilePageSelect(activePage)}
+        <a
+          href="account.html"
+          aria-label="Konto"
+          class="grid h-9 w-9 shrink-0 place-items-center rounded-full border text-xs font-semibold transition ${
+            activePage === 'account'
+              ? 'border-stone-950 bg-stone-950 text-white'
+              : 'border-stone-300 bg-white text-stone-700 hover:bg-stone-50'
+          }"
+          id="account-nav-btn"
+        >
+          <span aria-hidden="true">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M12 12c2.7 0 4.8-2.1 4.8-4.8S14.7 2.4 12 2.4 7.2 4.5 7.2 7.2 9.3 12 12 12zm0 2.4c-3.2 0-9.6 1.6-9.6 4.8v2.4h19.2v-2.4c0-3.2-6.4-4.8-9.6-4.8z"/>
+            </svg>
+          </span>
+        </a>
       </div>
     </header>
   `
@@ -275,7 +291,6 @@ export function renderPageFrame({ activePage, hero, content }) {
         ${hero}
         ${content}
       </main>
-      ${renderFooter(activePage)}
     </div>
   `
 }

@@ -28,6 +28,8 @@ export default defineConfig({
         about: resolve(__dirname, 'index.html'),
         social: resolve(__dirname, 'soziales.html'),
         food: resolve(__dirname, 'food.html'),
+        forum: resolve(__dirname, 'forum.html'),
+        account: resolve(__dirname, 'account.html'),
       },
     },
   },
