@@ -70,6 +70,7 @@ const state = {
   tab: 'login',   // 'login' | 'register'
   loading: false,
   error: '',
+  registered: false,
 }
 
 const app = document.querySelector('#app')
@@ -115,6 +116,13 @@ function renderLoginForm() {
 }
 
 function renderRegisterForm() {
+  if (state.registered) {
+    return `
+      <div class="mt-6 rounded-xl bg-emerald-50 px-4 py-5 text-center ring-1 ring-inset ring-emerald-200">
+        <p class="text-sm font-semibold text-emerald-800">Konto erstellt!</p>
+        <p class="mt-1 text-sm text-emerald-700">Bitte bestätige deine E-Mail-Adresse, um dich anmelden zu können.</p>
+      </div>`
+  }
   return `
     <form id="auth-form" data-action="register" class="mt-6 space-y-4" novalidate>
       ${renderError()}
@@ -125,6 +133,10 @@ function renderRegisterForm() {
       <div>
         <label for="f-username" class="${labelClass()}">Benutzername</label>
         <input id="f-username" name="username" type="text" required autocomplete="username" placeholder="benutzername" class="${inputClass()}" />
+      </div>
+      <div>
+        <label for="f-email" class="${labelClass()}">E-Mail</label>
+        <input id="f-email" name="email" type="email" required autocomplete="email" placeholder="deine@email.de" class="${inputClass()}" />
       </div>
       <div>
         <label for="f-password" class="${labelClass()}">Passwort</label>
@@ -204,6 +216,7 @@ app.addEventListener('click', async (e) => {
   if (action === 'set-tab') {
     state.tab = value
     state.error = ''
+    state.registered = false
     render()
     document.getElementById('f-username')?.focus()
   }
@@ -249,16 +262,17 @@ app.addEventListener('submit', async (e) => {
         render()
         return
       }
-      const data = await apiFetch('/api/auth/register', {
+      await apiFetch('/api/auth/register', {
         method: 'POST',
         body: JSON.stringify({
           username: fd.get('username').trim(),
           displayName: fd.get('displayName').trim(),
+          email: fd.get('email').trim(),
           password,
         }),
       })
-      saveAuth(data.token, data.user)
-      state.user = data.user
+      // Server requires email confirmation before login — no token returned
+      state.registered = true
     }
   } catch (err) {
     state.error = err.message || 'Ein Fehler ist aufgetreten.'
