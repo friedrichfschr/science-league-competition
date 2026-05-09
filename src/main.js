@@ -1,7 +1,8 @@
 import './style.css'
 import { buildingParts, competitionFacts, heroStats, trustHighlights } from './data.js'
 
-const NEWSLETTER_API = 'http://localhost:3100/api/newsletter/subscribe'
+import { API } from './api.js'
+const NEWSLETTER_API = `${API}/api/newsletter/subscribe`
 import {
   bindPageSelect,
   renderHero,

@@ -1,7 +1,6 @@
 import './style.css'
+import { API } from './api.js'
 import { bindPageSelect, renderPageFrame, setupRevealObserver } from './shared.js'
-
-const API = 'https://api.bredelicious.de'
 const AUTH_KEY = 'fcm-auth'
 
 // ── Auth helpers ──────────────────────────────────────────────────────
