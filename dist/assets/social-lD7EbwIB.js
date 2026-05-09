@@ -1,4 +1,4 @@
-import{i as e,m as t,o as n,r,t as i}from"./shared-CXK0-Cn3.js";var a=document.querySelector(`#app`),o=[{label:`EG`,title:`Gemeinschaft`,text:`Kinderecke, Lernplätze, Infostände`,accent:`amber`},{label:`1`,title:`Verkauf`,text:`Barrierefreie Regale & smarte Einkaufswagen`,accent:`emerald`},{label:`3`,title:`Restaurant`,text:`Küche mit eigenem Gemüse & Weiterverarbeitung`,accent:`rose`},{label:`4`,title:`Seminare`,text:`Workshops, Nachhilfe, Feiern`,accent:`sky`},{label:`5`,title:`Praxisanbau`,text:`Selbstversorgung lernen & erleben`,accent:`emerald`}],s={amber:`bg-amber-400/90`,emerald:`bg-emerald-400/90`,rose:`bg-rose-400/90`,sky:`bg-sky-400/90`},c=r({eyebrow:`Der ConnectMarkt`,title:`Fünf Etagen für Gemeinschaft, Lernen und Begegnung.`,intro:`Der kreisförmige Turm ist dem sozialen Miteinander gewidmet — barrierefrei gedacht, mehrzweckfähig gebaut, offen für alle.`,supportingCard:`
+import{f as e,i as t,o as n,r,t as i}from"./shared-BhdyquUf.js";var a=document.querySelector(`#app`),o=[{label:`EG`,title:`Gemeinschaft`,text:`Kinderecke, Lernplätze, Infostände`,accent:`amber`},{label:`1`,title:`Verkauf`,text:`Barrierefreie Regale & smarte Einkaufswagen`,accent:`emerald`},{label:`3`,title:`Restaurant`,text:`Küche mit eigenem Gemüse & Weiterverarbeitung`,accent:`rose`},{label:`4`,title:`Seminare`,text:`Workshops, Nachhilfe, Feiern`,accent:`sky`},{label:`5`,title:`Praxisanbau`,text:`Selbstversorgung lernen & erleben`,accent:`emerald`}],s={amber:`bg-amber-400/90`,emerald:`bg-emerald-400/90`,rose:`bg-rose-400/90`,sky:`bg-sky-400/90`},c=r({eyebrow:`Der ConnectMarkt`,title:`Fünf Etagen für Gemeinschaft, Lernen und Begegnung.`,intro:`Der kreisförmige Turm ist dem sozialen Miteinander gewidmet — barrierefrei gedacht, mehrzweckfähig gebaut, offen für alle.`,supportingCard:`
   <p class="text-[0.7rem] font-semibold uppercase tracking-[0.3em] text-amber-300">Aufbau des ConnectMarkts</p>
   <h2 class="font-display mt-4 text-2xl font-semibold tracking-tight">5 Etagen, ein Konzept</h2>
   <ol class="mt-6 space-y-0" role="list">
@@ -14,7 +14,7 @@ import{i as e,m as t,o as n,r,t as i}from"./shared-CXK0-Cn3.js";var a=document.q
           </li>
         `).join(``)}
   </ol>
-`}),l=[{icon:`♿`,title:`Smarte Einkaufswagen`,text:`Ausfahrbarer Sitz, damit auch die oberen Regale erreichbar sind.`},{icon:`↕`,title:`Drei Fahrstühle`,text:`Schneller, barrierefreier Transport zwischen allen Etagen.`},{icon:`↓`,title:`Niedrige Regale`,text:`Bewusst tief konzipiert — erreichbar auch für kleinwüchsige Menschen.`}],u=t.map((e,t)=>`
+`}),l=[{icon:`♿`,title:`Smarte Einkaufswagen`,text:`Ausfahrbarer Sitz, damit auch die oberen Regale erreichbar sind.`},{icon:`↕`,title:`Drei Fahrstühle`,text:`Schneller, barrierefreier Transport zwischen allen Etagen.`},{icon:`↓`,title:`Niedrige Regale`,text:`Bewusst tief konzipiert — erreichbar auch für kleinwüchsige Menschen.`}],u=e.map((e,t)=>`
       <article class="reveal reveal-d${t%3+1} card-lift group relative overflow-hidden rounded-[1.75rem] border border-stone-200 bg-white/85 p-6 shadow-[var(--shadow-md)] transition hover:border-amber-300 hover:shadow-[var(--shadow-lg)] md:p-8">
         <div aria-hidden="true" class="pointer-events-none absolute -right-8 -top-8 h-24 w-24 rounded-full bg-amber-200/30 blur-2xl transition group-hover:bg-amber-300/40"></div>
         <div class="relative">
@@ -38,7 +38,7 @@ import{i as e,m as t,o as n,r,t as i}from"./shared-CXK0-Cn3.js";var a=document.q
           </ul>
         </div>
       </article>
-    `).join(``);a.innerHTML=e({activePage:`social`,hero:c,content:`
+    `).join(``);a.innerHTML=t({activePage:`social`,hero:c,content:`
   <section class="px-5 py-12 lg:px-6 lg:py-20" aria-labelledby="intro-heading">
     <div class="mx-auto max-w-7xl">
       <div class="grid gap-10 lg:grid-cols-[0.9fr_1.1fr] lg:items-center">

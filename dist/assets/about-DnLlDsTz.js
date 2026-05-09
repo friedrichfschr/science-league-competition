@@ -1,15 +1,15 @@
-import{a as e,c as t,d as n,h as r,i,o as a,r as o,s,t as c}from"./shared-CXK0-Cn3.js";var l=`http://localhost:3100/api/newsletter/subscribe`,u=document.querySelector(`#app`),d=`
+import{a as e,c as t,i as n,l as r,o as i,p as a,r as o,s,t as c}from"./shared-BhdyquUf.js";var l=`http://localhost:3100/api/newsletter/subscribe`,u=document.querySelector(`#app`),d=`
   <p class="text-[0.7rem] font-semibold uppercase tracking-[0.3em] text-emerald-300">Unser Ansatz</p>
   <h2 class="font-display mt-4 text-2xl font-semibold tracking-tight">Drei Ideen. Ein Gebäude.</h2>
   <ul class="mt-6 space-y-1" role="list">
-    ${r.map((e,t)=>`
+    ${a.map((e,t)=>`
           <li class="flex items-start gap-3 border-b border-white/10 py-3.5 last:border-b-0">
             <span class="mt-1.5 grid h-5 w-5 shrink-0 place-items-center rounded-full bg-emerald-500/20 text-[0.7rem] font-semibold text-emerald-300 ring-1 ring-inset ring-emerald-400/30">${t+1}</span>
             <span class="text-sm leading-6 text-stone-200">${e}</span>
           </li>
         `).join(``)}
   </ul>
-`,f=o({eyebrow:t.season,title:`Städte brauchen Lebensmittel. Wir produzieren sie vor Ort.`,intro:`Bis 2050 leben 68 % der Weltbevölkerung in Städten — bei immer weniger landwirtschaftlicher Fläche und enormen Transportemissionen. Der FoodConnectMarkt zeigt einen anderen Weg.`,stats:n,supportingCard:d}),p=s.map((e,t)=>`
+`,f=o({eyebrow:t.season,title:`Städte brauchen Lebensmittel. Wir produzieren sie vor Ort.`,intro:`Bis 2050 leben 68 % der Weltbevölkerung in Städten — bei immer weniger landwirtschaftlicher Fläche und enormen Transportemissionen. Der FoodConnectMarkt zeigt einen anderen Weg.`,stats:r,supportingCard:d}),p=s.map((e,t)=>`
       <article class="reveal reveal-d${t+1} card-lift group relative overflow-hidden rounded-[1.75rem] p-7 ${t===0?`bg-gradient-to-br from-stone-950 via-stone-900 to-emerald-950 text-stone-50 ring-1 ring-inset ring-white/5 shadow-[0_24px_60px_-20px_rgba(6,95,70,0.5)]`:`border border-stone-200 bg-white/90 backdrop-blur shadow-[var(--shadow-md)] hover:border-emerald-300 hover:shadow-[var(--shadow-lg)]`}">
         ${t===0?`<div aria-hidden="true" class="pointer-events-none absolute -right-10 -top-10 h-32 w-32 rounded-full bg-emerald-500/20 blur-2xl"></div>`:``}
         <div class="relative">
@@ -28,7 +28,7 @@ import{a as e,c as t,d as n,h as r,i,o as a,r as o,s,t as c}from"./shared-CXK0-C
           <p class="mt-3 text-sm leading-7 ${t===0?`text-stone-300`:`text-stone-600`}">${e.text}</p>
         </div>
       </article>
-    `).join(``);u.innerHTML=i({activePage:`about`,hero:f,content:`
+    `).join(``);u.innerHTML=n({activePage:`about`,hero:f,content:`
   <section class="px-5 py-12 lg:px-6 lg:py-20" aria-labelledby="vision-heading">
     <div class="mx-auto max-w-7xl">
       <div class="grid gap-10 lg:grid-cols-[1.1fr_0.9fr] lg:items-center">
@@ -171,7 +171,7 @@ import{a as e,c as t,d as n,h as r,i,o as a,r as o,s,t as c}from"./shared-CXK0-C
       </div>
     </div>
   </section>
-`}),c(u),a(u),m(),g();function m(){let e=document.getElementById(`newsletter-form`);e&&e.addEventListener(`submit`,async e=>{e.preventDefault();let t=document.getElementById(`newsletter-email`),n=document.getElementById(`newsletter-submit`),r=document.getElementById(`newsletter-btn-label`),i=document.getElementById(`newsletter-spinner`),a=document.getElementById(`newsletter-error`),o=document.getElementById(`newsletter-idle`),s=document.getElementById(`newsletter-success`),c=t.value.trim();if(!c||!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(c)){a.textContent=`Bitte gib eine gültige E-Mail-Adresse ein.`,a.classList.remove(`hidden`),t.focus();return}a.classList.add(`hidden`),n.disabled=!0,r.textContent=`Wird gesendet…`,i.classList.remove(`hidden`);try{let e=await fetch(l,{method:`POST`,headers:{"Content-Type":`application/json`},body:JSON.stringify({email:c})}),t=await e.json().catch(()=>({}));if(e.status===409){a.textContent=t.message||`Diese E-Mail-Adresse ist bereits angemeldet.`,a.classList.remove(`hidden`),n.disabled=!1,r.textContent=`Anmelden`,i.classList.add(`hidden`);return}if(!e.ok)throw Error(t.message||`Etwas ist schiefgelaufen. Bitte versuche es erneut.`);o.classList.add(`hidden`),s.classList.remove(`hidden`)}catch(e){a.textContent=e.message===`Failed to fetch`?`Verbindung zum Server fehlgeschlagen. Bitte versuche es später erneut.`:e.message||`Etwas ist schiefgelaufen. Bitte versuche es erneut.`,a.classList.remove(`hidden`),n.disabled=!1,r.textContent=`Anmelden`,i.classList.add(`hidden`)}})}function h(e,t=`success`){let n=document.getElementById(`nl-toast`);n&&n.remove();let r=document.createElement(`div`);r.id=`nl-toast`,r.setAttribute(`role`,`status`),r.setAttribute(`aria-live`,`polite`),r.style.cssText=`
+`}),c(u),i(u),m(),g();function m(){let e=document.getElementById(`newsletter-form`);e&&e.addEventListener(`submit`,async e=>{e.preventDefault();let t=document.getElementById(`newsletter-email`),n=document.getElementById(`newsletter-submit`),r=document.getElementById(`newsletter-btn-label`),i=document.getElementById(`newsletter-spinner`),a=document.getElementById(`newsletter-error`),o=document.getElementById(`newsletter-idle`),s=document.getElementById(`newsletter-success`),c=t.value.trim();if(!c||!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(c)){a.textContent=`Bitte gib eine gültige E-Mail-Adresse ein.`,a.classList.remove(`hidden`),t.focus();return}a.classList.add(`hidden`),n.disabled=!0,r.textContent=`Wird gesendet…`,i.classList.remove(`hidden`);try{let e=await fetch(l,{method:`POST`,headers:{"Content-Type":`application/json`},body:JSON.stringify({email:c})}),t=await e.json().catch(()=>({}));if(e.status===409){a.textContent=t.message||`Diese E-Mail-Adresse ist bereits angemeldet.`,a.classList.remove(`hidden`),n.disabled=!1,r.textContent=`Anmelden`,i.classList.add(`hidden`);return}if(!e.ok)throw Error(t.message||`Etwas ist schiefgelaufen. Bitte versuche es erneut.`);o.classList.add(`hidden`),s.classList.remove(`hidden`)}catch(e){a.textContent=e.message===`Failed to fetch`?`Verbindung zum Server fehlgeschlagen. Bitte versuche es später erneut.`:e.message||`Etwas ist schiefgelaufen. Bitte versuche es erneut.`,a.classList.remove(`hidden`),n.disabled=!1,r.textContent=`Anmelden`,i.classList.add(`hidden`)}})}function h(e,t=`success`){let n=document.getElementById(`nl-toast`);n&&n.remove();let r=document.createElement(`div`);r.id=`nl-toast`,r.setAttribute(`role`,`status`),r.setAttribute(`aria-live`,`polite`),r.style.cssText=`
     position:fixed;bottom:1.5rem;left:50%;transform:translateX(-50%) translateY(8px);
     z-index:60;display:inline-flex;align-items:center;gap:0.75rem;
     border-radius:999px;padding:0.75rem 1.25rem;
