@@ -12,8 +12,8 @@ import{i as e,o as t,t as n}from"./shared-CkMgaHwz.js";import{t as r}from"./api-
     <form id="auth-form" data-action="login" class="mt-6 space-y-4" novalidate>
       ${_()}
       <div>
-        <label for="f-username" class="${p()}">Benutzername</label>
-        <input id="f-username" name="username" type="text" required autocomplete="username" placeholder="benutzername" class="${f()}" />
+        <label for="f-email" class="${p()}">E-Mail</label>
+        <input id="f-email" name="email" type="email" required autocomplete="email" placeholder="deine@email.de" class="${f()}" />
       </div>
       <div>
         <label for="f-password" class="${p()}">Passwort</label>
@@ -33,10 +33,6 @@ import{i as e,o as t,t as n}from"./shared-CkMgaHwz.js";import{t as r}from"./api-
       <div>
         <label for="f-displayname" class="${p()}">Name</label>
         <input id="f-displayname" name="displayName" type="text" required autocomplete="name" placeholder="Dein angezeigter Name" class="${f()}" />
-      </div>
-      <div>
-        <label for="f-username" class="${p()}">Benutzername</label>
-        <input id="f-username" name="username" type="text" required autocomplete="username" placeholder="benutzername" class="${f()}" />
       </div>
       <div>
         <label for="f-email" class="${p()}">E-Mail</label>
@@ -66,12 +62,12 @@ import{i as e,o as t,t as n}from"./shared-CkMgaHwz.js";import{t as r}from"./api-
     <div class="mx-auto max-w-sm px-5 py-12 lg:px-6">
       <div class="rounded-[2rem] border border-stone-200 bg-white/90 p-8 text-center shadow-[var(--shadow-md)]">
         <div class="flex justify-center">${d(e)}</div>
-        <h2 class="font-display mt-5 text-2xl font-semibold text-stone-950">${e.displayName??e.username}</h2>
-        <p class="mt-1 text-sm text-stone-500">@${e.username}</p>
+        <h2 class="font-display mt-5 text-2xl font-semibold text-stone-950">${e.displayName??e.username??e.email}</h2>
+        <p class="mt-1 text-sm text-stone-500">${e.email}</p>
         <div class="mt-3 flex justify-center">${u(e.role)}</div>
         <div class="mt-8 grid grid-cols-2 gap-3">
           <a href="forum.html" class="rounded-full border border-stone-300 py-2.5 text-center text-sm font-medium text-stone-700 transition hover:bg-stone-50">Zum Forum</a>
           <button data-action="logout" class="rounded-full bg-stone-950 py-2.5 text-sm font-medium text-white transition hover:bg-red-700">Abmelden</button>
         </div>
       </div>
-    </div>`}function S(){h.innerHTML=e({activePage:`account`,hero:``,content:m.user?x(m.user):b()}),t(h),n(h)}async function C(){if(a())try{let e=await l(`/api/auth/me`);m.user=e.user??e,s(a(),m.user)}catch{c(),m.user=null}S()}h.addEventListener(`click`,async e=>{let t=e.target.closest(`[data-action]`);if(!t)return;let{action:n,value:r}=t.dataset;if(n===`set-tab`&&(m.tab=r,m.error=``,m.registered=!1,S(),document.getElementById(`f-username`)?.focus()),n===`logout`){try{await l(`/api/auth/logout`,{method:`POST`})}catch{}c(),m.user=null,m.error=``,S()}}),h.addEventListener(`submit`,async e=>{e.preventDefault();let{action:t}=e.target.dataset;if(![`login`,`register`].includes(t))return;let n=new FormData(e.target);m.loading=!0,m.error=``,S();try{if(t===`login`){let e=await l(`/api/auth/login`,{method:`POST`,body:JSON.stringify({username:n.get(`username`).trim(),password:n.get(`password`)})});s(e.token,e.user),m.user=e.user}if(t===`register`){let e=n.get(`password`);if(e!==n.get(`password2`)){m.error=`Die Passwörter stimmen nicht überein.`,m.loading=!1,S();return}await l(`/api/auth/register`,{method:`POST`,body:JSON.stringify({username:n.get(`username`).trim(),displayName:n.get(`displayName`).trim(),email:n.get(`email`).trim(),password:e})}),m.registered=!0}}catch(e){m.error=e.message||`Ein Fehler ist aufgetreten.`}finally{m.loading=!1,S()}}),C();
+    </div>`}function S(){h.innerHTML=e({activePage:`account`,hero:``,content:m.user?x(m.user):b()}),t(h),n(h)}async function C(){if(a())try{let e=await l(`/api/auth/me`);m.user=e.user??e,s(a(),m.user)}catch{c(),m.user=null}S()}h.addEventListener(`click`,async e=>{let t=e.target.closest(`[data-action]`);if(!t)return;let{action:n,value:r}=t.dataset;if(n===`set-tab`&&(m.tab=r,m.error=``,m.registered=!1,S(),document.getElementById(`f-username`)?.focus()),n===`logout`){try{await l(`/api/auth/logout`,{method:`POST`})}catch{}c(),m.user=null,m.error=``,S()}}),h.addEventListener(`submit`,async e=>{e.preventDefault();let{action:t}=e.target.dataset;if(![`login`,`register`].includes(t))return;let n=new FormData(e.target);m.loading=!0,m.error=``,S();try{if(t===`login`){let e=await l(`/api/auth/login`,{method:`POST`,body:JSON.stringify({email:n.get(`email`).trim(),password:n.get(`password`)})});s(e.token,e.user),m.user=e.user}if(t===`register`){let e=n.get(`password`);if(e!==n.get(`password2`)){m.error=`Die Passwörter stimmen nicht überein.`,m.loading=!1,S();return}await l(`/api/auth/register`,{method:`POST`,body:JSON.stringify({displayName:n.get(`displayName`).trim(),email:n.get(`email`).trim(),password:e})}),m.registered=!0}}catch(e){m.error=e.message||`Ein Fehler ist aufgetreten.`}finally{m.loading=!1,S()}}),C();
