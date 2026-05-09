@@ -1,6 +1,7 @@
 import './style.css'
 import { API } from './api.js'
 import { bindPageSelect, renderPageFrame, setupRevealObserver } from './shared.js'
+
 const AUTH_KEY = 'fcm-auth'
 
 // ── Auth helpers ──────────────────────────────────────────────────────
@@ -52,12 +53,21 @@ function bigAvatar(user) {
     user.role === 'administrator' ? 'bg-stone-950 text-white'
     : user.role === 'moderator'   ? 'bg-amber-400 text-stone-950'
     :                               'bg-emerald-100 text-emerald-800'
-  return `<span class="grid h-20 w-20 shrink-0 place-items-center rounded-full ${color} text-2xl font-semibold" aria-hidden="true">${initials}</span>`
+  return `<span class="grid h-20 w-20 place-items-center rounded-full ${color} text-2xl font-semibold" aria-hidden="true">${initials}</span>`
+}
+
+function inputClass() {
+  return 'w-full rounded-xl border border-stone-300 bg-stone-50 px-4 py-3 text-sm text-stone-900 transition placeholder:text-stone-400 focus:border-emerald-400 focus:bg-white focus:ring-2 focus:ring-emerald-100'
+}
+
+function labelClass() {
+  return 'mb-1.5 block text-xs font-semibold uppercase tracking-wider text-stone-500'
 }
 
 // ── State ─────────────────────────────────────────────────────────────
 const state = {
   user: getStoredUser(),
+  tab: 'login',   // 'login' | 'register'
   loading: false,
   error: '',
 }
@@ -65,28 +75,81 @@ const state = {
 const app = document.querySelector('#app')
 
 // ── Views ─────────────────────────────────────────────────────────────
-function renderLogin() {
+function renderTabBar() {
+  return `
+    <div class="mt-6 flex rounded-full border border-stone-200 bg-stone-100 p-1">
+      <button data-action="set-tab" data-value="login"
+        class="flex-1 rounded-full py-2 text-sm font-medium transition ${state.tab === 'login' ? 'bg-white text-stone-950 shadow-sm' : 'text-stone-500 hover:text-stone-700'}">
+        Anmelden
+      </button>
+      <button data-action="set-tab" data-value="register"
+        class="flex-1 rounded-full py-2 text-sm font-medium transition ${state.tab === 'register' ? 'bg-white text-stone-950 shadow-sm' : 'text-stone-500 hover:text-stone-700'}">
+        Registrieren
+      </button>
+    </div>`
+}
+
+function renderError() {
+  return state.error
+    ? `<p class="rounded-xl bg-red-50 px-4 py-3 text-sm text-red-700 ring-1 ring-inset ring-red-200">${state.error}</p>`
+    : ''
+}
+
+function renderLoginForm() {
+  return `
+    <form id="auth-form" data-action="login" class="mt-6 space-y-4" novalidate>
+      ${renderError()}
+      <div>
+        <label for="f-username" class="${labelClass()}">Benutzername</label>
+        <input id="f-username" name="username" type="text" required autocomplete="username" placeholder="benutzername" class="${inputClass()}" />
+      </div>
+      <div>
+        <label for="f-password" class="${labelClass()}">Passwort</label>
+        <input id="f-password" name="password" type="password" required autocomplete="current-password" placeholder="••••••••" class="${inputClass()}" />
+      </div>
+      <button type="submit" ${state.loading ? 'disabled' : ''}
+        class="w-full rounded-full bg-stone-950 py-3 text-sm font-medium text-white transition hover:bg-emerald-800 disabled:opacity-60">
+        ${state.loading ? 'Wird angemeldet…' : 'Anmelden'}
+      </button>
+    </form>`
+}
+
+function renderRegisterForm() {
+  return `
+    <form id="auth-form" data-action="register" class="mt-6 space-y-4" novalidate>
+      ${renderError()}
+      <div>
+        <label for="f-displayname" class="${labelClass()}">Name</label>
+        <input id="f-displayname" name="displayName" type="text" required autocomplete="name" placeholder="Dein angezeigter Name" class="${inputClass()}" />
+      </div>
+      <div>
+        <label for="f-username" class="${labelClass()}">Benutzername</label>
+        <input id="f-username" name="username" type="text" required autocomplete="username" placeholder="benutzername" class="${inputClass()}" />
+      </div>
+      <div>
+        <label for="f-password" class="${labelClass()}">Passwort</label>
+        <input id="f-password" name="password" type="password" required autocomplete="new-password" placeholder="••••••••" class="${inputClass()}" />
+      </div>
+      <div>
+        <label for="f-password2" class="${labelClass()}">Passwort bestätigen</label>
+        <input id="f-password2" name="password2" type="password" required autocomplete="new-password" placeholder="••••••••" class="${inputClass()}" />
+      </div>
+      <button type="submit" ${state.loading ? 'disabled' : ''}
+        class="w-full rounded-full bg-stone-950 py-3 text-sm font-medium text-white transition hover:bg-emerald-800 disabled:opacity-60">
+        ${state.loading ? 'Wird registriert…' : 'Konto erstellen'}
+      </button>
+    </form>`
+}
+
+function renderAuth() {
   return `
     <div class="mx-auto max-w-sm px-5 py-12 lg:px-6">
-      <h2 class="font-display text-2xl font-semibold text-stone-950">Anmelden</h2>
-      <p class="mt-1 text-sm text-stone-500">Melde dich mit deinen Zugangsdaten an.</p>
-      <form id="login-form" data-action="login" class="mt-8 space-y-4" novalidate>
-        ${state.error ? `<p class="rounded-xl bg-red-50 px-4 py-3 text-sm text-red-700 ring-1 ring-inset ring-red-200">${state.error}</p>` : ''}
-        <div>
-          <label for="login-username" class="mb-1.5 block text-xs font-semibold uppercase tracking-wider text-stone-500">Benutzername</label>
-          <input id="login-username" name="username" type="text" required autocomplete="username" placeholder="benutzername"
-            class="w-full rounded-xl border border-stone-300 bg-stone-50 px-4 py-3 text-sm text-stone-900 transition placeholder:text-stone-400 focus:border-emerald-400 focus:bg-white focus:ring-2 focus:ring-emerald-100" />
-        </div>
-        <div>
-          <label for="login-password" class="mb-1.5 block text-xs font-semibold uppercase tracking-wider text-stone-500">Passwort</label>
-          <input id="login-password" name="password" type="password" required autocomplete="current-password" placeholder="••••••••"
-            class="w-full rounded-xl border border-stone-300 bg-stone-50 px-4 py-3 text-sm text-stone-900 transition placeholder:text-stone-400 focus:border-emerald-400 focus:bg-white focus:ring-2 focus:ring-emerald-100" />
-        </div>
-        <button type="submit" ${state.loading ? 'disabled' : ''}
-          class="w-full rounded-full bg-stone-950 py-3 text-sm font-medium text-white transition hover:bg-emerald-800 disabled:opacity-60">
-          ${state.loading ? 'Wird angemeldet…' : 'Anmelden'}
-        </button>
-      </form>
+      <h2 class="font-display text-2xl font-semibold text-stone-950">Konto</h2>
+      <p class="mt-1 text-sm text-stone-500">
+        ${state.tab === 'login' ? 'Melde dich mit deinen Zugangsdaten an.' : 'Erstelle ein neues Konto.'}
+      </p>
+      ${renderTabBar()}
+      ${state.tab === 'login' ? renderLoginForm() : renderRegisterForm()}
     </div>`
 }
 
@@ -111,13 +174,13 @@ function render() {
   app.innerHTML = renderPageFrame({
     activePage: 'account',
     hero: '',
-    content: state.user ? renderProfile(state.user) : renderLogin(),
+    content: state.user ? renderProfile(state.user) : renderAuth(),
   })
   setupRevealObserver(app)
   bindPageSelect(app)
 }
 
-// ── Init: validate stored session ─────────────────────────────────────
+// ── Init ──────────────────────────────────────────────────────────────
 async function init() {
   if (getToken()) {
     try {
@@ -136,8 +199,16 @@ async function init() {
 app.addEventListener('click', async (e) => {
   const el = e.target.closest('[data-action]')
   if (!el) return
+  const { action, value } = el.dataset
 
-  if (el.dataset.action === 'logout') {
+  if (action === 'set-tab') {
+    state.tab = value
+    state.error = ''
+    render()
+    document.getElementById('f-username')?.focus()
+  }
+
+  if (action === 'logout') {
     try { await apiFetch('/api/auth/logout', { method: 'POST' }) } catch { /* ignore */ }
     clearAuth()
     state.user = null
@@ -148,25 +219,49 @@ app.addEventListener('click', async (e) => {
 
 app.addEventListener('submit', async (e) => {
   e.preventDefault()
-  if (e.target.dataset.action !== 'login') return
+  const { action } = e.target.dataset
+  if (!['login', 'register'].includes(action)) return
 
-  const username = e.target.username.value.trim()
-  const password = e.target.password.value
-
+  const fd = new FormData(e.target)
   state.loading = true
   state.error = ''
   render()
 
   try {
-    const data = await apiFetch('/api/auth/login', {
-      method: 'POST',
-      body: JSON.stringify({ username, password }),
-    })
-    saveAuth(data.token, data.user)
-    state.user = data.user
-    state.error = ''
+    if (action === 'login') {
+      const data = await apiFetch('/api/auth/login', {
+        method: 'POST',
+        body: JSON.stringify({
+          username: fd.get('username').trim(),
+          password: fd.get('password'),
+        }),
+      })
+      saveAuth(data.token, data.user)
+      state.user = data.user
+    }
+
+    if (action === 'register') {
+      const password = fd.get('password')
+      const password2 = fd.get('password2')
+      if (password !== password2) {
+        state.error = 'Die Passwörter stimmen nicht überein.'
+        state.loading = false
+        render()
+        return
+      }
+      const data = await apiFetch('/api/auth/register', {
+        method: 'POST',
+        body: JSON.stringify({
+          username: fd.get('username').trim(),
+          displayName: fd.get('displayName').trim(),
+          password,
+        }),
+      })
+      saveAuth(data.token, data.user)
+      state.user = data.user
+    }
   } catch (err) {
-    state.error = err.message || 'Ungültiger Benutzername oder Passwort.'
+    state.error = err.message || 'Ein Fehler ist aufgetreten.'
   } finally {
     state.loading = false
     render()
