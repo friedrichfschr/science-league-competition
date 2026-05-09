@@ -1,0 +1,1 @@
+var e=`https://api.bredelicious.de`;export{e as t};
