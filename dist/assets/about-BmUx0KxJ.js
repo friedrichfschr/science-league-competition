@@ -1,4 +1,4 @@
-import{a as e,c as t,i as n,l as r,o as i,p as a,r as o,s,t as c}from"./shared-M4tnExme.js";import{t as l}from"./api-CAqj1E_R.js";var u=`${l}/api/newsletter/subscribe`,d=document.querySelector(`#app`),f=`
+import{a as e,c as t,i as n,l as r,o as i,p as a,r as o,s,t as c}from"./shared-CDCOEyWj.js";import{t as l}from"./api-CAqj1E_R.js";var u=`${l}/api/newsletter/subscribe`,d=document.querySelector(`#app`),f=`
   <p class="text-[0.7rem] font-semibold uppercase tracking-[0.3em] text-emerald-300">Unser Ansatz</p>
   <h2 class="font-display mt-4 text-2xl font-semibold tracking-tight">Drei Ideen. Ein Gebäude.</h2>
   <ul class="mt-6 space-y-1" role="list">
