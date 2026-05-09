@@ -127,8 +127,8 @@ function renderRegisterForm() {
     <form id="auth-form" data-action="register" class="mt-6 space-y-4" novalidate>
       ${renderError()}
       <div>
-        <label for="f-displayname" class="${labelClass()}">Name</label>
-        <input id="f-displayname" name="displayName" type="text" required autocomplete="name" placeholder="Dein angezeigter Name" class="${inputClass()}" />
+        <label for="f-username" class="${labelClass()}">Benutzername</label>
+        <input id="f-username" name="username" type="text" required autocomplete="username" placeholder="benutzername" class="${inputClass()}" />
       </div>
       <div>
         <label for="f-email" class="${labelClass()}">E-Mail</label>
@@ -261,7 +261,7 @@ app.addEventListener('submit', async (e) => {
       await apiFetch('/api/auth/register', {
         method: 'POST',
         body: JSON.stringify({
-          displayName: fd.get('displayName').trim(),
+          username: fd.get('username').trim(),
           email: fd.get('email').trim(),
           password,
         }),
