@@ -506,40 +506,11 @@ function render() {
   const filteredProducts = getFilteredProducts()
   const cartCount = getCartCount()
 
-  const heroSupportingCard = `
-    <p class="text-[0.7rem] font-semibold uppercase tracking-[0.3em] text-emerald-300">Der Gemüseturm</p>
-    <h2 class="font-display mt-4 text-2xl font-semibold tracking-tight">Lokal angebaut, direkt verkauft.</h2>
-    <ul class="mt-6 space-y-3" role="list">
-      <li class="flex items-start gap-3 border-b border-white/10 pb-3">
-        <span aria-hidden="true" class="grid h-8 w-8 shrink-0 place-items-center rounded-full bg-emerald-500/20 text-emerald-300 ring-1 ring-inset ring-emerald-400/30">💧</span>
-        <div>
-          <p class="text-sm font-semibold text-white">99 % weniger Wasser</p>
-          <p class="text-xs leading-5 text-stone-300">Kontrolliertes Vertical-Farming-System, automatische Bewässerung.</p>
-        </div>
-      </li>
-      <li class="flex items-start gap-3 border-b border-white/10 pb-3">
-        <span aria-hidden="true" class="grid h-8 w-8 shrink-0 place-items-center rounded-full bg-emerald-500/20 text-emerald-300 ring-1 ring-inset ring-emerald-400/30">☀</span>
-        <div>
-          <p class="text-sm font-semibold text-white">Wetterunabhängig</p>
-          <p class="text-xs leading-5 text-stone-300">Licht, Temperatur und Nährstoffe optimal gesteuert — jeden Tag.</p>
-        </div>
-      </li>
-      <li class="flex items-start gap-3">
-        <span aria-hidden="true" class="grid h-8 w-8 shrink-0 place-items-center rounded-full bg-emerald-500/20 text-emerald-300 ring-1 ring-inset ring-emerald-400/30">→</span>
-        <div>
-          <p class="text-sm font-semibold text-white">Kurze Wege</p>
-          <p class="text-xs leading-5 text-stone-300">Vom Anbau direkt ins Regal — keine langen Transportwege.</p>
-        </div>
-      </li>
-    </ul>
-  `
-
   const hero = renderHero({
     eyebrow: 'Der Gemüseturm',
     title: 'Produkte aus unserem Vertical Farming.',
     intro:
       'Knackig, frisch und lokal produziert. Filtere nach Kategorie oder Bestand, lege Produkte in den Korb und sieh den Einkauf live wachsen.',
-    supportingCard: heroSupportingCard,
   })
 
   const content = `
