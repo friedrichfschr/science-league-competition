@@ -101,8 +101,8 @@ function renderLoginForm() {
     <form id="auth-form" data-action="login" class="mt-6 space-y-4" novalidate>
       ${renderError()}
       <div>
-        <label for="f-username" class="${labelClass()}">Benutzername</label>
-        <input id="f-username" name="username" type="text" required autocomplete="username" placeholder="benutzername" class="${inputClass()}" />
+        <label for="f-email" class="${labelClass()}">E-Mail</label>
+        <input id="f-email" name="email" type="email" required autocomplete="email" placeholder="deine@email.de" class="${inputClass()}" />
       </div>
       <div>
         <label for="f-password" class="${labelClass()}">Passwort</label>
@@ -129,10 +129,6 @@ function renderRegisterForm() {
       <div>
         <label for="f-displayname" class="${labelClass()}">Name</label>
         <input id="f-displayname" name="displayName" type="text" required autocomplete="name" placeholder="Dein angezeigter Name" class="${inputClass()}" />
-      </div>
-      <div>
-        <label for="f-username" class="${labelClass()}">Benutzername</label>
-        <input id="f-username" name="username" type="text" required autocomplete="username" placeholder="benutzername" class="${inputClass()}" />
       </div>
       <div>
         <label for="f-email" class="${labelClass()}">E-Mail</label>
@@ -170,8 +166,8 @@ function renderProfile(user) {
     <div class="mx-auto max-w-sm px-5 py-12 lg:px-6">
       <div class="rounded-[2rem] border border-stone-200 bg-white/90 p-8 text-center shadow-[var(--shadow-md)]">
         <div class="flex justify-center">${bigAvatar(user)}</div>
-        <h2 class="font-display mt-5 text-2xl font-semibold text-stone-950">${user.displayName ?? user.username}</h2>
-        <p class="mt-1 text-sm text-stone-500">@${user.username}</p>
+        <h2 class="font-display mt-5 text-2xl font-semibold text-stone-950">${user.displayName ?? user.username ?? user.email}</h2>
+        <p class="mt-1 text-sm text-stone-500">${user.email}</p>
         <div class="mt-3 flex justify-center">${roleBadge(user.role)}</div>
         <div class="mt-8 grid grid-cols-2 gap-3">
           <a href="forum.html" class="rounded-full border border-stone-300 py-2.5 text-center text-sm font-medium text-stone-700 transition hover:bg-stone-50">Zum Forum</a>
@@ -245,7 +241,7 @@ app.addEventListener('submit', async (e) => {
       const data = await apiFetch('/api/auth/login', {
         method: 'POST',
         body: JSON.stringify({
-          username: fd.get('username').trim(),
+          email: fd.get('email').trim(),
           password: fd.get('password'),
         }),
       })
@@ -265,7 +261,6 @@ app.addEventListener('submit', async (e) => {
       await apiFetch('/api/auth/register', {
         method: 'POST',
         body: JSON.stringify({
-          username: fd.get('username').trim(),
           displayName: fd.get('displayName').trim(),
           email: fd.get('email').trim(),
           password,
