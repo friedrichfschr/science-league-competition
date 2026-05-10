@@ -37,6 +37,38 @@ async function apiFetch(path, options = {}) {
   return data
 }
 
+// ── API response normalizers ──────────────────────────────────────────
+function normalizePost(p) {
+  return {
+    ...p,
+    createdAt: p.createdAt ?? p.created_at,
+    commentCount: p.commentCount ?? p.comment_count ?? 0,
+    votes: p.votes ?? (p.score !== undefined ? Number(p.score) : 0),
+    userVote: p.userVote ?? p.my_vote ?? 0,
+    author: p.author ?? {
+      id: p.author_id,
+      username: p.author_username,
+      displayName: p.author_displayName ?? p.author_username,
+      role: p.author_role,
+    },
+  }
+}
+
+function normalizeComment(c) {
+  return {
+    ...c,
+    createdAt: c.createdAt ?? c.created_at,
+    votes: c.votes ?? (c.score !== undefined ? Number(c.score) : 0),
+    userVote: c.userVote ?? c.my_vote ?? 0,
+    author: c.author ?? {
+      id: c.author_id,
+      username: c.author_username,
+      displayName: c.author_displayName ?? c.author_username,
+      role: c.author_role,
+    },
+  }
+}
+
 // ── State ─────────────────────────────────────────────────────────────
 const state = {
   view: 'feed',          // 'feed' | 'post'
@@ -345,8 +377,14 @@ async function loadPosts() {
   state.error = null
   render()
   try {
-    const data = await apiFetch(`/api/forum/posts?sort=${state.sortBy}`)
-    state.posts = data.posts ?? data
+    // API only supports 'new' and 'top'; 'hot' (most comments) is sorted client-side
+    const apiSort = state.sortBy === 'hot' ? 'new' : state.sortBy
+    const data = await apiFetch(`/api/forum/posts?sort=${apiSort}`)
+    let posts = (data.posts ?? data).map(normalizePost)
+    if (state.sortBy === 'hot') {
+      posts = posts.slice().sort((a, b) => b.commentCount - a.commentCount)
+    }
+    state.posts = posts
   } catch (err) {
     state.error = err.message
   } finally {
@@ -361,7 +399,11 @@ async function loadPost(id) {
   render()
   try {
     const data = await apiFetch(`/api/forum/posts/${id}`)
-    state.currentPost = { post: data.post ?? data, comments: data.comments ?? [] }
+    const raw = data.post ?? data
+    state.currentPost = {
+      post: normalizePost(raw),
+      comments: (raw.comments ?? data.comments ?? []).map(normalizeComment),
+    }
   } catch (err) {
     state.error = err.message
   } finally {
@@ -431,13 +473,15 @@ app.addEventListener('click', async (e) => {
           method: 'POST',
           body: JSON.stringify({ value: v }),
         })
+        const newVotes = res != null ? (res.votes ?? (res.score !== undefined ? Number(res.score) : null)) : null
+        const newUserVote = res != null ? (res.userVote ?? res.my_vote ?? v) : v
         // Update in feed list
         const post = state.posts.find((p) => p.id === id)
-        if (post) { post.votes = res.votes ?? post.votes; post.userVote = res.userVote ?? v }
+        if (post) { if (newVotes !== null) post.votes = newVotes; post.userVote = newUserVote }
         // Update in detail view
         if (state.currentPost?.post?.id === id) {
-          state.currentPost.post.votes = res.votes ?? state.currentPost.post.votes
-          state.currentPost.post.userVote = res.userVote ?? v
+          if (newVotes !== null) state.currentPost.post.votes = newVotes
+          state.currentPost.post.userVote = newUserVote
         }
       } catch { /* ignore */ }
       render()
@@ -454,7 +498,11 @@ app.addEventListener('click', async (e) => {
         })
         if (state.currentPost) {
           const c = state.currentPost.comments.find((c) => c.id === id)
-          if (c) { c.votes = res.votes ?? c.votes; c.userVote = res.userVote ?? v }
+          if (c) {
+            const newVotes = res != null ? (res.votes ?? (res.score !== undefined ? Number(res.score) : null)) : null
+            if (newVotes !== null) c.votes = newVotes
+            c.userVote = res != null ? (res.userVote ?? res.my_vote ?? v) : v
+          }
         }
       } catch { /* ignore */ }
       render()
@@ -531,7 +579,7 @@ app.addEventListener('submit', async (e) => {
         method: 'POST',
         body: JSON.stringify({ body }),
       })
-      state.currentPost.comments.push(data.comment ?? data)
+      state.currentPost.comments.push(normalizeComment(data.comment ?? data))
       render()
       setTimeout(() => {
         document.querySelector('[data-comment-id]:last-child')
