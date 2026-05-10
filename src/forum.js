@@ -45,6 +45,7 @@ function normalizePost(p) {
     commentCount: p.commentCount ?? p.comment_count ?? 0,
     votes: p.votes ?? (p.score !== undefined ? Number(p.score) : 0),
     userVote: p.userVote ?? p.my_vote ?? 0,
+    authorId: p.authorId ?? p.author_id,
     author: p.author ?? {
       id: p.author_id,
       username: p.author_username,
@@ -168,16 +169,19 @@ function renderPostCard(post) {
 }
 
 // ── Comment ───────────────────────────────────────────────────────────
-function renderComment(comment) {
+function renderComment(comment, postAuthorId) {
   const author = comment.author
+  const commentAuthorId = comment.authorId ?? comment.author_id
   const canDelete = state.user &&
-    (state.user.id === comment.authorId || state.user.role === 'administrator' || state.user.role === 'moderator')
+    (state.user.id === commentAuthorId || state.user.role === 'administrator' || state.user.role === 'moderator')
+  const isOP = postAuthorId && commentAuthorId && commentAuthorId === postAuthorId
   return `
     <article class="flex gap-3 border-b border-stone-100 py-4 last:border-b-0" data-comment-id="${comment.id}">
       ${avatar(author)}
       <div class="min-w-0 flex-1">
         <div class="flex flex-wrap items-center gap-2">
           <span class="text-sm font-semibold text-stone-900">${author?.displayName ?? author?.username ?? 'Unbekannt'}</span>
+          ${isOP ? `<span class="inline-flex items-center rounded-full bg-emerald-100 px-2 py-0.5 text-[0.6rem] font-bold uppercase tracking-widest text-emerald-800 ring-1 ring-inset ring-emerald-200">OP</span>` : ''}
           ${author ? roleBadge(author.role) : ''}
           <span class="text-xs text-stone-400">${relativeTime(comment.createdAt)}</span>
           ${canDelete ? `<button data-action="delete-comment" data-id="${comment.id}" class="ml-auto text-xs text-stone-400 transition hover:text-red-500">Löschen</button>` : ''}
@@ -225,7 +229,7 @@ function renderPostDetail() {
         </h3>
         <div class="mt-3">
           ${comments.length > 0
-            ? comments.map(renderComment).join('')
+            ? comments.map(c => renderComment(c, post.authorId)).join('')
             : `<p class="py-6 text-center text-sm text-stone-400">Noch keine Kommentare — sei der Erste!</p>`}
         </div>
         ${state.user ? `
@@ -467,7 +471,8 @@ app.addEventListener('click', async (e) => {
 
     case 'vote-post': {
       if (!state.user) return
-      const v = parseInt(value)
+      const existing = (state.posts.find(p => p.id === id) ?? state.currentPost?.post)?.userVote ?? 0
+      const v = parseInt(value) === existing ? 0 : parseInt(value)
       try {
         const res = await apiFetch(`/api/forum/posts/${id}/vote`, {
           method: 'POST',
@@ -490,7 +495,8 @@ app.addEventListener('click', async (e) => {
 
     case 'vote-comment': {
       if (!state.user) return
-      const v = parseInt(value)
+      const existingC = state.currentPost?.comments.find(c => c.id === id)?.userVote ?? 0
+      const v = parseInt(value) === existingC ? 0 : parseInt(value)
       try {
         const res = await apiFetch(`/api/forum/comments/${id}/vote`, {
           method: 'POST',

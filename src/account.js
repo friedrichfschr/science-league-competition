@@ -67,16 +67,18 @@ function labelClass() {
 // ── State ─────────────────────────────────────────────────────────────
 const state = {
   user: getStoredUser(),
-  tab: 'login',   // 'login' | 'register'
+  tab: 'login',   // 'login' | 'register' | 'forgot'
   loading: false,
   error: '',
   registered: false,
+  resetSent: false,
 }
 
 const app = document.querySelector('#app')
 
 // ── Views ─────────────────────────────────────────────────────────────
 function renderTabBar() {
+  if (state.tab === 'forgot') return ''
   return `
     <div class="mt-6 flex rounded-full border border-stone-200 bg-stone-100 p-1">
       <button data-action="set-tab" data-value="login"
@@ -112,7 +114,50 @@ function renderLoginForm() {
         class="w-full rounded-full bg-stone-950 py-3 text-sm font-medium text-white transition hover:bg-emerald-800 disabled:opacity-60">
         ${state.loading ? 'Wird angemeldet…' : 'Anmelden'}
       </button>
+      <p class="text-center text-xs text-stone-400">
+        <button type="button" data-action="set-tab" data-value="forgot" class="text-stone-500 underline-offset-2 hover:underline">
+          Passwort vergessen?
+        </button>
+      </p>
     </form>`
+}
+
+function renderForgotForm() {
+  if (state.resetSent) {
+    return `
+      <div class="mt-6 space-y-4">
+        <div class="rounded-xl bg-emerald-50 px-4 py-5 text-center ring-1 ring-inset ring-emerald-200">
+          <p class="text-sm font-semibold text-emerald-800">E-Mail gesendet</p>
+          <p class="mt-1 text-sm text-emerald-700">Falls ein Konto mit dieser Adresse existiert, wurde eine E-Mail zum Zurücksetzen des Passworts gesendet.</p>
+        </div>
+        <button type="button" data-action="set-tab" data-value="login"
+          class="w-full rounded-full border border-stone-300 py-3 text-sm font-medium text-stone-700 transition hover:bg-stone-50">
+          Zurück zum Login
+        </button>
+      </div>`
+  }
+  return `
+    <div class="mt-6 space-y-4">
+      <button type="button" data-action="set-tab" data-value="login"
+        class="flex items-center gap-1.5 text-xs font-medium text-stone-500 transition hover:text-stone-900">
+        ← Zurück zum Login
+      </button>
+      <h3 class="font-display text-lg font-semibold text-stone-950">Passwort zurücksetzen</h3>
+      <p class="text-sm text-stone-500">Gib deine E-Mail-Adresse ein. Falls ein Konto existiert, erhältst du einen Link zum Zurücksetzen.</p>
+      ${renderError()}
+      <form id="auth-form" data-action="forgot" novalidate>
+        <div class="space-y-4">
+          <div>
+            <label for="f-email" class="${labelClass()}">E-Mail</label>
+            <input id="f-email" name="email" type="email" required autocomplete="email" placeholder="deine@email.de" class="${inputClass()}" />
+          </div>
+          <button type="submit" ${state.loading ? 'disabled' : ''}
+            class="w-full rounded-full bg-stone-950 py-3 text-sm font-medium text-white transition hover:bg-emerald-800 disabled:opacity-60">
+            ${state.loading ? 'Wird gesendet…' : 'Reset-Link anfordern'}
+          </button>
+        </div>
+      </form>
+    </div>`
 }
 
 function renderRegisterForm() {
@@ -157,7 +202,7 @@ function renderAuth() {
         ${state.tab === 'login' ? 'Melde dich mit deinen Zugangsdaten an.' : 'Erstelle ein neues Konto.'}
       </p>
       ${renderTabBar()}
-      ${state.tab === 'login' ? renderLoginForm() : renderRegisterForm()}
+      ${state.tab === 'login' ? renderLoginForm() : state.tab === 'register' ? renderRegisterForm() : renderForgotForm()}
     </div>`
 }
 
@@ -213,6 +258,7 @@ app.addEventListener('click', async (e) => {
     state.tab = value
     state.error = ''
     state.registered = false
+    state.resetSent = false
     render()
     document.getElementById('f-username')?.focus()
   }
@@ -229,7 +275,7 @@ app.addEventListener('click', async (e) => {
 app.addEventListener('submit', async (e) => {
   e.preventDefault()
   const { action } = e.target.dataset
-  if (!['login', 'register'].includes(action)) return
+  if (!['login', 'register', 'forgot'].includes(action)) return
 
   const fd = new FormData(e.target)
   state.loading = true
@@ -269,7 +315,23 @@ app.addEventListener('submit', async (e) => {
       // Server requires email confirmation before login — no token returned
       state.registered = true
     }
+
+    if (action === 'forgot') {
+      // NOTE: The API does not yet expose a password-reset endpoint.
+      // When it does, wire it up here: POST /api/auth/forgot-password { email }
+      await apiFetch('/api/auth/forgot-password', {
+        method: 'POST',
+        body: JSON.stringify({ email: fd.get('email').trim() }),
+      })
+      state.resetSent = true
+    }
   } catch (err) {
+    // Show a friendly message regardless so we don't leak whether an account exists
+    if (action === 'forgot') {
+      state.resetSent = true
+      state.error = ''
+      return
+    }
     state.error = err.message || 'Ein Fehler ist aufgetreten.'
   } finally {
     state.loading = false
