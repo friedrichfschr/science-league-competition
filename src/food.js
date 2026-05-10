@@ -1,4 +1,5 @@
 import './style.css'
+import { API } from './api.js'
 import { competitionFacts, productCategories, products } from './data.js'
 import {
   bindPageSelect,
@@ -9,6 +10,30 @@ import {
 } from './shared.js'
 
 const STORAGE_KEY = 'foodconnect-cart-v2'
+const AUTH_KEY = 'fcm-auth'
+
+function getToken() {
+  try { return JSON.parse(localStorage.getItem(AUTH_KEY))?.token ?? null } catch { return null }
+}
+function getStoredUser() {
+  try { return JSON.parse(localStorage.getItem(AUTH_KEY))?.user ?? null } catch { return null }
+}
+
+async function apiFetch(path, options = {}) {
+  const token = getToken()
+  const res = await fetch(`${API}${path}`, {
+    ...options,
+    headers: {
+      'Content-Type': 'application/json',
+      ...(token ? { Authorization: `Bearer ${token}` } : {}),
+      ...options.headers,
+    },
+  })
+  if (res.status === 204) return null
+  const data = await res.json().catch(() => ({}))
+  if (!res.ok) throw new Error(data.message || `HTTP ${res.status}`)
+  return data
+}
 
 const currency = new Intl.NumberFormat('de-DE', {
   style: 'currency',
@@ -39,6 +64,9 @@ const state = {
   cart: loadCart(),
   cartDrawerOpen: false,
   filtersOpen: false,
+  checkoutStep: null,   // null | 'confirm' | 'loading' | 'success' | 'error'
+  checkoutError: '',
+  lastOrder: null,
 }
 
 function loadCart() {
@@ -452,8 +480,8 @@ function renderCartContent() {
             <span class="text-base font-semibold text-white">Gesamt</span>
             <span class="font-display text-2xl font-semibold text-emerald-300">${currency.format(total)}</span>
           </div>
-          <button type="button" class="btn-press mt-4 inline-flex w-full items-center justify-center gap-2 rounded-full bg-emerald-600 px-4 py-3 text-sm font-medium text-white transition hover:bg-emerald-500 disabled:cursor-not-allowed disabled:opacity-50" ${cartCount === 0 ? 'disabled' : ''}>
-            Demo-Checkout
+          <button type="button" data-action="checkout" class="btn-press mt-4 inline-flex w-full items-center justify-center gap-2 rounded-full bg-emerald-600 px-4 py-3 text-sm font-medium text-white transition hover:bg-emerald-500 disabled:cursor-not-allowed disabled:opacity-50" ${cartCount === 0 ? 'disabled' : ''}>
+            Zur Kasse
             <span aria-hidden="true">→</span>
           </button>
         </div>
@@ -500,6 +528,79 @@ function renderMobileCartBar() {
       </button>
     </div>
   `
+}
+
+function renderCheckoutModal() {
+  if (!state.checkoutStep) return ''
+
+  const user = getStoredUser()
+  const cartItems = getCartItems()
+  const total = getCartTotal()
+
+  let body = ''
+
+  if (state.checkoutStep === 'confirm') {
+    body = `
+      <div class="mb-5 flex items-center justify-between">
+        <h2 class="font-display text-xl font-semibold text-stone-950">Bestellung bestätigen</h2>
+        <button data-action="close-checkout" class="grid h-9 w-9 place-items-center rounded-full border border-stone-300 bg-white text-stone-700 hover:bg-stone-100">×</button>
+      </div>
+      <div class="mb-4 rounded-xl bg-stone-50 p-4 text-sm text-stone-700">
+        <p class="font-semibold text-stone-950 mb-2">Bestellung als <span class="text-emerald-800">${escapeHtml(user?.username ?? user?.email ?? '')}</span></p>
+        <div class="space-y-1.5">
+          ${cartItems.map((item) => `
+            <div class="flex justify-between gap-3">
+              <span>${escapeHtml(item.name)} <span class="text-stone-400">× ${item.quantity}</span></span>
+              <span class="font-medium">${currency.format(item.total)}</span>
+            </div>`).join('')}
+        </div>
+        <div class="mt-3 border-t border-stone-200 pt-3 flex justify-between font-semibold text-stone-950">
+          <span>Gesamt</span><span class="text-emerald-800">${currency.format(total)}</span>
+        </div>
+      </div>
+      <p class="mb-5 text-xs text-stone-500">Nach der Bestätigung erhältst du eine Quittung per E-Mail. Keine Zahlung erforderlich.</p>
+      <div class="flex gap-3">
+        <button data-action="close-checkout" class="flex-1 rounded-full border border-stone-300 bg-white py-3 text-sm font-medium text-stone-700 transition hover:bg-stone-50">Abbrechen</button>
+        <button data-action="confirm-order" class="flex-1 rounded-full bg-emerald-700 py-3 text-sm font-medium text-white transition hover:bg-emerald-600">Jetzt bestellen</button>
+      </div>`
+  }
+
+  if (state.checkoutStep === 'loading') {
+    body = `
+      <div class="py-10 text-center">
+        <span class="mx-auto block h-10 w-10 animate-spin rounded-full border-2 border-stone-200 border-t-emerald-700"></span>
+        <p class="mt-4 text-sm text-stone-600">Bestellung wird aufgegeben…</p>
+      </div>`
+  }
+
+  if (state.checkoutStep === 'success') {
+    body = `
+      <div class="py-6 text-center">
+        <div class="mx-auto mb-4 flex h-14 w-14 items-center justify-center rounded-full bg-emerald-100 text-2xl">✓</div>
+        <h2 class="font-display text-xl font-semibold text-stone-950">Bestellung aufgegeben!</h2>
+        <p class="mt-2 text-sm text-stone-600">Eine Quittung wurde an deine E-Mail-Adresse gesendet.</p>
+        <p class="mt-1 text-xs text-stone-400">Bestellnr.: ${state.lastOrder?.id?.slice(0, 8) ?? '—'}</p>
+        <button data-action="close-checkout" class="mt-6 inline-flex rounded-full bg-stone-950 px-6 py-3 text-sm font-medium text-white transition hover:bg-emerald-800">Fertig</button>
+      </div>`
+  }
+
+  if (state.checkoutStep === 'error') {
+    body = `
+      <div class="mb-5 flex items-center justify-between">
+        <h2 class="font-display text-xl font-semibold text-stone-950">Fehler</h2>
+        <button data-action="close-checkout" class="grid h-9 w-9 place-items-center rounded-full border border-stone-300 bg-white text-stone-700 hover:bg-stone-100">×</button>
+      </div>
+      <p class="rounded-xl bg-red-50 px-4 py-3 text-sm text-red-700 ring-1 ring-inset ring-red-200">${escapeHtml(state.checkoutError)}</p>
+      <button data-action="close-checkout" class="mt-4 w-full rounded-full border border-stone-300 py-3 text-sm font-medium text-stone-700 hover:bg-stone-50">Schließen</button>`
+  }
+
+  return `
+    <div class="fixed inset-0 z-50 flex items-end justify-center sm:items-center" role="dialog" aria-modal="true">
+      <button data-action="close-checkout" class="absolute inset-0 bg-stone-950/40 backdrop-blur-sm" aria-label="Schließen"></button>
+      <div class="relative z-10 w-full max-w-md rounded-t-[2rem] border border-stone-200 bg-[rgba(247,244,238,0.98)] p-6 shadow-[0_-24px_60px_rgba(28,25,23,0.18)] sm:rounded-[2rem]">
+        ${body}
+      </div>
+    </div>`
 }
 
 function render() {
@@ -571,7 +672,8 @@ function render() {
       content,
     }) +
     renderCartDrawer() +
-    renderMobileCartBar()
+    renderMobileCartBar() +
+    renderCheckoutModal()
 
   setupRevealObserver(app)
 }
@@ -617,6 +719,50 @@ function handleClick(event) {
       state.cartDrawerOpen = !state.cartDrawerOpen
       render()
       break
+
+    case 'checkout': {
+      if (getCartCount() === 0) break
+      const user = getStoredUser()
+      if (!user || !getToken()) {
+        window.location.href = 'account.html'
+        break
+      }
+      state.checkoutStep = 'confirm'
+      state.cartDrawerOpen = false
+      render()
+      break
+    }
+
+    case 'confirm-order': {
+      state.checkoutStep = 'loading'
+      render()
+      const items = getCartItems().map(({ id, name, price, quantity, unit }) => ({
+        id, name, price, quantity, unit,
+      }))
+      apiFetch('/api/orders', {
+        method: 'POST',
+        body: JSON.stringify({ items }),
+      }).then((data) => {
+        state.lastOrder = data.order
+        state.checkoutStep = 'success'
+        clearCart()
+      }).catch((err) => {
+        state.checkoutError = err.message || 'Ein Fehler ist aufgetreten.'
+        state.checkoutStep = 'error'
+        render()
+      }).finally(() => {
+        if (state.checkoutStep !== 'error') render()
+      })
+      break
+    }
+
+    case 'close-checkout':
+      if (state.checkoutStep === 'loading') break
+      state.checkoutStep = null
+      state.checkoutError = ''
+      render()
+      break
+
     default:
       break
   }

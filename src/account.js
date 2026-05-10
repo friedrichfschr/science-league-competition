@@ -218,6 +218,9 @@ function renderProfile(user) {
           <a href="forum.html" class="rounded-full border border-stone-300 py-2.5 text-center text-sm font-medium text-stone-700 transition hover:bg-stone-50">Zum Forum</a>
           <button data-action="logout" class="rounded-full bg-stone-950 py-2.5 text-sm font-medium text-white transition hover:bg-red-700">Abmelden</button>
         </div>
+        <div class="mt-3">
+          <button data-action="delete-account" class="w-full rounded-full border border-red-200 py-2.5 text-sm font-medium text-red-600 transition hover:border-red-400 hover:bg-red-50">Konto löschen</button>
+        </div>
       </div>
     </div>`
 }
@@ -269,6 +272,21 @@ app.addEventListener('click', async (e) => {
     state.user = null
     state.error = ''
     render()
+  }
+
+  if (action === 'delete-account') {
+    if (!confirm('Konto wirklich löschen? Alle deine Beiträge und Daten werden dauerhaft entfernt. Dies kann nicht rückgängig gemacht werden.')) return
+    try {
+      await apiFetch('/api/auth/me', { method: 'DELETE' })
+      clearAuth()
+      state.user = null
+      state.error = ''
+      state.tab = 'login'
+      render()
+    } catch (err) {
+      state.error = err.message || 'Konto konnte nicht gelöscht werden.'
+      render()
+    }
   }
 })
 
