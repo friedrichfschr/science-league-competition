@@ -335,8 +335,6 @@ app.addEventListener('submit', async (e) => {
     }
 
     if (action === 'forgot') {
-      // NOTE: The API does not yet expose a password-reset endpoint.
-      // When it does, wire it up here: POST /api/auth/forgot-password { email }
       await apiFetch('/api/auth/forgot-password', {
         method: 'POST',
         body: JSON.stringify({ email: fd.get('email').trim() }),
@@ -344,7 +342,7 @@ app.addEventListener('submit', async (e) => {
       state.resetSent = true
     }
   } catch (err) {
-    // Show a friendly message regardless so we don't leak whether an account exists
+    // For forgot-password always show success — don't leak whether account exists
     if (action === 'forgot') {
       state.resetSent = true
       state.error = ''
