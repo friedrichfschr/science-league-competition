@@ -5,37 +5,60 @@ import { API } from './api.js'
 const NEWSLETTER_API = `${API}/api/newsletter/subscribe`
 import {
   bindPageSelect,
-  renderHero,
   renderPageFrame,
   setupRevealObserver,
 } from './shared.js'
 
 const app = document.querySelector('#app')
 
-const heroSupportingCard = `
-  <p class="text-[0.7rem] font-semibold uppercase tracking-[0.3em] text-emerald-300">Unser Ansatz</p>
-  <h2 class="font-display mt-4 text-2xl font-semibold tracking-tight">Drei Ideen. Ein Gebäude.</h2>
-  <ul class="mt-6 space-y-1" role="list">
-    ${trustHighlights
-      .map(
-        (item, i) => `
-          <li class="flex items-start gap-3 border-b border-white/10 py-3.5 last:border-b-0">
-            <span class="mt-1.5 grid h-5 w-5 shrink-0 place-items-center rounded-full bg-emerald-500/20 text-[0.7rem] font-semibold text-emerald-300 ring-1 ring-inset ring-emerald-400/30">${i + 1}</span>
-            <span class="text-sm leading-6 text-stone-200">${item}</span>
-          </li>
-        `,
-      )
-      .join('')}
-  </ul>
-`
+const hero = `
+  <section class="px-5 pb-6 pt-10 lg:px-6 lg:pb-10 lg:pt-14" aria-labelledby="page-hero-title">
+    <div class="mx-auto max-w-7xl">
+      <div class="grid gap-12 lg:grid-cols-[1fr_220px] lg:items-start">
 
-const hero = renderHero({
-  eyebrow: competitionFacts.season,
-  title: 'Städte brauchen Lebensmittel. Wir produzieren sie vor Ort.',
-  intro:
-    'Bis 2050 leben 68 % der Weltbevölkerung in Städten — bei immer weniger landwirtschaftlicher Fläche und enormen Transportemissionen. Der FoodConnectMarkt zeigt einen anderen Weg.',
-  supportingCard: heroSupportingCard,
-})
+        <!-- Text -->
+        <div>
+          <p class="hero-rise hero-rise-d1 inline-flex items-center gap-2 rounded-full bg-emerald-50 px-3.5 py-1.5 text-[0.7rem] font-semibold uppercase tracking-[0.22em] text-emerald-800 ring-1 ring-inset ring-emerald-200/80">
+            <span class="h-1.5 w-1.5 rounded-full bg-emerald-500" aria-hidden="true"></span>
+            ${competitionFacts.season}
+          </p>
+          <h1 id="page-hero-title" class="hero-rise hero-rise-d2 font-display mt-5 max-w-[18ch] text-4xl font-semibold leading-[1.05] tracking-tight text-stone-950 sm:text-5xl lg:text-[3.5rem]">
+            Städte brauchen Lebensmittel. Wir produzieren sie vor Ort.
+          </h1>
+          <p class="hero-rise hero-rise-d3 mt-6 max-w-xl text-lg leading-[1.75] text-stone-600">
+            Der FoodConnectMarkt verbindet Vertical Farming, Einkauf und soziale Begegnung unter einem Dach — ein Konzept für die Stadt von morgen.
+          </p>
+          <div class="hero-rise hero-rise-d3 mt-8 flex flex-wrap gap-3">
+            <a href="food.html" class="btn-press inline-flex items-center gap-2 rounded-full bg-stone-950 px-5 py-3 text-sm font-medium text-white transition hover:bg-emerald-800">
+              Produkte entdecken <span aria-hidden="true">→</span>
+            </a>
+            <a href="soziales.html" class="btn-press inline-flex items-center gap-2 rounded-full border border-stone-300 bg-white px-5 py-3 text-sm font-medium text-stone-900 transition hover:border-stone-400 hover:bg-stone-50">
+              Unser Konzept
+            </a>
+          </div>
+          <ul class="hero-rise hero-rise-d4 mt-8 space-y-2.5 border-t border-stone-200/80 pt-8" role="list">
+            ${trustHighlights.map((item, i) => `
+              <li class="flex items-start gap-3">
+                <span class="mt-0.5 grid h-5 w-5 shrink-0 place-items-center rounded-full bg-emerald-100 text-[0.65rem] font-bold text-emerald-800">${i + 1}</span>
+                <span class="text-sm leading-6 text-stone-600">${item}</span>
+              </li>`).join('')}
+          </ul>
+        </div>
+
+        <!-- Subtle image column — desktop only -->
+        <div class="hero-rise hero-rise-d4 hidden lg:flex lg:flex-col lg:gap-2.5" aria-hidden="true">
+          <img src="https://images.unsplash.com/photo-1542838132-92c53300491e?w=300&q=70"
+            alt="" class="w-full rounded-2xl object-cover opacity-70 ring-1 ring-stone-200" style="aspect-ratio:4/3" />
+          <img src="https://images.unsplash.com/photo-1530836369250-ef72a3f5cda8?w=300&q=70"
+            alt="" class="w-full rounded-2xl object-cover opacity-70 ring-1 ring-stone-200" style="aspect-ratio:4/3" />
+          <img src="https://images.unsplash.com/photo-1416879595882-3373a0480b5b?w=300&q=70"
+            alt="" class="w-full rounded-2xl object-cover opacity-70 ring-1 ring-stone-200" style="aspect-ratio:4/3" />
+        </div>
+
+      </div>
+    </div>
+  </section>
+`
 
 const blogPosts = [
   {
@@ -65,14 +88,17 @@ const content = `
   <!-- Science League -->
   <section class="px-5 py-12 lg:px-6 lg:py-16" aria-labelledby="science-league-heading">
     <div class="mx-auto max-w-7xl">
-      <div class="reveal grid gap-10 lg:grid-cols-[1fr_auto] lg:items-center">
+      <div class="reveal grid gap-8 lg:grid-cols-[1fr_1fr] lg:items-start lg:gap-16">
         <div>
           <p class="scroll-hint">Der Wettbewerb</p>
           <h2 id="science-league-heading" class="font-display mt-4 text-3xl font-semibold tracking-tight text-stone-950 sm:text-4xl">
             Was ist die Science League?
           </h2>
-          <p class="mt-5 max-w-2xl text-base leading-8 text-stone-600">
-            Die Science League ist ein Schülerwettbewerb des <a href="https://mint-community.de/scienceleague/" target="_blank" rel="noreferrer" class="font-medium text-emerald-800 underline-offset-2 hover:underline">Stifterverbands</a>, bei dem Teams aus ganz Deutschland MINT-Projekte entwickeln und in mehreren Spieltagen präsentieren. Unser Team bre-delicious nimmt in der Saison 2025/2026 teil.
+          <p class="mt-5 text-base leading-8 text-stone-600">
+            Die <a href="https://mint-community.de/scienceleague/" target="_blank" rel="noreferrer" class="font-medium text-emerald-800 underline-offset-2 hover:underline">Science League</a> ist ein Schülerwettbewerb von <a href="https://www.zdi.nrw/" target="_blank" rel="noreferrer" class="font-medium text-emerald-800 underline-offset-2 hover:underline">zdi.NRW</a>, bei dem Teams aus Nordrhein-Westfalen im Alter von 14 bis 20 Jahren eine jährliche MINT-Aufgabe lösen. In der Saison 2025/2026 entwickeln und bauen alle Teams ein Modell eines FoodConnect-Markts — maximal 1 × 1 Meter, Budget 800 €.
+          </p>
+          <p class="mt-4 text-base leading-8 text-stone-600">
+            In vier Spieltagen reichen Teams Blogbeiträge mit Fotos ein. Die 14 besten Teams qualifizieren sich für das Finale am 20. Juni 2026 in der DASA Dortmund.
           </p>
           <a
             href="https://mint-community.de/science-league-teams/bre-delicious-saison-2025-2026/"
@@ -83,13 +109,22 @@ const content = `
             Unser Teamprofil ↗
           </a>
         </div>
-        <div class="hidden lg:block">
-          <img
-            src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=340&q=75"
-            alt="Schülerinnen und Schüler arbeiten gemeinsam an einem Projekt"
-            class="h-48 w-72 rounded-[1.5rem] object-cover opacity-85 ring-1 ring-stone-200"
-            loading="lazy"
-          />
+        <div class="grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-2">
+          ${[
+            { role: 'Programmierung', names: 'Lara & Nick' },
+            { role: 'Design', names: 'Serafine, Aurelia & Joshua' },
+            { role: 'Teamleitung', names: 'Friedrich' },
+            { role: 'Pflanzenkonzept', names: 'Jakob' },
+            { role: 'Technik & Robotik', names: 'Neil, Michel & Ben' },
+          ].map(m => `
+            <div class="rounded-2xl border border-stone-200 bg-white/80 px-4 py-3">
+              <p class="text-[0.65rem] font-semibold uppercase tracking-[0.22em] text-emerald-700">${m.role}</p>
+              <p class="mt-1 text-sm font-medium text-stone-950">${m.names}</p>
+            </div>`).join('')}
+          <div class="rounded-2xl border border-stone-200 bg-stone-50 px-4 py-3">
+            <p class="text-[0.65rem] font-semibold uppercase tracking-[0.22em] text-stone-500">Betreuung</p>
+            <p class="mt-1 text-xs text-stone-600 leading-5">Hr. Allrogen · Hr. Hinrichs · Hr. Sake</p>
+          </div>
         </div>
       </div>
     </div>
@@ -195,24 +230,6 @@ const content = `
               </div>
             </form>
 
-            <div class="mt-10 flex flex-wrap gap-3 border-t border-white/10 pt-8">
-              <a
-                href="${competitionFacts.links.competition}"
-                target="_blank"
-                rel="noreferrer"
-                class="btn-press inline-flex items-center gap-2 rounded-full border border-white/15 px-4 py-2 text-xs font-medium text-stone-300 transition hover:border-white/30 hover:text-white"
-              >
-                Science League ↗
-              </a>
-              <a
-                href="${competitionFacts.links.team}"
-                target="_blank"
-                rel="noreferrer"
-                class="btn-press inline-flex items-center gap-2 rounded-full border border-white/15 px-4 py-2 text-xs font-medium text-stone-300 transition hover:border-white/30 hover:text-white"
-              >
-                Teamprofil ↗
-              </a>
-            </div>
           </div>
         </article>
 
