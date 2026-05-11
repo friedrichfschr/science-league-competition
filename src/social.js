@@ -48,16 +48,11 @@ const serviceCards = services
 const content = `
   <section class="px-5 py-12 lg:px-6 lg:py-20" aria-labelledby="services-heading">
     <div class="mx-auto max-w-7xl">
-      <div class="reveal flex flex-col gap-3 md:flex-row md:items-end md:justify-between">
-        <div>
-          <p class="scroll-hint">Die Angebote</p>
-          <h2 id="services-heading" class="font-display mt-4 text-3xl font-semibold tracking-tight text-stone-950 sm:text-4xl lg:text-5xl">
-            Was im ConnectMarkt passiert.
-          </h2>
-        </div>
-        <p class="max-w-md text-sm leading-7 text-stone-600 md:text-right">
-          Vier zentrale Funktionen, die einander ergänzen — vom niedrigschwelligen Treffpunkt bis zum praktischen Workshop.
-        </p>
+      <div class="reveal">
+        <p class="scroll-hint">Die Angebote</p>
+        <h2 id="services-heading" class="font-display mt-4 text-3xl font-semibold tracking-tight text-stone-950 sm:text-4xl lg:text-5xl">
+          Was im ConnectMarkt passiert.
+        </h2>
       </div>
 
       <div class="mt-10 grid gap-5 md:grid-cols-2">

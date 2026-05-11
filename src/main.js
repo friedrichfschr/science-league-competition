@@ -1,5 +1,5 @@
 import './style.css'
-import { buildingParts, competitionFacts, heroStats, trustHighlights } from './data.js'
+import { competitionFacts, trustHighlights } from './data.js'
 
 import { API } from './api.js'
 const NEWSLETTER_API = `${API}/api/newsletter/subscribe`
@@ -7,7 +7,6 @@ import {
   bindPageSelect,
   renderHero,
   renderPageFrame,
-  renderTowersSvg,
   setupRevealObserver,
 } from './shared.js'
 
@@ -35,105 +34,10 @@ const hero = renderHero({
   title: 'Städte brauchen Lebensmittel. Wir produzieren sie vor Ort.',
   intro:
     'Bis 2050 leben 68 % der Weltbevölkerung in Städten — bei immer weniger landwirtschaftlicher Fläche und enormen Transportemissionen. Der FoodConnectMarkt zeigt einen anderen Weg.',
-  stats: heroStats,
   supportingCard: heroSupportingCard,
 })
 
-const buildingCards = buildingParts
-  .map(
-    (part, i) => `
-      <article class="reveal reveal-d${i + 1} card-lift group relative overflow-hidden rounded-[1.75rem] p-7 ${
-        i === 0
-          ? 'bg-gradient-to-br from-stone-950 via-stone-900 to-emerald-950 text-stone-50 ring-1 ring-inset ring-white/5 shadow-[0_24px_60px_-20px_rgba(6,95,70,0.5)]'
-          : 'border border-stone-200 bg-white/90 backdrop-blur shadow-[var(--shadow-md)] hover:border-emerald-300 hover:shadow-[var(--shadow-lg)]'
-      }">
-        ${
-          i === 0
-            ? `<div aria-hidden="true" class="pointer-events-none absolute -right-10 -top-10 h-32 w-32 rounded-full bg-emerald-500/20 blur-2xl"></div>`
-            : ''
-        }
-        <div class="relative">
-          <div class="flex items-center gap-3">
-            <span class="grid h-9 w-9 place-items-center rounded-xl ${
-              i === 0
-                ? 'bg-emerald-500/20 text-emerald-300 ring-1 ring-inset ring-emerald-400/30'
-                : 'bg-emerald-50 text-emerald-800 ring-1 ring-inset ring-emerald-100'
-            } text-sm font-semibold">
-              0${i + 1}
-            </span>
-            <div>
-              <p class="text-[0.7rem] font-semibold uppercase tracking-[0.24em] ${i === 0 ? 'text-emerald-300' : 'text-emerald-800'}">${part.badge}</p>
-              <p class="text-xs ${i === 0 ? 'text-stone-400' : 'text-stone-500'}">${part.sublabel}</p>
-            </div>
-          </div>
-          <h3 class="font-display mt-6 text-2xl font-semibold ${i === 0 ? 'text-white' : 'text-stone-950'}">
-            ${part.heading}
-          </h3>
-          <p class="mt-3 text-sm leading-7 ${i === 0 ? 'text-stone-300' : 'text-stone-600'}">${part.text}</p>
-        </div>
-      </article>
-    `,
-  )
-  .join('')
-
 const content = `
-  <section class="px-5 py-12 lg:px-6 lg:py-20" aria-labelledby="vision-heading">
-    <div class="mx-auto max-w-7xl">
-      <div class="grid gap-10 lg:grid-cols-[1.1fr_0.9fr] lg:items-center">
-        <div class="reveal">
-          <p class="scroll-hint">Die Vision</p>
-          <h2 id="vision-heading" class="font-display mt-4 text-3xl font-semibold tracking-tight text-stone-950 sm:text-4xl lg:text-5xl">
-            Ein Markt, der anbaut, verkauft und Menschen zusammenbringt.
-          </h2>
-          <p class="mt-6 max-w-xl text-base leading-8 text-stone-700">
-            Der FoodConnectMarkt vereint drei Funktionen in einem Gebäude — damit Städte nicht nur Räume des Konsums sind, sondern auch Orte der Produktion und Gemeinschaft.
-          </p>
-
-          <ul class="mt-8 space-y-3" role="list">
-            <li class="flex items-start gap-3">
-              <span aria-hidden="true" class="mt-1 grid h-6 w-6 shrink-0 place-items-center rounded-full bg-emerald-100 text-emerald-800">✓</span>
-              <span class="text-sm leading-7 text-stone-700"><strong class="text-stone-950">Lokal produzieren</strong> — kontrolliertes Vertical Farming, 99 % weniger Wasser als konventionelle Landwirtschaft.</span>
-            </li>
-            <li class="flex items-start gap-3">
-              <span aria-hidden="true" class="mt-1 grid h-6 w-6 shrink-0 place-items-center rounded-full bg-emerald-100 text-emerald-800">✓</span>
-              <span class="text-sm leading-7 text-stone-700"><strong class="text-stone-950">Barrierefrei gestalten</strong> — smarte Einkaufswagen, niedrige Regale, drei Fahrstühle.</span>
-            </li>
-            <li class="flex items-start gap-3">
-              <span aria-hidden="true" class="mt-1 grid h-6 w-6 shrink-0 place-items-center rounded-full bg-emerald-100 text-emerald-800">✓</span>
-              <span class="text-sm leading-7 text-stone-700"><strong class="text-stone-950">Wissen teilen</strong> — Workshops zeigen, wie man selbst auf dem Balkon Gemüse anbaut.</span>
-            </li>
-          </ul>
-        </div>
-
-        <div class="reveal reveal-d2 relative">
-          <div class="relative mx-auto aspect-square max-w-md overflow-hidden rounded-[2rem] bg-gradient-to-br from-amber-50 via-emerald-50 to-stone-100 p-4 ring-1 ring-inset ring-stone-200/80">
-            ${renderTowersSvg({ className: 'h-full w-full' })}
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section class="px-5 py-12 lg:px-6 lg:py-20" aria-labelledby="building-heading">
-    <div class="mx-auto max-w-7xl">
-      <div class="reveal flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
-        <div>
-          <p class="scroll-hint">Das Gebäude</p>
-          <h2 id="building-heading" class="font-display mt-4 max-w-3xl text-3xl font-semibold tracking-tight text-stone-950 sm:text-4xl lg:text-5xl">
-            Zwei Türme. Ein Keller. Eine Mission.
-          </h2>
-        </div>
-        <p class="max-w-md text-sm leading-7 text-stone-600 md:text-right">
-          Um den verfügbaren Platz in der Stadt optimal zu nutzen, besteht der FoodConnectMarkt aus zwei spezialisierten Türmen und einem Keller, der beide verbindet.
-        </p>
-      </div>
-
-      <div class="mt-10 grid gap-5 md:grid-cols-3">
-        ${buildingCards}
-      </div>
-    </div>
-  </section>
-
   <section class="px-5 py-12 lg:px-6 lg:py-20" aria-labelledby="newsletter-heading">
     <div class="mx-auto max-w-7xl">
       <div class="grid gap-6">
