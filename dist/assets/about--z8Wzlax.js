@@ -1,4 +1,4 @@
-import{a as e,i as t,o as n,r,t as i,u as a}from"./shared-BoB6n-5K.js";import{t as o}from"./api-CAqj1E_R.js";var s=`${o}/api/newsletter/subscribe`,c=document.querySelector(`#app`),l=`
+import{a as e,i as t,o as n,r,t as i,u as a}from"./shared-CVjF__vC.js";import{t as o}from"./api-CAqj1E_R.js";var s=`${o}/api/newsletter/subscribe`,c=document.querySelector(`#app`),l=`
   <p class="text-[0.7rem] font-semibold uppercase tracking-[0.3em] text-emerald-300">Unser Ansatz</p>
   <h2 class="font-display mt-4 text-2xl font-semibold tracking-tight">Drei Ideen. Ein Gebäude.</h2>
   <ul class="mt-6 space-y-1" role="list">
@@ -10,6 +10,78 @@ import{a as e,i as t,o as n,r,t as i,u as a}from"./shared-BoB6n-5K.js";import{t 
         `).join(``)}
   </ul>
 `;c.innerHTML=t({activePage:`about`,hero:r({eyebrow:n.season,title:`Städte brauchen Lebensmittel. Wir produzieren sie vor Ort.`,intro:`Bis 2050 leben 68 % der Weltbevölkerung in Städten — bei immer weniger landwirtschaftlicher Fläche und enormen Transportemissionen. Der FoodConnectMarkt zeigt einen anderen Weg.`,supportingCard:l}),content:`
+  <!-- Science League -->
+  <section class="px-5 py-12 lg:px-6 lg:py-16" aria-labelledby="science-league-heading">
+    <div class="mx-auto max-w-7xl">
+      <div class="reveal grid gap-10 lg:grid-cols-[1fr_auto] lg:items-center">
+        <div>
+          <p class="scroll-hint">Der Wettbewerb</p>
+          <h2 id="science-league-heading" class="font-display mt-4 text-3xl font-semibold tracking-tight text-stone-950 sm:text-4xl">
+            Was ist die Science League?
+          </h2>
+          <p class="mt-5 max-w-2xl text-base leading-8 text-stone-600">
+            Die Science League ist ein Schülerwettbewerb des <a href="https://mint-community.de/scienceleague/" target="_blank" rel="noreferrer" class="font-medium text-emerald-800 underline-offset-2 hover:underline">Stifterverbands</a>, bei dem Teams aus ganz Deutschland MINT-Projekte entwickeln und in mehreren Spieltagen präsentieren. Unser Team bre-delicious nimmt in der Saison 2025/2026 teil.
+          </p>
+          <a
+            href="https://mint-community.de/science-league-teams/bre-delicious-saison-2025-2026/"
+            target="_blank"
+            rel="noreferrer"
+            class="mt-6 inline-flex items-center gap-2 rounded-full border border-stone-300 bg-white px-5 py-2.5 text-sm font-medium text-stone-900 transition hover:border-stone-400 hover:bg-stone-50"
+          >
+            Unser Teamprofil ↗
+          </a>
+        </div>
+        <div class="hidden lg:block">
+          <img
+            src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=340&q=75"
+            alt="Schülerinnen und Schüler arbeiten gemeinsam an einem Projekt"
+            class="h-48 w-72 rounded-[1.5rem] object-cover opacity-85 ring-1 ring-stone-200"
+            loading="lazy"
+          />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Blog posts -->
+  <section class="px-5 pb-12 lg:px-6 lg:pb-16" aria-labelledby="posts-heading">
+    <div class="mx-auto max-w-7xl">
+      <div class="reveal mb-8">
+        <p class="scroll-hint">Einreichungen</p>
+        <h2 id="posts-heading" class="font-display mt-4 text-3xl font-semibold tracking-tight text-stone-950 sm:text-4xl">
+          Unsere Spieltage.
+        </h2>
+      </div>
+      <div class="grid gap-5 sm:grid-cols-3">
+        ${[{label:`Spieltag 1`,title:`Spieltag 1 – Bre-delicious`,summary:`Wir stellen uns vor: Neun Schülerinnen und Schüler mit Aufgaben in Programmierung, Design und Technik — und der Vision eines FoodConnectMarkts.`,href:`https://mint-community.de/science-league-einreichungen/spieltag-1-bre-delicious/`,image:`https://mint-community.de/wp-content/uploads/jet-form-builder/c15014ad44f999e0ddd954d7b17db88d/2025/12/IMG_2251-scaled.jpeg`},{label:`Spieltag 2`,title:`Spieltag 2 – Bre-delicious`,summary:`Unser Konzept nimmt Form an: zwei Türme, ein Keller — und ein Markt, der Vertical Farming, Einkauf und Gemeinschaft verbindet.`,href:`https://mint-community.de/science-league-einreichungen/spieltag-2-bre-delicious/`,image:`https://images.unsplash.com/photo-1464226184884-fa280b87c399?w=600&q=75`},{label:`Spieltag 3`,title:`Spieltag 3 – Bre-delicious`,summary:`Wir vertiefen das Bewässerungssystem und den Pflanzenanbau im achtgeschossigen Turm — mit Partnern aus der regionalen Landwirtschaft.`,href:`https://mint-community.de/science-league-einreichungen/spieltag-3-bre-delicious/`,image:`https://mint-community.de/wp-content/uploads/jet-form-builder/2bbdfff344458044d3226c257a1c17e0/2026/03/34dc71d5-0699-4872-8225-49419222f6fa.jpeg`}].map((e,t)=>`
+          <a
+            href="${e.href}"
+            target="_blank"
+            rel="noreferrer"
+            class="reveal reveal-d${t+1} card-lift group flex flex-col overflow-hidden rounded-[1.5rem] border border-stone-200 bg-white/90 shadow-[var(--shadow-sm)] transition hover:border-emerald-300 hover:shadow-[var(--shadow-md)]"
+          >
+            <div class="overflow-hidden">
+              <img
+                src="${e.image}"
+                alt="${e.title}"
+                class="aspect-[16/9] w-full object-cover transition duration-500 group-hover:scale-[1.04]"
+                loading="lazy"
+              />
+            </div>
+            <div class="flex flex-1 flex-col p-5">
+              <span class="text-[0.65rem] font-semibold uppercase tracking-[0.25em] text-emerald-700">${e.label}</span>
+              <h3 class="font-display mt-2 text-lg font-semibold text-stone-950">${e.title}</h3>
+              <p class="mt-2 flex-1 text-sm leading-6 text-stone-600">${e.summary}</p>
+              <span class="mt-4 inline-flex items-center gap-1 text-xs font-semibold text-emerald-800 transition group-hover:gap-2">
+                Lesen <span aria-hidden="true">→</span>
+              </span>
+            </div>
+          </a>
+        `).join(``)}
+      </div>
+    </div>
+  </section>
+
   <section class="px-5 py-12 lg:px-6 lg:py-20" aria-labelledby="newsletter-heading">
     <div class="mx-auto max-w-7xl">
       <div class="grid gap-6">
