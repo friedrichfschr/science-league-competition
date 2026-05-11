@@ -260,46 +260,11 @@ export function renderHero({
   `
 }
 
-export function renderFooter(activePage) {
+export function renderFooter() {
   return `
-    <footer class="mt-6 border-t border-stone-200/70 bg-gradient-to-b from-transparent to-stone-100/50 px-5 pb-10 pt-10 lg:px-6 lg:pb-14 lg:pt-14">
-      <div class="mx-auto flex max-w-7xl flex-col gap-8 lg:flex-row lg:items-start lg:justify-between">
-        <div class="max-w-xl">
-          <div class="flex items-center gap-3">
-            <div class="grid h-10 w-10 place-items-center rounded-xl bg-gradient-to-br from-emerald-600 to-emerald-800 text-xs font-semibold text-white">
-              <span class="font-display" aria-hidden="true">FC</span>
-            </div>
-            <p class="text-[0.7rem] font-semibold uppercase tracking-[0.3em] text-emerald-800">${competitionFacts.brand}</p>
-          </div>
-          <h2 class="font-display mt-5 text-2xl font-semibold tracking-tight text-stone-950">
-            ${competitionFacts.title} · ${competitionFacts.season}
-          </h2>
-          <p class="mt-4 text-sm leading-7 text-stone-600">
-            Urbane Lebensmittelproduktion, soziale Teilhabe und kurze Lieferketten in einem Gebäude — für Städte, die mehr als Konsum können.
-          </p>
-        </div>
-
-        <nav class="grid gap-2 text-sm text-stone-700" aria-label="Seitennavigation">
-          <p class="mb-1 text-[0.7rem] font-semibold uppercase tracking-[0.28em] text-stone-500">Seiten</p>
-          ${siteNav
-            .map(
-              (item) => `
-                <a
-                  href="${item.href}"
-                  class="inline-flex items-center gap-2 transition ${item.key === activePage ? 'font-semibold text-stone-950' : 'hover:text-stone-950'}"
-                  ${item.key === activePage ? 'aria-current="page"' : ''}
-                >
-                  <span aria-hidden="true" class="h-1 w-1 rounded-full ${item.key === activePage ? 'bg-emerald-600' : 'bg-stone-300'}"></span>
-                  ${item.label}
-                </a>
-              `,
-            )
-            .join('')}
-        </nav>
-      </div>
-
-      <div class="mx-auto mt-10 max-w-7xl border-t border-stone-200/80 pt-6 flex flex-wrap items-center justify-between gap-3">
-        <p class="text-xs text-stone-500">© ${new Date().getFullYear()} Team bre-delicious · zdi Science League</p>
+    <footer class="border-t border-stone-200/70 px-5 py-4 lg:px-6">
+      <div class="mx-auto flex max-w-7xl flex-wrap items-center justify-between gap-3">
+        <p class="text-xs text-stone-400">© ${new Date().getFullYear()} Team bre-delicious · zdi Science League</p>
         <nav class="flex items-center gap-4 text-xs text-stone-400" aria-label="Rechtliches">
           <a href="impressum.html" class="transition hover:text-stone-700">Impressum</a>
           <a href="datenschutz.html" class="transition hover:text-stone-700">Datenschutz</a>
@@ -317,6 +282,7 @@ export function renderPageFrame({ activePage, hero, content }) {
         ${hero}
         ${content}
       </main>
+      ${renderFooter()}
     </div>
   `
 }
