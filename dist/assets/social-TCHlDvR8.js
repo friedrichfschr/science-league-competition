@@ -1,4 +1,4 @@
-import{a as e,i as t,l as n,r,t as i}from"./shared-CVjF__vC.js";var a=document.querySelector(`#app`);a.innerHTML=t({activePage:`social`,hero:r({eyebrow:`Der ConnectMarkt`,title:`Fünf Etagen für Gemeinschaft, Lernen und Begegnung.`,intro:`Der kreisförmige Turm ist dem sozialen Miteinander gewidmet — barrierefrei gedacht, mehrzweckfähig gebaut, offen für alle.`}),content:`
+import{a as e,i as t,l as n,r,t as i}from"./shared-CR0EW_ex.js";var a=document.querySelector(`#app`);a.innerHTML=t({activePage:`social`,hero:r({eyebrow:`Der ConnectMarkt`,title:`Fünf Etagen für Gemeinschaft, Lernen und Begegnung.`,intro:`Der kreisförmige Turm ist dem sozialen Miteinander gewidmet — barrierefrei gedacht, mehrzweckfähig gebaut, offen für alle.`}),content:`
   <section class="px-5 py-12 lg:px-6 lg:py-20" aria-labelledby="services-heading">
     <div class="mx-auto max-w-7xl">
       <div class="reveal">

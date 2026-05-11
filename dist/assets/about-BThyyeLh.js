@@ -1,26 +1,65 @@
-import{a as e,i as t,o as n,r,t as i,u as a}from"./shared-CVjF__vC.js";import{t as o}from"./api-CAqj1E_R.js";var s=`${o}/api/newsletter/subscribe`,c=document.querySelector(`#app`),l=`
-  <p class="text-[0.7rem] font-semibold uppercase tracking-[0.3em] text-emerald-300">Unser Ansatz</p>
-  <h2 class="font-display mt-4 text-2xl font-semibold tracking-tight">Drei Ideen. Ein Gebäude.</h2>
-  <ul class="mt-6 space-y-1" role="list">
-    ${a.map((e,t)=>`
-          <li class="flex items-start gap-3 border-b border-white/10 py-3.5 last:border-b-0">
-            <span class="mt-1.5 grid h-5 w-5 shrink-0 place-items-center rounded-full bg-emerald-500/20 text-[0.7rem] font-semibold text-emerald-300 ring-1 ring-inset ring-emerald-400/30">${t+1}</span>
-            <span class="text-sm leading-6 text-stone-200">${e}</span>
-          </li>
-        `).join(``)}
-  </ul>
-`;c.innerHTML=t({activePage:`about`,hero:r({eyebrow:n.season,title:`Städte brauchen Lebensmittel. Wir produzieren sie vor Ort.`,intro:`Bis 2050 leben 68 % der Weltbevölkerung in Städten — bei immer weniger landwirtschaftlicher Fläche und enormen Transportemissionen. Der FoodConnectMarkt zeigt einen anderen Weg.`,supportingCard:l}),content:`
+import{a as e,i as t,o as n,t as r,u as i}from"./shared-CR0EW_ex.js";import{t as a}from"./api-CAqj1E_R.js";var o=`${a}/api/newsletter/subscribe`,s=document.querySelector(`#app`);s.innerHTML=t({activePage:`about`,hero:`
+  <section class="px-5 pb-6 pt-10 lg:px-6 lg:pb-10 lg:pt-14" aria-labelledby="page-hero-title">
+    <div class="mx-auto max-w-7xl">
+      <div class="grid gap-12 lg:grid-cols-[1fr_220px] lg:items-start">
+
+        <!-- Text -->
+        <div>
+          <p class="hero-rise hero-rise-d1 inline-flex items-center gap-2 rounded-full bg-emerald-50 px-3.5 py-1.5 text-[0.7rem] font-semibold uppercase tracking-[0.22em] text-emerald-800 ring-1 ring-inset ring-emerald-200/80">
+            <span class="h-1.5 w-1.5 rounded-full bg-emerald-500" aria-hidden="true"></span>
+            ${n.season}
+          </p>
+          <h1 id="page-hero-title" class="hero-rise hero-rise-d2 font-display mt-5 max-w-[18ch] text-4xl font-semibold leading-[1.05] tracking-tight text-stone-950 sm:text-5xl lg:text-[3.5rem]">
+            Städte brauchen Lebensmittel. Wir produzieren sie vor Ort.
+          </h1>
+          <p class="hero-rise hero-rise-d3 mt-6 max-w-xl text-lg leading-[1.75] text-stone-600">
+            Der FoodConnectMarkt verbindet Vertical Farming, Einkauf und soziale Begegnung unter einem Dach — ein Konzept für die Stadt von morgen.
+          </p>
+          <div class="hero-rise hero-rise-d3 mt-8 flex flex-wrap gap-3">
+            <a href="food.html" class="btn-press inline-flex items-center gap-2 rounded-full bg-stone-950 px-5 py-3 text-sm font-medium text-white transition hover:bg-emerald-800">
+              Produkte entdecken <span aria-hidden="true">→</span>
+            </a>
+            <a href="soziales.html" class="btn-press inline-flex items-center gap-2 rounded-full border border-stone-300 bg-white px-5 py-3 text-sm font-medium text-stone-900 transition hover:border-stone-400 hover:bg-stone-50">
+              Unser Konzept
+            </a>
+          </div>
+          <ul class="hero-rise hero-rise-d4 mt-8 space-y-2.5 border-t border-stone-200/80 pt-8" role="list">
+            ${i.map((e,t)=>`
+              <li class="flex items-start gap-3">
+                <span class="mt-0.5 grid h-5 w-5 shrink-0 place-items-center rounded-full bg-emerald-100 text-[0.65rem] font-bold text-emerald-800">${t+1}</span>
+                <span class="text-sm leading-6 text-stone-600">${e}</span>
+              </li>`).join(``)}
+          </ul>
+        </div>
+
+        <!-- Subtle image column — desktop only -->
+        <div class="hero-rise hero-rise-d4 hidden lg:flex lg:flex-col lg:gap-2.5" aria-hidden="true">
+          <img src="https://images.unsplash.com/photo-1542838132-92c53300491e?w=300&q=70"
+            alt="" class="w-full rounded-2xl object-cover opacity-70 ring-1 ring-stone-200" style="aspect-ratio:4/3" />
+          <img src="https://images.unsplash.com/photo-1530836369250-ef72a3f5cda8?w=300&q=70"
+            alt="" class="w-full rounded-2xl object-cover opacity-70 ring-1 ring-stone-200" style="aspect-ratio:4/3" />
+          <img src="https://images.unsplash.com/photo-1416879595882-3373a0480b5b?w=300&q=70"
+            alt="" class="w-full rounded-2xl object-cover opacity-70 ring-1 ring-stone-200" style="aspect-ratio:4/3" />
+        </div>
+
+      </div>
+    </div>
+  </section>
+`,content:`
   <!-- Science League -->
   <section class="px-5 py-12 lg:px-6 lg:py-16" aria-labelledby="science-league-heading">
     <div class="mx-auto max-w-7xl">
-      <div class="reveal grid gap-10 lg:grid-cols-[1fr_auto] lg:items-center">
+      <div class="reveal grid gap-8 lg:grid-cols-[1fr_1fr] lg:items-start lg:gap-16">
         <div>
           <p class="scroll-hint">Der Wettbewerb</p>
           <h2 id="science-league-heading" class="font-display mt-4 text-3xl font-semibold tracking-tight text-stone-950 sm:text-4xl">
             Was ist die Science League?
           </h2>
-          <p class="mt-5 max-w-2xl text-base leading-8 text-stone-600">
-            Die Science League ist ein Schülerwettbewerb des <a href="https://mint-community.de/scienceleague/" target="_blank" rel="noreferrer" class="font-medium text-emerald-800 underline-offset-2 hover:underline">Stifterverbands</a>, bei dem Teams aus ganz Deutschland MINT-Projekte entwickeln und in mehreren Spieltagen präsentieren. Unser Team bre-delicious nimmt in der Saison 2025/2026 teil.
+          <p class="mt-5 text-base leading-8 text-stone-600">
+            Die <a href="https://mint-community.de/scienceleague/" target="_blank" rel="noreferrer" class="font-medium text-emerald-800 underline-offset-2 hover:underline">Science League</a> ist ein Schülerwettbewerb von <a href="https://www.zdi.nrw/" target="_blank" rel="noreferrer" class="font-medium text-emerald-800 underline-offset-2 hover:underline">zdi.NRW</a>, bei dem Teams aus Nordrhein-Westfalen im Alter von 14 bis 20 Jahren eine jährliche MINT-Aufgabe lösen. In der Saison 2025/2026 entwickeln und bauen alle Teams ein Modell eines FoodConnect-Markts — maximal 1 × 1 Meter, Budget 800 €.
+          </p>
+          <p class="mt-4 text-base leading-8 text-stone-600">
+            In vier Spieltagen reichen Teams Blogbeiträge mit Fotos ein. Die 14 besten Teams qualifizieren sich für das Finale am 20. Juni 2026 in der DASA Dortmund.
           </p>
           <a
             href="https://mint-community.de/science-league-teams/bre-delicious-saison-2025-2026/"
@@ -31,13 +70,16 @@ import{a as e,i as t,o as n,r,t as i,u as a}from"./shared-CVjF__vC.js";import{t 
             Unser Teamprofil ↗
           </a>
         </div>
-        <div class="hidden lg:block">
-          <img
-            src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=340&q=75"
-            alt="Schülerinnen und Schüler arbeiten gemeinsam an einem Projekt"
-            class="h-48 w-72 rounded-[1.5rem] object-cover opacity-85 ring-1 ring-stone-200"
-            loading="lazy"
-          />
+        <div class="grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-2">
+          ${[{role:`Programmierung`,names:`Lara & Nick`},{role:`Design`,names:`Serafine, Aurelia & Joshua`},{role:`Teamleitung`,names:`Friedrich`},{role:`Pflanzenkonzept`,names:`Jakob`},{role:`Technik & Robotik`,names:`Neil, Michel & Ben`}].map(e=>`
+            <div class="rounded-2xl border border-stone-200 bg-white/80 px-4 py-3">
+              <p class="text-[0.65rem] font-semibold uppercase tracking-[0.22em] text-emerald-700">${e.role}</p>
+              <p class="mt-1 text-sm font-medium text-stone-950">${e.names}</p>
+            </div>`).join(``)}
+          <div class="rounded-2xl border border-stone-200 bg-stone-50 px-4 py-3">
+            <p class="text-[0.65rem] font-semibold uppercase tracking-[0.22em] text-stone-500">Betreuung</p>
+            <p class="mt-1 text-xs text-stone-600 leading-5">Hr. Allrogen · Hr. Hinrichs · Hr. Sake</p>
+          </div>
         </div>
       </div>
     </div>
@@ -143,35 +185,17 @@ import{a as e,i as t,o as n,r,t as i,u as a}from"./shared-CVjF__vC.js";import{t 
               </div>
             </form>
 
-            <div class="mt-10 flex flex-wrap gap-3 border-t border-white/10 pt-8">
-              <a
-                href="${n.links.competition}"
-                target="_blank"
-                rel="noreferrer"
-                class="btn-press inline-flex items-center gap-2 rounded-full border border-white/15 px-4 py-2 text-xs font-medium text-stone-300 transition hover:border-white/30 hover:text-white"
-              >
-                Science League ↗
-              </a>
-              <a
-                href="${n.links.team}"
-                target="_blank"
-                rel="noreferrer"
-                class="btn-press inline-flex items-center gap-2 rounded-full border border-white/15 px-4 py-2 text-xs font-medium text-stone-300 transition hover:border-white/30 hover:text-white"
-              >
-                Teamprofil ↗
-              </a>
-            </div>
           </div>
         </article>
 
       </div>
     </div>
   </section>
-`}),i(c),e(c),u(),f();function u(){let e=document.getElementById(`newsletter-form`);e&&e.addEventListener(`submit`,async e=>{e.preventDefault();let t=document.getElementById(`newsletter-email`),n=document.getElementById(`newsletter-submit`),r=document.getElementById(`newsletter-btn-label`),i=document.getElementById(`newsletter-spinner`),a=document.getElementById(`newsletter-error`),o=document.getElementById(`newsletter-idle`),c=document.getElementById(`newsletter-success`),l=t.value.trim();if(!l||!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(l)){a.textContent=`Bitte gib eine gültige E-Mail-Adresse ein.`,a.classList.remove(`hidden`),t.focus();return}a.classList.add(`hidden`),n.disabled=!0,r.textContent=`Wird gesendet…`,i.classList.remove(`hidden`);try{let e=await fetch(s,{method:`POST`,headers:{"Content-Type":`application/json`},body:JSON.stringify({email:l})}),t=await e.json().catch(()=>({}));if(e.status===409){a.textContent=t.message||`Diese E-Mail-Adresse ist bereits angemeldet.`,a.classList.remove(`hidden`),n.disabled=!1,r.textContent=`Anmelden`,i.classList.add(`hidden`);return}if(!e.ok)throw Error(t.message||`Etwas ist schiefgelaufen. Bitte versuche es erneut.`);o.classList.add(`hidden`),c.classList.remove(`hidden`)}catch(e){a.textContent=e.message===`Failed to fetch`?`Verbindung zum Server fehlgeschlagen. Bitte versuche es später erneut.`:e.message||`Etwas ist schiefgelaufen. Bitte versuche es erneut.`,a.classList.remove(`hidden`),n.disabled=!1,r.textContent=`Anmelden`,i.classList.add(`hidden`)}})}function d(e,t=`success`){let n=document.getElementById(`nl-toast`);n&&n.remove();let r=document.createElement(`div`);r.id=`nl-toast`,r.setAttribute(`role`,`status`),r.setAttribute(`aria-live`,`polite`),r.style.cssText=`
+`}),r(s),e(s),c(),u();function c(){let e=document.getElementById(`newsletter-form`);e&&e.addEventListener(`submit`,async e=>{e.preventDefault();let t=document.getElementById(`newsletter-email`),n=document.getElementById(`newsletter-submit`),r=document.getElementById(`newsletter-btn-label`),i=document.getElementById(`newsletter-spinner`),a=document.getElementById(`newsletter-error`),s=document.getElementById(`newsletter-idle`),c=document.getElementById(`newsletter-success`),l=t.value.trim();if(!l||!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(l)){a.textContent=`Bitte gib eine gültige E-Mail-Adresse ein.`,a.classList.remove(`hidden`),t.focus();return}a.classList.add(`hidden`),n.disabled=!0,r.textContent=`Wird gesendet…`,i.classList.remove(`hidden`);try{let e=await fetch(o,{method:`POST`,headers:{"Content-Type":`application/json`},body:JSON.stringify({email:l})}),t=await e.json().catch(()=>({}));if(e.status===409){a.textContent=t.message||`Diese E-Mail-Adresse ist bereits angemeldet.`,a.classList.remove(`hidden`),n.disabled=!1,r.textContent=`Anmelden`,i.classList.add(`hidden`);return}if(!e.ok)throw Error(t.message||`Etwas ist schiefgelaufen. Bitte versuche es erneut.`);s.classList.add(`hidden`),c.classList.remove(`hidden`)}catch(e){a.textContent=e.message===`Failed to fetch`?`Verbindung zum Server fehlgeschlagen. Bitte versuche es später erneut.`:e.message||`Etwas ist schiefgelaufen. Bitte versuche es erneut.`,a.classList.remove(`hidden`),n.disabled=!1,r.textContent=`Anmelden`,i.classList.add(`hidden`)}})}function l(e,t=`success`){let n=document.getElementById(`nl-toast`);n&&n.remove();let r=document.createElement(`div`);r.id=`nl-toast`,r.setAttribute(`role`,`status`),r.setAttribute(`aria-live`,`polite`),r.style.cssText=`
     position:fixed;bottom:1.5rem;left:50%;transform:translateX(-50%) translateY(8px);
     z-index:60;display:inline-flex;align-items:center;gap:0.75rem;
     border-radius:999px;padding:0.75rem 1.25rem;
     font-size:0.875rem;font-weight:500;box-shadow:0 8px 24px rgba(0,0,0,0.18);
     background:${t===`success`?`#065f46`:`#7f1d1d`};color:#fff;
     transition:opacity 400ms,transform 400ms;opacity:0;
-  `,r.textContent=e,document.body.appendChild(r),requestAnimationFrame(()=>{r.style.opacity=`1`,r.style.transform=`translateX(-50%) translateY(0)`}),setTimeout(()=>{r.style.opacity=`0`,r.style.transform=`translateX(-50%) translateY(8px)`,setTimeout(()=>r.remove(),400)},5e3)}function f(){let e=new URLSearchParams(window.location.search).get(`newsletter`);if(e===`confirmed`){d(`🌱 Deine Anmeldung ist bestätigt. Willkommen!`,`success`);let e=window.location.pathname;window.history.replaceState({},``,e)}else e===`unsubscribed`&&(d(`Du wurdest erfolgreich abgemeldet.`,`info`),window.history.replaceState({},``,window.location.pathname))}
+  `,r.textContent=e,document.body.appendChild(r),requestAnimationFrame(()=>{r.style.opacity=`1`,r.style.transform=`translateX(-50%) translateY(0)`}),setTimeout(()=>{r.style.opacity=`0`,r.style.transform=`translateX(-50%) translateY(8px)`,setTimeout(()=>r.remove(),400)},5e3)}function u(){let e=new URLSearchParams(window.location.search).get(`newsletter`);if(e===`confirmed`){l(`🌱 Deine Anmeldung ist bestätigt. Willkommen!`,`success`);let e=window.location.pathname;window.history.replaceState({},``,e)}else e===`unsubscribed`&&(l(`Du wurdest erfolgreich abgemeldet.`,`info`),window.history.replaceState({},``,window.location.pathname))}
