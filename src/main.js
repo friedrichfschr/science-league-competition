@@ -88,8 +88,8 @@ const content = `
   <!-- Science League -->
   <section class="px-5 py-12 lg:px-6 lg:py-16" aria-labelledby="science-league-heading">
     <div class="mx-auto max-w-7xl">
-      <div class="reveal grid gap-8 lg:grid-cols-[1fr_1fr] lg:items-start lg:gap-16">
-        <div>
+      <div class="reveal">
+        <div class="max-w-2xl">
           <p class="scroll-hint">Der Wettbewerb</p>
           <h2 id="science-league-heading" class="font-display mt-4 text-3xl font-semibold tracking-tight text-stone-950 sm:text-4xl">
             Was ist die Science League?
@@ -108,23 +108,6 @@ const content = `
           >
             Unser Teamprofil ↗
           </a>
-        </div>
-        <div class="grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-2">
-          ${[
-            { role: 'Programmierung', names: 'Lara & Nick' },
-            { role: 'Design', names: 'Serafine, Aurelia & Joshua' },
-            { role: 'Teamleitung', names: 'Friedrich' },
-            { role: 'Pflanzenkonzept', names: 'Jakob' },
-            { role: 'Technik & Robotik', names: 'Neil, Michel & Ben' },
-          ].map(m => `
-            <div class="rounded-2xl border border-stone-200 bg-white/80 px-4 py-3">
-              <p class="text-[0.65rem] font-semibold uppercase tracking-[0.22em] text-emerald-700">${m.role}</p>
-              <p class="mt-1 text-sm font-medium text-stone-950">${m.names}</p>
-            </div>`).join('')}
-          <div class="rounded-2xl border border-stone-200 bg-stone-50 px-4 py-3">
-            <p class="text-[0.65rem] font-semibold uppercase tracking-[0.22em] text-stone-500">Betreuung</p>
-            <p class="mt-1 text-xs text-stone-600 leading-5">Hr. Allrogen · Hr. Hinrichs · Hr. Sake</p>
-          </div>
         </div>
       </div>
     </div>

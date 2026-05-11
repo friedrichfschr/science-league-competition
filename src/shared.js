@@ -298,9 +298,13 @@ export function renderFooter(activePage) {
         </nav>
       </div>
 
-      <p class="mx-auto mt-10 max-w-7xl border-t border-stone-200/80 pt-6 text-xs text-stone-500">
-        © ${new Date().getFullYear()} Team bre-delicious · zdi Science League
-      </p>
+      <div class="mx-auto mt-10 max-w-7xl border-t border-stone-200/80 pt-6 flex flex-wrap items-center justify-between gap-3">
+        <p class="text-xs text-stone-500">© ${new Date().getFullYear()} Team bre-delicious · zdi Science League</p>
+        <nav class="flex items-center gap-4 text-xs text-stone-400" aria-label="Rechtliches">
+          <a href="impressum.html" class="transition hover:text-stone-700">Impressum</a>
+          <a href="datenschutz.html" class="transition hover:text-stone-700">Datenschutz</a>
+        </nav>
+      </div>
     </footer>
   `
 }

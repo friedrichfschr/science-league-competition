@@ -67,6 +67,7 @@ const state = {
   checkoutStep: null,   // null | 'confirm' | 'loading' | 'success' | 'error'
   checkoutError: '',
   lastOrder: null,
+  rowListOpen: false,
 }
 
 function loadCart() {
@@ -486,6 +487,11 @@ function renderCartContent() {
             Zur Kasse
             <span aria-hidden="true">→</span>
           </button>
+          ${cartCount > 0 ? `
+          <button type="button" data-action="show-row-list" class="btn-press mt-2 inline-flex w-full items-center justify-center gap-2 rounded-full border border-white/15 bg-white/8 px-4 py-2.5 text-sm font-medium text-stone-200 transition hover:bg-white/15">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11"/></svg>
+            Regalübersicht
+          </button>` : ''}
           ${cartCount > 0 && getToken() ? `
             <form data-action="save-list" class="mt-3 flex gap-2">
               <input
@@ -544,6 +550,59 @@ function renderMobileCartBar() {
       </button>
     </div>
   `
+}
+
+function renderRowListModal() {
+  if (!state.rowListOpen) return ''
+
+  const cartItems = getCartItems()
+  const user = getStoredUser()
+
+  // Build the plain-text list for the mailto body
+  const listLines = cartItems.map(
+    (item) => `${item.name} × ${item.quantity}  →  Regal ${item.row}`
+  )
+  const mailBody = encodeURIComponent(
+    'Meine Einkaufsliste:\n\n' + listLines.join('\n') + '\n\nGeneriert auf FoodConnectMarkt'
+  )
+  const mailSubject = encodeURIComponent('Meine Einkaufsliste – FoodConnectMarkt')
+  const mailTo = user?.email ? encodeURIComponent(user.email) : ''
+  const mailtoHref = `mailto:${mailTo}?subject=${mailSubject}&body=${mailBody}`
+
+  return `
+    <div class="fixed inset-0 z-50 flex items-end justify-center sm:items-center" role="dialog" aria-modal="true" aria-label="Regalübersicht">
+      <button data-action="close-row-list" class="absolute inset-0 bg-stone-950/40 backdrop-blur-sm" aria-label="Schließen"></button>
+      <div class="relative z-10 w-full max-w-md rounded-t-[2rem] border border-stone-200 bg-[rgba(247,244,238,0.98)] p-6 shadow-[0_-24px_60px_rgba(28,25,23,0.18)] sm:rounded-[2rem]">
+        <div class="mb-5 flex items-center justify-between gap-3">
+          <div>
+            <h2 class="font-display text-xl font-semibold text-stone-950">Regalübersicht</h2>
+            <p class="mt-0.5 text-xs text-stone-500">Wo du jeden Artikel findest</p>
+          </div>
+          <button data-action="close-row-list" class="grid h-9 w-9 place-items-center rounded-full border border-stone-300 bg-white text-stone-700 hover:bg-stone-100" aria-label="Schließen">×</button>
+        </div>
+        <ul class="divide-y divide-stone-100" role="list">
+          ${cartItems.map((item) => `
+            <li class="flex items-center justify-between gap-3 py-3">
+              <div class="min-w-0">
+                <p class="text-sm font-medium text-stone-950 truncate">${escapeHtml(item.name)}</p>
+                <p class="text-xs text-stone-500">× ${item.quantity}</p>
+              </div>
+              <span class="shrink-0 inline-flex items-center gap-1.5 rounded-full bg-emerald-50 px-3 py-1.5 text-xs font-semibold text-emerald-800 ring-1 ring-inset ring-emerald-200">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-3 w-3" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                Regal ${escapeHtml(item.row)}
+              </span>
+            </li>
+          `).join('')}
+        </ul>
+        <a
+          href="${mailtoHref}"
+          class="btn-press mt-5 inline-flex w-full items-center justify-center gap-2 rounded-full border border-stone-300 bg-white px-4 py-3 text-sm font-medium text-stone-800 transition hover:border-stone-400 hover:bg-stone-50"
+        >
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-10 7L2 7"/></svg>
+          Liste per E-Mail senden
+        </a>
+      </div>
+    </div>`
 }
 
 function renderCheckoutModal() {
@@ -685,7 +744,8 @@ function render() {
     }) +
     renderCartDrawer() +
     renderMobileCartBar() +
-    renderCheckoutModal()
+    renderCheckoutModal() +
+    renderRowListModal()
 
   setupRevealObserver(app)
 }
@@ -772,6 +832,17 @@ function handleClick(event) {
       if (state.checkoutStep === 'loading') break
       state.checkoutStep = null
       state.checkoutError = ''
+      render()
+      break
+
+    case 'show-row-list':
+      state.rowListOpen = true
+      state.cartDrawerOpen = false
+      render()
+      break
+
+    case 'close-row-list':
+      state.rowListOpen = false
       render()
       break
 

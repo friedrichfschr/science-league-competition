@@ -30,6 +30,8 @@ export default defineConfig({
         food: resolve(__dirname, 'food.html'),
         forum: resolve(__dirname, 'forum.html'),
         account: resolve(__dirname, 'account.html'),
+        impressum: resolve(__dirname, 'impressum.html'),
+        datenschutz: resolve(__dirname, 'datenschutz.html'),
       },
     },
   },
