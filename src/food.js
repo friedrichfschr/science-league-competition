@@ -620,10 +620,10 @@ function renderCheckoutModal() {
           <span>Gesamt</span><span class="text-emerald-800">${currency.format(total)}</span>
         </div>
       </div>
-      <p class="mb-5 text-xs text-stone-500">Nach der Bestätigung erhältst du eine Quittung per E-Mail. Keine Zahlung erforderlich.</p>
+      <p class="mb-5 text-xs text-stone-500">Nach der Bestätigung wird deine Lieferung vorbereitet. Du erhältst eine Bestätigung per E-Mail.</p>
       <div class="flex gap-3">
         <button data-action="close-checkout" class="flex-1 rounded-full border border-stone-300 bg-white py-3 text-sm font-medium text-stone-700 transition hover:bg-stone-50">Abbrechen</button>
-        <button data-action="confirm-order" class="flex-1 rounded-full bg-emerald-700 py-3 text-sm font-medium text-white transition hover:bg-emerald-600">Jetzt bestellen</button>
+        <button data-action="confirm-order" class="flex-1 rounded-full bg-emerald-700 py-3 text-sm font-medium text-white transition hover:bg-emerald-600">Lieferung beauftragen</button>
       </div>`
   }
 
@@ -631,7 +631,7 @@ function renderCheckoutModal() {
     body = `
       <div class="py-10 text-center">
         <span class="mx-auto block h-10 w-10 animate-spin rounded-full border-2 border-stone-200 border-t-emerald-700"></span>
-        <p class="mt-4 text-sm text-stone-600">Bestellung wird aufgegeben…</p>
+        <p class="mt-4 text-sm text-stone-600">Lieferung wird beauftragt…</p>
       </div>`
   }
 
@@ -639,8 +639,8 @@ function renderCheckoutModal() {
     body = `
       <div class="py-6 text-center">
         <div class="mx-auto mb-4 flex h-14 w-14 items-center justify-center rounded-full bg-emerald-100 text-2xl">✓</div>
-        <h2 class="font-display text-xl font-semibold text-stone-950">Bestellung aufgegeben!</h2>
-        <p class="mt-2 text-sm text-stone-600">Eine Quittung wurde an deine E-Mail-Adresse gesendet.</p>
+        <h2 class="font-display text-xl font-semibold text-stone-950">Lieferung beauftragt!</h2>
+        <p class="mt-2 text-sm text-stone-600">Deine Lieferung wird vorbereitet. Eine Bestätigung wurde an deine E-Mail-Adresse gesendet.</p>
         <p class="mt-1 text-xs text-stone-400">Bestellnr.: ${state.lastOrder?.id?.slice(0, 8) ?? '—'}</p>
         <button data-action="close-checkout" class="mt-6 inline-flex rounded-full bg-stone-950 px-6 py-3 text-sm font-medium text-white transition hover:bg-emerald-800">Fertig</button>
       </div>`
@@ -673,7 +673,7 @@ function render() {
     eyebrow: 'Der Gemüseturm',
     title: 'Produkte aus unserem Vertical Farming.',
     intro:
-      'Knackig, frisch und lokal produziert. Filtere nach Kategorie oder Bestand, lege Produkte in den Korb und sieh den Einkauf live wachsen.',
+      'Knackig, frisch und lokal produziert. Filtere nach Kategorie oder Bestand, lege Produkte in den Korb und beauftrage deine Lieferung.',
   })
 
   const content = `
