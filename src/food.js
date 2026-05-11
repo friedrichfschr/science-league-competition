@@ -853,8 +853,14 @@ function handleClick(event) {
 
 function handleInput(event) {
   if (event.target.id !== 'product-search') return
+  const { selectionStart, selectionEnd } = event.target
   state.query = event.target.value
   render()
+  const input = document.getElementById('product-search')
+  if (input) {
+    input.focus()
+    input.setSelectionRange(selectionStart, selectionEnd)
+  }
 }
 
 function handleChange(event) {
