@@ -1,4 +1,4 @@
-import{a as e,i as t,o as n,t as r,u as i}from"./shared-Btn7WAdQ.js";import{t as a}from"./api-eHN6Hcp6.js";var o=`${a}/api/newsletter/subscribe`,s=document.querySelector(`#app`);s.innerHTML=t({activePage:`about`,hero:`
+import{a as e,i as t,o as n,t as r,u as i}from"./shared-DooSE0Yt.js";import{t as a}from"./api-eHN6Hcp6.js";var o=`${a}/api/newsletter/subscribe`,s=document.querySelector(`#app`);s.innerHTML=t({activePage:`about`,hero:`
   <section class="px-5 pb-6 pt-10 lg:px-6 lg:pb-10 lg:pt-14" aria-labelledby="page-hero-title">
     <div class="mx-auto max-w-7xl">
       <div class="grid gap-12 lg:grid-cols-[1fr_220px] lg:items-start">

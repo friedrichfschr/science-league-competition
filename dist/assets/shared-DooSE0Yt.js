@@ -116,12 +116,23 @@
             `:``}
       </div>
     </section>
-  `}function m({activePage:e,hero:t,content:n}){return`
+  `}function m(){return`
+    <footer class="border-t border-stone-200/70 px-5 py-4 lg:px-6">
+      <div class="mx-auto flex max-w-7xl flex-wrap items-center justify-between gap-3">
+        <p class="text-xs text-stone-400">© ${new Date().getFullYear()} Team bre-delicious · zdi Science League</p>
+        <nav class="flex items-center gap-4 text-xs text-stone-400" aria-label="Rechtliches">
+          <a href="impressum.html" class="transition hover:text-stone-700">Impressum</a>
+          <a href="datenschutz.html" class="transition hover:text-stone-700">Datenschutz</a>
+        </nav>
+      </div>
+    </footer>
+  `}function h({activePage:e,hero:t,content:n}){return`
     <div class="min-h-screen text-stone-900 antialiased">
       ${f(e)}
       <main id="main-content" tabindex="-1">
         ${t}
         ${n}
       </main>
+      ${m()}
     </div>
-  `}export{c as a,a as c,m as i,r as l,o as n,t as o,p as r,i as s,s as t,n as u};
+  `}export{c as a,a as c,h as i,r as l,o as n,t as o,p as r,i as s,s as t,n as u};
