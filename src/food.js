@@ -1,6 +1,6 @@
 import './style.css'
 import { API } from './api.js'
-import { competitionFacts, productCategories, products } from './data.js'
+import { productCategories, products } from './data.js'
 import {
   bindPageSelect,
   escapeHtml,
@@ -663,10 +663,6 @@ function render() {
               <p class="text-sm text-stone-600">
                 <span class="font-display text-xl font-semibold text-stone-950">${filteredProducts.length}</span> ${filteredProducts.length === 1 ? 'Produkt' : 'Produkte'} sichtbar
               </p>
-              <a href="${competitionFacts.links.team}" target="_blank" rel="noreferrer" class="inline-flex items-center gap-1 text-sm font-medium text-emerald-800 transition hover:text-emerald-900">
-                Teamprofil
-                <span aria-hidden="true">↗</span>
-              </a>
             </div>
 
             ${renderProductsList()}

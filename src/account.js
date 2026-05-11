@@ -39,7 +39,7 @@ async function apiFetch(path, options = {}) {
 
 // ── Helpers ───────────────────────────────────────────────────────────
 function roleBadge(role) {
-  if (role === 'administrator')
+  if (role === 'admin')
     return `<span class="inline-flex items-center rounded-full bg-stone-950 px-3 py-1 text-xs font-bold uppercase tracking-widest text-white">Administrator</span>`
   if (role === 'moderator')
     return `<span class="inline-flex items-center rounded-full bg-amber-100 px-3 py-1 text-xs font-bold uppercase tracking-widest text-amber-800 ring-1 ring-inset ring-amber-200">Moderator</span>`
@@ -50,7 +50,7 @@ function bigAvatar(user) {
   const initials = (user.displayName || user.username || '?')
     .split(' ').map((w) => w[0]).slice(0, 2).join('').toUpperCase()
   const color =
-    user.role === 'administrator' ? 'bg-stone-950 text-white'
+    user.role === 'admin' ? 'bg-stone-950 text-white'
     : user.role === 'moderator'   ? 'bg-amber-400 text-stone-950'
     :                               'bg-emerald-100 text-emerald-800'
   return `<span class="grid h-20 w-20 place-items-center rounded-full ${color} text-2xl font-semibold" aria-hidden="true">${initials}</span>`

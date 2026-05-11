@@ -94,7 +94,7 @@ function relativeTime(iso) {
 }
 
 function roleBadge(role) {
-  if (role === 'administrator')
+  if (role === 'admin')
     return `<span class="inline-flex items-center rounded-full bg-stone-950 px-2 py-0.5 text-[0.6rem] font-bold uppercase tracking-widest text-white">Admin</span>`
   if (role === 'moderator')
     return `<span class="inline-flex items-center rounded-full bg-amber-100 px-2 py-0.5 text-[0.6rem] font-bold uppercase tracking-widest text-amber-800 ring-1 ring-inset ring-amber-200">Mod</span>`
@@ -106,9 +106,9 @@ function avatar(user, cls = 'h-8 w-8 text-xs') {
   const initials = (user.displayName || user.username || '?')
     .split(' ').map((w) => w[0]).slice(0, 2).join('').toUpperCase()
   const color =
-    user.role === 'administrator' ? 'bg-stone-950 text-white'
-    : user.role === 'moderator'   ? 'bg-amber-400 text-stone-950'
-    :                               'bg-emerald-100 text-emerald-800'
+    user.role === 'admin'       ? 'bg-stone-950 text-white'
+    : user.role === 'moderator' ? 'bg-amber-400 text-stone-950'
+    :                             'bg-emerald-100 text-emerald-800'
   return `<span class="grid ${cls} shrink-0 place-items-center rounded-full ${color} font-semibold" aria-hidden="true">${initials}</span>`
 }
 
@@ -173,7 +173,7 @@ function renderComment(comment, postAuthorId) {
   const author = comment.author
   const commentAuthorId = comment.authorId ?? comment.author_id
   const canDelete = state.user &&
-    (state.user.id === commentAuthorId || state.user.role === 'administrator' || state.user.role === 'moderator')
+    (state.user.id === commentAuthorId || state.user.role === 'admin' || state.user.role === 'moderator')
   const isOP = postAuthorId && commentAuthorId && commentAuthorId === postAuthorId
   return `
     <article class="flex gap-3 border-b border-stone-100 py-4 last:border-b-0" data-comment-id="${comment.id}">
@@ -201,7 +201,7 @@ function renderPostDetail() {
   const { post, comments } = state.currentPost
   const author = post.author
   const canDelete = state.user &&
-    (state.user.id === post.authorId || state.user.role === 'administrator' || state.user.role === 'moderator')
+    (state.user.id === post.authorId || state.user.role === 'admin' || state.user.role === 'moderator')
 
   return `
     <div class="mx-auto max-w-2xl px-5 py-8 lg:px-6">
