@@ -424,89 +424,76 @@ function renderCartContent() {
   const total = getCartTotal()
 
   return `
-    <div class="relative overflow-hidden rounded-2xl bg-gradient-to-br from-stone-950 via-stone-900 to-emerald-950 px-5 py-5 text-stone-50 shadow-[0_20px_50px_-18px_rgba(6,95,70,0.55)] ring-1 ring-inset ring-white/5">
+    <div class="relative flex max-h-[calc(100vh-6rem)] flex-col overflow-hidden rounded-2xl bg-gradient-to-br from-stone-950 via-stone-900 to-emerald-950 text-stone-50 shadow-[0_20px_50px_-18px_rgba(6,95,70,0.55)] ring-1 ring-inset ring-white/5">
       <div aria-hidden="true" class="pointer-events-none absolute -right-12 -top-12 h-32 w-32 rounded-full bg-emerald-500/25 blur-3xl"></div>
-      <div class="relative">
-        <div class="flex items-start justify-between gap-3 border-b border-white/10 pb-4">
-          <div>
-            <p class="text-[0.7rem] font-semibold uppercase tracking-[0.28em] text-emerald-300">Warenkorb</p>
-            <h3 class="font-display mt-2 text-2xl font-semibold">${cartCount} ${cartCount === 1 ? 'Artikel' : 'Artikel'}</h3>
+
+      <!-- Header + actions (sticky top) -->
+      <div class="relative shrink-0 px-4 pb-3 pt-4">
+        <div class="flex items-center justify-between gap-2">
+          <div class="flex items-center gap-2">
+            <p class="text-[0.7rem] font-semibold uppercase tracking-[0.22em] text-emerald-300">Warenkorb</p>
+            <span class="rounded-full bg-white/10 px-2 py-0.5 text-[0.7rem] font-semibold text-white">${cartCount}</span>
           </div>
-          ${
-            cartCount > 0
-              ? `<button type="button" data-action="clear-cart" class="rounded-full border border-white/15 px-3 py-1.5 text-[0.7rem] font-medium text-stone-200 transition hover:border-white/30 hover:bg-white/10">Leeren</button>`
-              : ''
-          }
+          ${cartCount > 0 ? `<button type="button" data-action="clear-cart" class="text-[0.7rem] font-medium text-stone-400 transition hover:text-white">Leeren</button>` : ''}
         </div>
 
-        <div class="mt-4 space-y-4">
-          ${
-            cartItems.length > 0
-              ? cartItems
-                  .map(
-                    (item) => `
-                      <article class="border-b border-white/10 pb-4 last:border-b-0 last:pb-0">
-                        <div class="flex items-start justify-between gap-3">
-                          <div class="min-w-0">
-                            <p class="font-medium text-white">${item.name}</p>
-                            <p class="mt-1 text-xs text-stone-400">${currency.format(item.price)} · ${item.unit}</p>
-                          </div>
-                          <p class="font-display font-semibold text-emerald-300">${currency.format(item.total)}</p>
-                        </div>
-                        <div class="mt-3 flex items-center justify-between gap-3">
-                          <div class="inline-flex items-center gap-1 rounded-full border border-white/10 bg-white/5 p-1">
-                            <button type="button" data-action="decrease" data-id="${item.id}" class="btn-press grid h-7 w-7 place-items-center rounded-full bg-white/10 text-sm text-white transition hover:bg-white/20" aria-label="Menge verringern">−</button>
-                            <span class="min-w-6 text-center text-xs font-semibold text-white">${item.quantity}</span>
-                            <button type="button" data-action="increase" data-id="${item.id}" class="btn-press grid h-7 w-7 place-items-center rounded-full bg-emerald-700 text-sm text-white transition hover:bg-emerald-600" aria-label="Menge erhöhen">+</button>
-                          </div>
-                          <button type="button" data-action="remove" data-id="${item.id}" class="text-xs text-stone-400 transition hover:text-white">Entfernen</button>
-                        </div>
-                      </article>
-                    `,
-                  )
-                  .join('')
-              : `
-                <div class="rounded-xl border border-dashed border-white/15 px-4 py-6 text-center text-sm leading-7 text-stone-300">
-                  <p>Noch nichts im Korb.</p>
-                  <p class="mt-1 text-xs text-stone-400">Füge Produkte hinzu, um zu sehen wie der Einkauf wächst.</p>
-                </div>
-              `
-          }
+        <!-- Total row -->
+        <div class="mt-2 flex items-baseline justify-between gap-2">
+          <span class="text-xs text-stone-400">Gesamt</span>
+          <span class="font-display text-xl font-semibold text-emerald-300">${currency.format(total)}</span>
         </div>
 
-        <div class="mt-5 border-t border-white/10 pt-4">
-          <div class="flex items-center justify-between text-sm text-stone-300">
-            <span>Zwischensumme</span>
-            <span>${currency.format(total)}</span>
-          </div>
-          <div class="mt-2 flex items-center justify-between">
-            <span class="text-base font-semibold text-white">Gesamt</span>
-            <span class="font-display text-2xl font-semibold text-emerald-300">${currency.format(total)}</span>
-          </div>
-          <button type="button" data-action="checkout" class="btn-press mt-4 inline-flex w-full items-center justify-center gap-2 rounded-full bg-emerald-600 px-4 py-3 text-sm font-medium text-white transition hover:bg-emerald-500 disabled:cursor-not-allowed disabled:opacity-50" ${cartCount === 0 ? 'disabled' : ''}>
-            Zur Kasse
-            <span aria-hidden="true">→</span>
+        <!-- Action buttons -->
+        <div class="mt-3 flex flex-col gap-1.5">
+          <button type="button" data-action="checkout" class="btn-press inline-flex w-full items-center justify-center gap-2 rounded-full bg-emerald-600 px-3 py-2 text-xs font-semibold text-white transition hover:bg-emerald-500 disabled:cursor-not-allowed disabled:opacity-50" ${cartCount === 0 ? 'disabled' : ''}>
+            Zur Kasse <span aria-hidden="true">→</span>
           </button>
           ${cartCount > 0 ? `
-          <button type="button" data-action="show-row-list" class="btn-press mt-2 inline-flex w-full items-center justify-center gap-2 rounded-full border border-white/15 bg-white/8 px-4 py-2.5 text-sm font-medium text-stone-200 transition hover:bg-white/15">
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11"/></svg>
+          <button type="button" data-action="show-row-list" class="btn-press inline-flex w-full items-center justify-center gap-1.5 rounded-full border border-white/15 bg-white/8 px-3 py-2 text-xs font-medium text-stone-200 transition hover:bg-white/15">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-3.5 w-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11"/></svg>
             Regalübersicht
           </button>` : ''}
           ${cartCount > 0 && getToken() ? `
-            <form data-action="save-list" class="mt-3 flex gap-2">
-              <input
-                name="list-name"
-                type="text"
-                placeholder="Liste speichern…"
-                maxlength="60"
-                required
-                class="min-w-0 flex-1 rounded-xl border border-white/15 bg-white/10 px-3 py-2 text-sm text-white placeholder:text-stone-400 focus:border-emerald-400 focus:bg-white/15 focus:outline-none"
-              />
-              <button type="submit" class="shrink-0 rounded-full border border-white/20 bg-white/10 px-3 py-2 text-xs font-medium text-stone-200 transition hover:bg-white/20">
-                Merken
-              </button>
-            </form>` : ''}
+          <form data-action="save-list" class="flex gap-1.5">
+            <input name="list-name" type="text" placeholder="Liste speichern…" maxlength="60" required
+              class="min-w-0 flex-1 rounded-full border border-white/15 bg-white/10 px-3 py-2 text-xs text-white placeholder:text-stone-400 focus:border-emerald-400 focus:bg-white/15 focus:outline-none" />
+            <button type="submit" class="shrink-0 rounded-full border border-white/20 bg-white/10 px-3 py-2 text-xs font-medium text-stone-200 transition hover:bg-white/20">
+              Merken
+            </button>
+          </form>` : ''}
         </div>
+      </div>
+
+      <!-- Scrollable items -->
+      <div class="relative min-h-0 flex-1 overflow-y-auto border-t border-white/10 px-4 py-3 [scrollbar-color:rgba(255,255,255,0.15)_transparent] [scrollbar-width:thin]">
+        ${
+          cartItems.length > 0
+            ? `<div class="space-y-3">
+                ${cartItems.map((item) => `
+                  <article class="border-b border-white/8 pb-3 last:border-b-0 last:pb-0">
+                    <div class="flex items-start justify-between gap-2">
+                      <div class="min-w-0">
+                        <p class="text-sm font-medium leading-snug text-white">${item.name}</p>
+                        <p class="mt-0.5 text-[0.7rem] text-stone-400">${currency.format(item.price)} · ${item.unit}</p>
+                      </div>
+                      <p class="shrink-0 text-sm font-semibold text-emerald-300">${currency.format(item.total)}</p>
+                    </div>
+                    <div class="mt-2 flex items-center justify-between gap-2">
+                      <div class="inline-flex items-center gap-1 rounded-full border border-white/10 bg-white/5 p-0.5">
+                        <button type="button" data-action="decrease" data-id="${item.id}" class="btn-press grid h-6 w-6 place-items-center rounded-full bg-white/10 text-xs text-white transition hover:bg-white/20" aria-label="Menge verringern">−</button>
+                        <span class="min-w-5 text-center text-xs font-semibold text-white">${item.quantity}</span>
+                        <button type="button" data-action="increase" data-id="${item.id}" class="btn-press grid h-6 w-6 place-items-center rounded-full bg-emerald-700 text-xs text-white transition hover:bg-emerald-600" aria-label="Menge erhöhen">+</button>
+                      </div>
+                      <button type="button" data-action="remove" data-id="${item.id}" class="text-[0.7rem] text-stone-500 transition hover:text-white">Entfernen</button>
+                    </div>
+                  </article>
+                `).join('')}
+              </div>`
+            : `<div class="rounded-xl border border-dashed border-white/15 px-4 py-6 text-center text-sm leading-7 text-stone-300">
+                <p>Noch nichts im Korb.</p>
+                <p class="mt-1 text-xs text-stone-400">Füge Produkte hinzu, um zu sehen wie der Einkauf wächst.</p>
+              </div>`
+        }
       </div>
     </div>
   `
