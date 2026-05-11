@@ -1,4 +1,4 @@
-import{d as e,i as t,n,o as r,r as i,t as a,u as o}from"./shared-C3l0DA1Y.js";import{t as s}from"./api-CAqj1E_R.js";var c=`foodconnect-cart-v2`,l=`fcm-auth`;function u(){try{return JSON.parse(localStorage.getItem(l))?.token??null}catch{return null}}function d(){try{return JSON.parse(localStorage.getItem(l))?.user??null}catch{return null}}async function f(e,t={}){let n=u(),r=await fetch(`${s}${e}`,{...t,headers:{"Content-Type":`application/json`,...n?{Authorization:`Bearer ${n}`}:{},...t.headers}});if(r.status===204)return null;let i=await r.json().catch(()=>({}));if(!r.ok)throw Error(i.message||`HTTP ${r.status}`);return i}var p=new Intl.NumberFormat(`de-DE`,{style:`currency`,currency:`EUR`}),m=[{value:`Alle`,label:`Alle Bestände`},{value:`fresh`,label:`Frisch geerntet`},{value:`ready`,label:`Sofort verfügbar`},{value:`limited`,label:`Nur kleine Menge`}],h=[{value:`empfohlen`,label:`Empfohlen`},{value:`preis-aufsteigend`,label:`Preis: niedrig zuerst`},{value:`preis-absteigend`,label:`Preis: hoch zuerst`},{value:`name-a-z`,label:`Name A–Z`}],g=document.querySelector(`#app`),_={query:``,category:`Alle`,stock:`Alle`,sort:`empfohlen`,cart:v(),cartDrawerOpen:!1,filtersOpen:!1,checkoutStep:null,checkoutError:``,lastOrder:null};function v(){try{let e=window.localStorage.getItem(c);return e?JSON.parse(e):{}}catch{return{}}}function y(){window.localStorage.setItem(c,JSON.stringify(_.cart))}function b(t){return e.find(e=>e.id===t)}function x(){return Object.entries(_.cart).map(([e,t])=>{let n=b(e);return!n||t<=0?null:{...n,quantity:t,total:n.price*t}}).filter(Boolean)}function S(){return Object.values(_.cart).reduce((e,t)=>e+t,0)}function C(){return x().reduce((e,t)=>e+t.total,0)}function w(){let e=0;return _.query.trim()&&(e+=1),_.category!==`Alle`&&(e+=1),_.stock!==`Alle`&&(e+=1),e}function T(e){return{fresh:3,ready:2,limited:1}[e.stockLevel]+(e.badge===`Heute empfohlen`?2:0)}function E(e){switch(_.sort){case`preis-aufsteigend`:return[...e].sort((e,t)=>e.price-t.price);case`preis-absteigend`:return[...e].sort((e,t)=>t.price-e.price);case`name-a-z`:return[...e].sort((e,t)=>e.name.localeCompare(t.name,`de`));default:return[...e].sort((e,t)=>{let n=T(e),r=T(t);return r===n?e.name.localeCompare(t.name,`de`):r-n})}}function D(){let t=_.query.trim().toLowerCase();return E(e.filter(e=>{let n=_.category===`Alle`||e.category===_.category,r=_.stock===`Alle`||e.stockLevel===_.stock,i=t.length===0||[e.name,e.category,e.origin,e.row,e.stockLabel].join(` `).toLowerCase().includes(t);return n&&r&&i}))}function O(e){_.cart[e]=(_.cart[e]??0)+1,y(),V()}function k(e,t){t<=0?delete _.cart[e]:_.cart[e]=t,y(),V()}function A(){_.cart={},y(),V()}function j(){_.query=``,_.category=`Alle`,_.stock=`Alle`,_.sort=`empfohlen`,V()}function M(e){return{fresh:`border-emerald-200 bg-emerald-50 text-emerald-800`,ready:`border-sky-200 bg-sky-50 text-sky-800`,limited:`border-amber-200 bg-amber-50 text-amber-800`}[e.stockLevel]??`border-stone-200 bg-stone-100 text-stone-700`}function N(e){return{fresh:`bg-emerald-500`,ready:`bg-sky-500`,limited:`bg-amber-500`}[e.stockLevel]??`bg-stone-400`}function P(){let e=w();return`
+import{a as e,c as t,i as n,n as r,r as i,s as a,t as o}from"./shared-BoB6n-5K.js";import{t as s}from"./api-CAqj1E_R.js";var c=`foodconnect-cart-v2`,l=`fcm-auth`;function u(){try{return JSON.parse(localStorage.getItem(l))?.token??null}catch{return null}}function d(){try{return JSON.parse(localStorage.getItem(l))?.user??null}catch{return null}}async function f(e,t={}){let n=u(),r=await fetch(`${s}${e}`,{...t,headers:{"Content-Type":`application/json`,...n?{Authorization:`Bearer ${n}`}:{},...t.headers}});if(r.status===204)return null;let i=await r.json().catch(()=>({}));if(!r.ok)throw Error(i.message||`HTTP ${r.status}`);return i}var p=new Intl.NumberFormat(`de-DE`,{style:`currency`,currency:`EUR`}),m=[{value:`Alle`,label:`Alle Bestände`},{value:`fresh`,label:`Frisch geerntet`},{value:`ready`,label:`Sofort verfügbar`},{value:`limited`,label:`Nur kleine Menge`}],h=[{value:`empfohlen`,label:`Empfohlen`},{value:`preis-aufsteigend`,label:`Preis: niedrig zuerst`},{value:`preis-absteigend`,label:`Preis: hoch zuerst`},{value:`name-a-z`,label:`Name A–Z`}],g=document.querySelector(`#app`),_={query:``,category:`Alle`,stock:`Alle`,sort:`empfohlen`,cart:v(),cartDrawerOpen:!1,filtersOpen:!1,checkoutStep:null,checkoutError:``,lastOrder:null};function v(){try{let e=window.localStorage.getItem(c);return e?JSON.parse(e):{}}catch{return{}}}function y(){window.localStorage.setItem(c,JSON.stringify(_.cart))}function b(e){return t.find(t=>t.id===e)}function x(){return Object.entries(_.cart).map(([e,t])=>{let n=b(e);return!n||t<=0?null:{...n,quantity:t,total:n.price*t}}).filter(Boolean)}function S(){return Object.values(_.cart).reduce((e,t)=>e+t,0)}function C(){return x().reduce((e,t)=>e+t.total,0)}function w(){let e=0;return _.query.trim()&&(e+=1),_.category!==`Alle`&&(e+=1),_.stock!==`Alle`&&(e+=1),e}function T(e){return{fresh:3,ready:2,limited:1}[e.stockLevel]+(e.badge===`Heute empfohlen`?2:0)}function E(e){switch(_.sort){case`preis-aufsteigend`:return[...e].sort((e,t)=>e.price-t.price);case`preis-absteigend`:return[...e].sort((e,t)=>t.price-e.price);case`name-a-z`:return[...e].sort((e,t)=>e.name.localeCompare(t.name,`de`));default:return[...e].sort((e,t)=>{let n=T(e),r=T(t);return r===n?e.name.localeCompare(t.name,`de`):r-n})}}function D(){let e=_.query.trim().toLowerCase();return E(t.filter(t=>{let n=_.category===`Alle`||t.category===_.category,r=_.stock===`Alle`||t.stockLevel===_.stock,i=e.length===0||[t.name,t.category,t.origin,t.row,t.stockLabel].join(` `).toLowerCase().includes(e);return n&&r&&i}))}function O(e){_.cart[e]=(_.cart[e]??0)+1,y(),V()}function k(e,t){t<=0?delete _.cart[e]:_.cart[e]=t,y(),V()}function A(){_.cart={},y(),V()}function j(){_.query=``,_.category=`Alle`,_.stock=`Alle`,_.sort=`empfohlen`,V()}function M(e){return{fresh:`border-emerald-200 bg-emerald-50 text-emerald-800`,ready:`border-sky-200 bg-sky-50 text-sky-800`,limited:`border-amber-200 bg-amber-50 text-amber-800`}[e.stockLevel]??`border-stone-200 bg-stone-100 text-stone-700`}function N(e){return{fresh:`bg-emerald-500`,ready:`bg-sky-500`,limited:`bg-amber-500`}[e.stockLevel]??`bg-stone-400`}function P(){let e=w();return`
     <div>
       <div class="rounded-2xl border border-stone-200 bg-white/85 p-4 shadow-[var(--shadow-sm)]">
         <div class="flex items-center gap-3">
@@ -34,7 +34,7 @@ import{d as e,i as t,n,o as r,r as i,t as a,u as o}from"./shared-C3l0DA1Y.js";im
           <div class="mt-5">
             <p class="text-[0.65rem] font-semibold uppercase tracking-[0.28em] text-stone-500">Kategorie</p>
             <div class="mt-3 flex flex-wrap gap-1.5 lg:flex-col">
-              ${o.map(e=>`
+              ${a.map(e=>`
                     <button
                       type="button"
                       data-action="set-category"
@@ -71,7 +71,7 @@ import{d as e,i as t,n,o as r,r as i,t as a,u as o}from"./shared-C3l0DA1Y.js";im
         </div>
       </div>
     </div>
-  `}function F(e,t){let r=_.cart[e.id]??0;return`
+  `}function F(e,t){let n=_.cart[e.id]??0;return`
     <article class="reveal reveal-d${t%3+1} card-lift group flex h-full flex-col rounded-[1.5rem] border border-stone-200 bg-white/90 p-4 shadow-[var(--shadow-sm)] transition hover:border-emerald-300 hover:shadow-[var(--shadow-md)]">
       <div class="flex flex-wrap items-start justify-between gap-2">
         <span class="rounded-full border border-stone-200 bg-stone-50 px-3 py-1 text-[0.65rem] font-semibold uppercase tracking-[0.2em] text-stone-700">
@@ -86,7 +86,7 @@ import{d as e,i as t,n,o as r,r as i,t as a,u as o}from"./shared-C3l0DA1Y.js";im
       <div class="mt-3 overflow-hidden rounded-[1.1rem] bg-stone-100">
         <img
           src="${e.image}"
-          alt="${n(e.name)}"
+          alt="${r(e.name)}"
           class="aspect-[4/3] w-full object-cover transition duration-500 group-hover:scale-[1.04]"
           loading="lazy"
         />
@@ -114,12 +114,12 @@ import{d as e,i as t,n,o as r,r as i,t as a,u as o}from"./shared-C3l0DA1Y.js";im
       </dl>
 
       <div class="mt-auto pt-5">
-        ${r>0?`
+        ${n>0?`
               <div class="flex items-center justify-between gap-3">
                 <div class="inline-flex items-center gap-1 rounded-full border border-stone-300 bg-stone-50 p-1">
-                  <button type="button" data-action="decrease" data-id="${e.id}" class="btn-press grid h-9 w-9 place-items-center rounded-full bg-white text-lg text-stone-900 transition hover:bg-stone-200" aria-label="Menge für ${n(e.name)} verringern">−</button>
-                  <span class="min-w-8 text-center text-sm font-semibold text-stone-900" aria-live="polite">${r}</span>
-                  <button type="button" data-action="increase" data-id="${e.id}" class="btn-press grid h-9 w-9 place-items-center rounded-full bg-stone-950 text-lg text-white transition hover:bg-emerald-800" aria-label="Menge für ${n(e.name)} erhöhen">+</button>
+                  <button type="button" data-action="decrease" data-id="${e.id}" class="btn-press grid h-9 w-9 place-items-center rounded-full bg-white text-lg text-stone-900 transition hover:bg-stone-200" aria-label="Menge für ${r(e.name)} verringern">−</button>
+                  <span class="min-w-8 text-center text-sm font-semibold text-stone-900" aria-live="polite">${n}</span>
+                  <button type="button" data-action="increase" data-id="${e.id}" class="btn-press grid h-9 w-9 place-items-center rounded-full bg-stone-950 text-lg text-white transition hover:bg-emerald-800" aria-label="Menge für ${r(e.name)} erhöhen">+</button>
                 </div>
                 <p class="text-xs font-semibold text-emerald-800">✓ Im Korb</p>
               </div>
@@ -240,22 +240,22 @@ import{d as e,i as t,n,o as r,r as i,t as a,u as o}from"./shared-C3l0DA1Y.js";im
         <span class="rounded-full bg-emerald-600 px-3 py-1 text-xs font-medium text-white">Ansehen</span>
       </button>
     </div>
-  `}function B(){if(!_.checkoutStep)return``;let e=d(),t=x(),r=C(),i=``;return _.checkoutStep===`confirm`&&(i=`
+  `}function B(){if(!_.checkoutStep)return``;let e=d(),t=x(),n=C(),i=``;return _.checkoutStep===`confirm`&&(i=`
       <div class="mb-5 flex items-center justify-between">
         <h2 class="font-display text-xl font-semibold text-stone-950">Bestellung bestätigen</h2>
         <button data-action="close-checkout" class="grid h-9 w-9 place-items-center rounded-full border border-stone-300 bg-white text-stone-700 hover:bg-stone-100">×</button>
       </div>
       <div class="mb-4 rounded-xl bg-stone-50 p-4 text-sm text-stone-700">
-        <p class="font-semibold text-stone-950 mb-2">Bestellung als <span class="text-emerald-800">${n(e?.username??e?.email??``)}</span></p>
+        <p class="font-semibold text-stone-950 mb-2">Bestellung als <span class="text-emerald-800">${r(e?.username??e?.email??``)}</span></p>
         <div class="space-y-1.5">
           ${t.map(e=>`
             <div class="flex justify-between gap-3">
-              <span>${n(e.name)} <span class="text-stone-400">× ${e.quantity}</span></span>
+              <span>${r(e.name)} <span class="text-stone-400">× ${e.quantity}</span></span>
               <span class="font-medium">${p.format(e.total)}</span>
             </div>`).join(``)}
         </div>
         <div class="mt-3 border-t border-stone-200 pt-3 flex justify-between font-semibold text-stone-950">
-          <span>Gesamt</span><span class="text-emerald-800">${p.format(r)}</span>
+          <span>Gesamt</span><span class="text-emerald-800">${p.format(n)}</span>
         </div>
       </div>
       <p class="mb-5 text-xs text-stone-500">Nach der Bestätigung erhältst du eine Quittung per E-Mail. Keine Zahlung erforderlich.</p>
@@ -278,14 +278,14 @@ import{d as e,i as t,n,o as r,r as i,t as a,u as o}from"./shared-C3l0DA1Y.js";im
         <h2 class="font-display text-xl font-semibold text-stone-950">Fehler</h2>
         <button data-action="close-checkout" class="grid h-9 w-9 place-items-center rounded-full border border-stone-300 bg-white text-stone-700 hover:bg-stone-100">×</button>
       </div>
-      <p class="rounded-xl bg-red-50 px-4 py-3 text-sm text-red-700 ring-1 ring-inset ring-red-200">${n(_.checkoutError)}</p>
+      <p class="rounded-xl bg-red-50 px-4 py-3 text-sm text-red-700 ring-1 ring-inset ring-red-200">${r(_.checkoutError)}</p>
       <button data-action="close-checkout" class="mt-4 w-full rounded-full border border-stone-300 py-3 text-sm font-medium text-stone-700 hover:bg-stone-50">Schließen</button>`),`
     <div class="fixed inset-0 z-50 flex items-end justify-center sm:items-center" role="dialog" aria-modal="true">
       <button data-action="close-checkout" class="absolute inset-0 bg-stone-950/40 backdrop-blur-sm" aria-label="Schließen"></button>
       <div class="relative z-10 w-full max-w-md rounded-t-[2rem] border border-stone-200 bg-[rgba(247,244,238,0.98)] p-6 shadow-[0_-24px_60px_rgba(28,25,23,0.18)] sm:rounded-[2rem]">
         ${i}
       </div>
-    </div>`}function V(){let e=D();S(),g.innerHTML=t({activePage:`food`,hero:i({eyebrow:`Der Gemüseturm`,title:`Produkte aus unserem Vertical Farming.`,intro:`Knackig, frisch und lokal produziert. Filtere nach Kategorie oder Bestand, lege Produkte in den Korb und sieh den Einkauf live wachsen.`}),content:`
+    </div>`}function V(){let t=D();S(),g.innerHTML=n({activePage:`food`,hero:i({eyebrow:`Der Gemüseturm`,title:`Produkte aus unserem Vertical Farming.`,intro:`Knackig, frisch und lokal produziert. Filtere nach Kategorie oder Bestand, lege Produkte in den Korb und sieh den Einkauf live wachsen.`}),content:`
     <section class="px-5 pb-12 lg:px-6 lg:pb-20" aria-labelledby="products-heading">
       <div class="mx-auto max-w-7xl">
         <div class="rounded-2xl border border-stone-200 bg-white/80 p-4 shadow-[var(--shadow-sm)]">
@@ -296,7 +296,7 @@ import{d as e,i as t,n,o as r,r as i,t as a,u as o}from"./shared-C3l0DA1Y.js";im
               <input
                 id="product-search"
                 type="search"
-                value="${n(_.query)}"
+                value="${r(_.query)}"
                 placeholder="z. B. Salat, Basilikum, regional oder frisch"
                 aria-label="Produkte durchsuchen"
                 class="w-full rounded-xl border border-stone-300 bg-stone-50 py-3 pl-11 pr-4 text-stone-900 transition placeholder:text-stone-400 focus:border-emerald-500 focus:bg-white focus:ring-4 focus:ring-emerald-100"
@@ -316,7 +316,7 @@ import{d as e,i as t,n,o as r,r as i,t as a,u as o}from"./shared-C3l0DA1Y.js";im
 
             <div class="mb-4 flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
               <p class="text-sm text-stone-600">
-                <span class="font-display text-xl font-semibold text-stone-950">${e.length}</span> ${e.length===1?`Produkt`:`Produkte`} sichtbar
+                <span class="font-display text-xl font-semibold text-stone-950">${t.length}</span> ${t.length===1?`Produkt`:`Produkte`} sichtbar
               </p>
             </div>
 
@@ -330,4 +330,4 @@ import{d as e,i as t,n,o as r,r as i,t as a,u as o}from"./shared-C3l0DA1Y.js";im
         </div>
       </div>
     </section>
-  `})+R()+z()+B(),r(g)}function H(e){let t=e.target.closest(`[data-action]`);if(!t)return;let{action:n,value:r,id:i}=t.dataset;switch(n){case`toggle-filters`:_.filtersOpen=!_.filtersOpen,V();break;case`set-category`:_.category=r,V();break;case`set-stock`:_.stock=r,V();break;case`clear-filters`:j();break;case`add-to-cart`:O(i);break;case`increase`:k(i,(_.cart[i]??0)+1);break;case`decrease`:k(i,(_.cart[i]??0)-1);break;case`remove`:k(i,0);break;case`clear-cart`:A();break;case`toggle-cart`:_.cartDrawerOpen=!_.cartDrawerOpen,V();break;case`checkout`:if(S()===0)break;if(!d()||!u()){window.location.href=`account.html`;break}_.checkoutStep=`confirm`,_.cartDrawerOpen=!1,V();break;case`confirm-order`:{_.checkoutStep=`loading`,V();let e=x().map(({id:e,name:t,price:n,quantity:r,unit:i})=>({id:e,name:t,price:n,quantity:r,unit:i}));f(`/api/orders`,{method:`POST`,body:JSON.stringify({items:e})}).then(e=>{_.lastOrder=e.order,_.checkoutStep=`success`,A()}).catch(e=>{_.checkoutError=e.message||`Ein Fehler ist aufgetreten.`,_.checkoutStep=`error`,V()}).finally(()=>{_.checkoutStep!==`error`&&V()});break}case`close-checkout`:if(_.checkoutStep===`loading`)break;_.checkoutStep=null,_.checkoutError=``,V();break;default:break}}function U(e){e.target.id===`product-search`&&(_.query=e.target.value,V())}function W(e){e.target.closest(`[data-action="set-sort"]`)&&(_.sort=e.target.value,V())}async function G(e){let t=x().map(({id:e,name:t,price:n,quantity:r,unit:i})=>({id:e,name:t,price:n,quantity:r,unit:i}));if(!(!t.length||!e))try{await f(`/api/lists`,{method:`POST`,body:JSON.stringify({name:e,items:t})})}catch{}}function K(e){let t=e.target.closest(`[data-action="save-list"]`);if(!t)return;e.preventDefault();let n=new FormData(t).get(`list-name`)?.trim();n&&(t.reset(),G(n))}g.addEventListener(`click`,H),g.addEventListener(`input`,U),g.addEventListener(`change`,W),g.addEventListener(`submit`,K),a(g),new URLSearchParams(window.location.search).get(`cart`)===`open`&&(_.cartDrawerOpen=!0,history.replaceState(null,``,window.location.pathname)),V();
+  `})+R()+z()+B(),e(g)}function H(e){let t=e.target.closest(`[data-action]`);if(!t)return;let{action:n,value:r,id:i}=t.dataset;switch(n){case`toggle-filters`:_.filtersOpen=!_.filtersOpen,V();break;case`set-category`:_.category=r,V();break;case`set-stock`:_.stock=r,V();break;case`clear-filters`:j();break;case`add-to-cart`:O(i);break;case`increase`:k(i,(_.cart[i]??0)+1);break;case`decrease`:k(i,(_.cart[i]??0)-1);break;case`remove`:k(i,0);break;case`clear-cart`:A();break;case`toggle-cart`:_.cartDrawerOpen=!_.cartDrawerOpen,V();break;case`checkout`:if(S()===0)break;if(!d()||!u()){window.location.href=`account.html`;break}_.checkoutStep=`confirm`,_.cartDrawerOpen=!1,V();break;case`confirm-order`:{_.checkoutStep=`loading`,V();let e=x().map(({id:e,name:t,price:n,quantity:r,unit:i})=>({id:e,name:t,price:n,quantity:r,unit:i}));f(`/api/orders`,{method:`POST`,body:JSON.stringify({items:e})}).then(e=>{_.lastOrder=e.order,_.checkoutStep=`success`,A()}).catch(e=>{_.checkoutError=e.message||`Ein Fehler ist aufgetreten.`,_.checkoutStep=`error`,V()}).finally(()=>{_.checkoutStep!==`error`&&V()});break}case`close-checkout`:if(_.checkoutStep===`loading`)break;_.checkoutStep=null,_.checkoutError=``,V();break;default:break}}function U(e){e.target.id===`product-search`&&(_.query=e.target.value,V())}function W(e){e.target.closest(`[data-action="set-sort"]`)&&(_.sort=e.target.value,V())}async function G(e){let t=x().map(({id:e,name:t,price:n,quantity:r,unit:i})=>({id:e,name:t,price:n,quantity:r,unit:i}));if(!(!t.length||!e))try{await f(`/api/lists`,{method:`POST`,body:JSON.stringify({name:e,items:t})})}catch{}}function K(e){let t=e.target.closest(`[data-action="save-list"]`);if(!t)return;e.preventDefault();let n=new FormData(t).get(`list-name`)?.trim();n&&(t.reset(),G(n))}g.addEventListener(`click`,H),g.addEventListener(`input`,U),g.addEventListener(`change`,W),g.addEventListener(`submit`,K),o(g),new URLSearchParams(window.location.search).get(`cart`)===`open`&&(_.cartDrawerOpen=!0,history.replaceState(null,``,window.location.pathname)),V();

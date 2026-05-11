@@ -1,20 +1,15 @@
-import{f as e,i as t,o as n,r,t as i}from"./shared-C3l0DA1Y.js";var a=document.querySelector(`#app`);a.innerHTML=t({activePage:`social`,hero:r({eyebrow:`Der ConnectMarkt`,title:`Fünf Etagen für Gemeinschaft, Lernen und Begegnung.`,intro:`Der kreisförmige Turm ist dem sozialen Miteinander gewidmet — barrierefrei gedacht, mehrzweckfähig gebaut, offen für alle.`}),content:`
+import{a as e,i as t,l as n,r,t as i}from"./shared-BoB6n-5K.js";var a=document.querySelector(`#app`);a.innerHTML=t({activePage:`social`,hero:r({eyebrow:`Der ConnectMarkt`,title:`Fünf Etagen für Gemeinschaft, Lernen und Begegnung.`,intro:`Der kreisförmige Turm ist dem sozialen Miteinander gewidmet — barrierefrei gedacht, mehrzweckfähig gebaut, offen für alle.`}),content:`
   <section class="px-5 py-12 lg:px-6 lg:py-20" aria-labelledby="services-heading">
     <div class="mx-auto max-w-7xl">
-      <div class="reveal flex flex-col gap-3 md:flex-row md:items-end md:justify-between">
-        <div>
-          <p class="scroll-hint">Die Angebote</p>
-          <h2 id="services-heading" class="font-display mt-4 text-3xl font-semibold tracking-tight text-stone-950 sm:text-4xl lg:text-5xl">
-            Was im ConnectMarkt passiert.
-          </h2>
-        </div>
-        <p class="max-w-md text-sm leading-7 text-stone-600 md:text-right">
-          Vier zentrale Funktionen, die einander ergänzen — vom niedrigschwelligen Treffpunkt bis zum praktischen Workshop.
-        </p>
+      <div class="reveal">
+        <p class="scroll-hint">Die Angebote</p>
+        <h2 id="services-heading" class="font-display mt-4 text-3xl font-semibold tracking-tight text-stone-950 sm:text-4xl lg:text-5xl">
+          Was im ConnectMarkt passiert.
+        </h2>
       </div>
 
       <div class="mt-10 grid gap-5 md:grid-cols-2">
-        ${e.map((e,t)=>`
+        ${n.map((e,t)=>`
       <article class="reveal reveal-d${t%3+1} card-lift group relative overflow-hidden rounded-[1.75rem] border border-stone-200 bg-white/85 p-6 shadow-[var(--shadow-md)] transition hover:border-amber-300 hover:shadow-[var(--shadow-lg)] md:p-8">
         <div aria-hidden="true" class="pointer-events-none absolute -right-8 -top-8 h-24 w-24 rounded-full bg-amber-200/30 blur-2xl transition group-hover:bg-amber-300/40"></div>
         <div class="relative">
@@ -95,4 +90,4 @@ import{f as e,i as t,o as n,r,t as i}from"./shared-C3l0DA1Y.js";var a=document.q
       </div>
     </div>
   </section>
-`}),i(a),n(a);
+`}),i(a),e(a);
