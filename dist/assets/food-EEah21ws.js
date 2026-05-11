@@ -1,4 +1,4 @@
-import{a as e,c as t,i as n,n as r,r as i,s as a,t as o}from"./shared-DBLgZ_BI.js";import{t as s}from"./api-eHN6Hcp6.js";var c=`foodconnect-cart-v2`,l=`fcm-auth`;function u(){try{return JSON.parse(localStorage.getItem(l))?.token??null}catch{return null}}function d(){try{return JSON.parse(localStorage.getItem(l))?.user??null}catch{return null}}async function f(e,t={}){let n=u(),r=await fetch(`${s}${e}`,{...t,headers:{"Content-Type":`application/json`,...n?{Authorization:`Bearer ${n}`}:{},...t.headers}});if(r.status===204)return null;let i=await r.json().catch(()=>({}));if(!r.ok)throw Error(i.message||`HTTP ${r.status}`);return i}var p=new Intl.NumberFormat(`de-DE`,{style:`currency`,currency:`EUR`}),m=[{value:`Alle`,label:`Alle Bestände`},{value:`fresh`,label:`Frisch geerntet`},{value:`ready`,label:`Sofort verfügbar`},{value:`limited`,label:`Nur kleine Menge`}],h=[{value:`empfohlen`,label:`Empfohlen`},{value:`preis-aufsteigend`,label:`Preis: niedrig zuerst`},{value:`preis-absteigend`,label:`Preis: hoch zuerst`},{value:`name-a-z`,label:`Name A–Z`}],g=document.querySelector(`#app`),_={query:``,category:`Alle`,stock:`Alle`,sort:`empfohlen`,cart:v(),cartDrawerOpen:!1,filtersOpen:!1,checkoutStep:null,checkoutError:``,lastOrder:null,rowListOpen:!1};function v(){try{let e=window.localStorage.getItem(c);return e?JSON.parse(e):{}}catch{return{}}}function y(){window.localStorage.setItem(c,JSON.stringify(_.cart))}function b(e){return t.find(t=>t.id===e)}function x(){return Object.entries(_.cart).map(([e,t])=>{let n=b(e);return!n||t<=0?null:{...n,quantity:t,total:n.price*t}}).filter(Boolean)}function S(){return Object.values(_.cart).reduce((e,t)=>e+t,0)}function C(){return x().reduce((e,t)=>e+t.total,0)}function w(){let e=0;return _.query.trim()&&(e+=1),_.category!==`Alle`&&(e+=1),_.stock!==`Alle`&&(e+=1),e}function T(e){return{fresh:3,ready:2,limited:1}[e.stockLevel]+(e.badge===`Heute empfohlen`?2:0)}function E(e){switch(_.sort){case`preis-aufsteigend`:return[...e].sort((e,t)=>e.price-t.price);case`preis-absteigend`:return[...e].sort((e,t)=>t.price-e.price);case`name-a-z`:return[...e].sort((e,t)=>e.name.localeCompare(t.name,`de`));default:return[...e].sort((e,t)=>{let n=T(e),r=T(t);return r===n?e.name.localeCompare(t.name,`de`):r-n})}}function D(){let e=_.query.trim().toLowerCase();return E(t.filter(t=>{let n=_.category===`Alle`||t.category===_.category,r=_.stock===`Alle`||t.stockLevel===_.stock,i=e.length===0||[t.name,t.category,t.origin,t.row,t.stockLabel].join(` `).toLowerCase().includes(e);return n&&r&&i}))}function O(e){_.cart[e]=(_.cart[e]??0)+1,y(),H()}function k(e,t){t<=0?delete _.cart[e]:_.cart[e]=t,y(),H()}function A(){_.cart={},y(),H()}function j(){_.query=``,_.category=`Alle`,_.stock=`Alle`,_.sort=`empfohlen`,H()}function M(e){return{fresh:`border-emerald-200 bg-emerald-50 text-emerald-800`,ready:`border-sky-200 bg-sky-50 text-sky-800`,limited:`border-amber-200 bg-amber-50 text-amber-800`}[e.stockLevel]??`border-stone-200 bg-stone-100 text-stone-700`}function N(e){return{fresh:`bg-emerald-500`,ready:`bg-sky-500`,limited:`bg-amber-500`}[e.stockLevel]??`bg-stone-400`}function P(){let e=w();return`
+import{a as e,c as t,i as n,n as r,r as i,s as a,t as o}from"./shared-cR3R1ezK.js";import{t as s}from"./api-eHN6Hcp6.js";var c=`foodconnect-cart-v2`,l=`fcm-auth`;function u(){try{return JSON.parse(localStorage.getItem(l))?.token??null}catch{return null}}function d(){try{return JSON.parse(localStorage.getItem(l))?.user??null}catch{return null}}async function f(e,t={}){let n=u(),r=await fetch(`${s}${e}`,{...t,headers:{"Content-Type":`application/json`,...n?{Authorization:`Bearer ${n}`}:{},...t.headers}});if(r.status===204)return null;let i=await r.json().catch(()=>({}));if(!r.ok)throw Error(i.message||`HTTP ${r.status}`);return i}var p=new Intl.NumberFormat(`de-DE`,{style:`currency`,currency:`EUR`}),m=[{value:`Alle`,label:`Alle Bestände`},{value:`fresh`,label:`Frisch geerntet`},{value:`ready`,label:`Sofort verfügbar`},{value:`limited`,label:`Nur kleine Menge`}],h=[{value:`empfohlen`,label:`Empfohlen`},{value:`preis-aufsteigend`,label:`Preis: niedrig zuerst`},{value:`preis-absteigend`,label:`Preis: hoch zuerst`},{value:`name-a-z`,label:`Name A–Z`}],g=document.querySelector(`#app`),_={query:``,category:`Alle`,stock:`Alle`,sort:`empfohlen`,cart:v(),cartDrawerOpen:!1,filtersOpen:!1,checkoutStep:null,checkoutError:``,lastOrder:null,rowListOpen:!1};function v(){try{let e=window.localStorage.getItem(c);return e?JSON.parse(e):{}}catch{return{}}}function y(){window.localStorage.setItem(c,JSON.stringify(_.cart))}function b(e){return t.find(t=>t.id===e)}function x(){return Object.entries(_.cart).map(([e,t])=>{let n=b(e);return!n||t<=0?null:{...n,quantity:t,total:n.price*t}}).filter(Boolean)}function S(){return Object.values(_.cart).reduce((e,t)=>e+t,0)}function C(){return x().reduce((e,t)=>e+t.total,0)}function w(){let e=0;return _.query.trim()&&(e+=1),_.category!==`Alle`&&(e+=1),_.stock!==`Alle`&&(e+=1),e}function T(e){return{fresh:3,ready:2,limited:1}[e.stockLevel]+(e.badge===`Heute empfohlen`?2:0)}function E(e){switch(_.sort){case`preis-aufsteigend`:return[...e].sort((e,t)=>e.price-t.price);case`preis-absteigend`:return[...e].sort((e,t)=>t.price-e.price);case`name-a-z`:return[...e].sort((e,t)=>e.name.localeCompare(t.name,`de`));default:return[...e].sort((e,t)=>{let n=T(e),r=T(t);return r===n?e.name.localeCompare(t.name,`de`):r-n})}}function D(){let e=_.query.trim().toLowerCase();return E(t.filter(t=>{let n=_.category===`Alle`||t.category===_.category,r=_.stock===`Alle`||t.stockLevel===_.stock,i=e.length===0||[t.name,t.category,t.origin,t.row,t.stockLabel].join(` `).toLowerCase().includes(e);return n&&r&&i}))}function O(e){_.cart[e]=(_.cart[e]??0)+1,y(),H()}function k(e,t){t<=0?delete _.cart[e]:_.cart[e]=t,y(),H()}function A(){_.cart={},y(),H()}function j(){_.query=``,_.category=`Alle`,_.stock=`Alle`,_.sort=`empfohlen`,H()}function M(e){return{fresh:`border-emerald-200 bg-emerald-50 text-emerald-800`,ready:`border-sky-200 bg-sky-50 text-sky-800`,limited:`border-amber-200 bg-amber-50 text-amber-800`}[e.stockLevel]??`border-stone-200 bg-stone-100 text-stone-700`}function N(e){return{fresh:`bg-emerald-500`,ready:`bg-sky-500`,limited:`bg-amber-500`}[e.stockLevel]??`bg-stone-400`}function P(){let e=w();return`
     <div>
       <div class="rounded-2xl border border-stone-200 bg-white/85 p-4 shadow-[var(--shadow-sm)]">
         <div class="flex items-center gap-3">
@@ -144,77 +144,72 @@ import{a as e,c as t,i as n,n as r,r as i,s as a,t as o}from"./shared-DBLgZ_BI.j
       ${e.map((e,t)=>F(e,t)).join(``)}
     </div>
   `}function L(){let e=x(),t=S(),n=C();return`
-    <div class="relative overflow-hidden rounded-2xl bg-gradient-to-br from-stone-950 via-stone-900 to-emerald-950 px-5 py-5 text-stone-50 shadow-[0_20px_50px_-18px_rgba(6,95,70,0.55)] ring-1 ring-inset ring-white/5">
+    <div class="relative flex max-h-[calc(100vh-6rem)] flex-col overflow-hidden rounded-2xl bg-gradient-to-br from-stone-950 via-stone-900 to-emerald-950 text-stone-50 shadow-[0_20px_50px_-18px_rgba(6,95,70,0.55)] ring-1 ring-inset ring-white/5">
       <div aria-hidden="true" class="pointer-events-none absolute -right-12 -top-12 h-32 w-32 rounded-full bg-emerald-500/25 blur-3xl"></div>
-      <div class="relative">
-        <div class="flex items-start justify-between gap-3 border-b border-white/10 pb-4">
-          <div>
-            <p class="text-[0.7rem] font-semibold uppercase tracking-[0.28em] text-emerald-300">Warenkorb</p>
-            <h3 class="font-display mt-2 text-2xl font-semibold">${t} Artikel</h3>
+
+      <!-- Header + actions (sticky top) -->
+      <div class="relative shrink-0 px-4 pb-3 pt-4">
+        <div class="flex items-center justify-between gap-2">
+          <div class="flex items-center gap-2">
+            <p class="text-[0.7rem] font-semibold uppercase tracking-[0.22em] text-emerald-300">Warenkorb</p>
+            <span class="rounded-full bg-white/10 px-2 py-0.5 text-[0.7rem] font-semibold text-white">${t}</span>
           </div>
-          ${t>0?`<button type="button" data-action="clear-cart" class="rounded-full border border-white/15 px-3 py-1.5 text-[0.7rem] font-medium text-stone-200 transition hover:border-white/30 hover:bg-white/10">Leeren</button>`:``}
+          ${t>0?`<button type="button" data-action="clear-cart" class="text-[0.7rem] font-medium text-stone-400 transition hover:text-white">Leeren</button>`:``}
         </div>
 
-        <div class="mt-4 space-y-4">
-          ${e.length>0?e.map(e=>`
-                      <article class="border-b border-white/10 pb-4 last:border-b-0 last:pb-0">
-                        <div class="flex items-start justify-between gap-3">
-                          <div class="min-w-0">
-                            <p class="font-medium text-white">${e.name}</p>
-                            <p class="mt-1 text-xs text-stone-400">${p.format(e.price)} · ${e.unit}</p>
-                          </div>
-                          <p class="font-display font-semibold text-emerald-300">${p.format(e.total)}</p>
-                        </div>
-                        <div class="mt-3 flex items-center justify-between gap-3">
-                          <div class="inline-flex items-center gap-1 rounded-full border border-white/10 bg-white/5 p-1">
-                            <button type="button" data-action="decrease" data-id="${e.id}" class="btn-press grid h-7 w-7 place-items-center rounded-full bg-white/10 text-sm text-white transition hover:bg-white/20" aria-label="Menge verringern">−</button>
-                            <span class="min-w-6 text-center text-xs font-semibold text-white">${e.quantity}</span>
-                            <button type="button" data-action="increase" data-id="${e.id}" class="btn-press grid h-7 w-7 place-items-center rounded-full bg-emerald-700 text-sm text-white transition hover:bg-emerald-600" aria-label="Menge erhöhen">+</button>
-                          </div>
-                          <button type="button" data-action="remove" data-id="${e.id}" class="text-xs text-stone-400 transition hover:text-white">Entfernen</button>
-                        </div>
-                      </article>
-                    `).join(``):`
-                <div class="rounded-xl border border-dashed border-white/15 px-4 py-6 text-center text-sm leading-7 text-stone-300">
-                  <p>Noch nichts im Korb.</p>
-                  <p class="mt-1 text-xs text-stone-400">Füge Produkte hinzu, um zu sehen wie der Einkauf wächst.</p>
-                </div>
-              `}
+        <!-- Total row -->
+        <div class="mt-2 flex items-baseline justify-between gap-2">
+          <span class="text-xs text-stone-400">Gesamt</span>
+          <span class="font-display text-xl font-semibold text-emerald-300">${p.format(n)}</span>
         </div>
 
-        <div class="mt-5 border-t border-white/10 pt-4">
-          <div class="flex items-center justify-between text-sm text-stone-300">
-            <span>Zwischensumme</span>
-            <span>${p.format(n)}</span>
-          </div>
-          <div class="mt-2 flex items-center justify-between">
-            <span class="text-base font-semibold text-white">Gesamt</span>
-            <span class="font-display text-2xl font-semibold text-emerald-300">${p.format(n)}</span>
-          </div>
-          <button type="button" data-action="checkout" class="btn-press mt-4 inline-flex w-full items-center justify-center gap-2 rounded-full bg-emerald-600 px-4 py-3 text-sm font-medium text-white transition hover:bg-emerald-500 disabled:cursor-not-allowed disabled:opacity-50" ${t===0?`disabled`:``}>
-            Zur Kasse
-            <span aria-hidden="true">→</span>
+        <!-- Action buttons -->
+        <div class="mt-3 flex flex-col gap-1.5">
+          <button type="button" data-action="checkout" class="btn-press inline-flex w-full items-center justify-center gap-2 rounded-full bg-emerald-600 px-3 py-2 text-xs font-semibold text-white transition hover:bg-emerald-500 disabled:cursor-not-allowed disabled:opacity-50" ${t===0?`disabled`:``}>
+            Zur Kasse <span aria-hidden="true">→</span>
           </button>
           ${t>0?`
-          <button type="button" data-action="show-row-list" class="btn-press mt-2 inline-flex w-full items-center justify-center gap-2 rounded-full border border-white/15 bg-white/8 px-4 py-2.5 text-sm font-medium text-stone-200 transition hover:bg-white/15">
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11"/></svg>
+          <button type="button" data-action="show-row-list" class="btn-press inline-flex w-full items-center justify-center gap-1.5 rounded-full border border-white/15 bg-white/8 px-3 py-2 text-xs font-medium text-stone-200 transition hover:bg-white/15">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-3.5 w-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11"/></svg>
             Regalübersicht
           </button>`:``}
           ${t>0&&u()?`
-            <form data-action="save-list" class="mt-3 flex gap-2">
-              <input
-                name="list-name"
-                type="text"
-                placeholder="Liste speichern…"
-                maxlength="60"
-                required
-                class="min-w-0 flex-1 rounded-xl border border-white/15 bg-white/10 px-3 py-2 text-sm text-white placeholder:text-stone-400 focus:border-emerald-400 focus:bg-white/15 focus:outline-none"
-              />
-              <button type="submit" class="shrink-0 rounded-full border border-white/20 bg-white/10 px-3 py-2 text-xs font-medium text-stone-200 transition hover:bg-white/20">
-                Merken
-              </button>
-            </form>`:``}
+          <form data-action="save-list" class="flex gap-1.5">
+            <input name="list-name" type="text" placeholder="Liste speichern…" maxlength="60" required
+              class="min-w-0 flex-1 rounded-full border border-white/15 bg-white/10 px-3 py-2 text-xs text-white placeholder:text-stone-400 focus:border-emerald-400 focus:bg-white/15 focus:outline-none" />
+            <button type="submit" class="shrink-0 rounded-full border border-white/20 bg-white/10 px-3 py-2 text-xs font-medium text-stone-200 transition hover:bg-white/20">
+              Merken
+            </button>
+          </form>`:``}
         </div>
+      </div>
+
+      <!-- Scrollable items -->
+      <div class="relative min-h-0 flex-1 overflow-y-auto border-t border-white/10 px-4 py-3 [scrollbar-color:rgba(255,255,255,0.15)_transparent] [scrollbar-width:thin]">
+        ${e.length>0?`<div class="space-y-3">
+                ${e.map(e=>`
+                  <article class="border-b border-white/8 pb-3 last:border-b-0 last:pb-0">
+                    <div class="flex items-start justify-between gap-2">
+                      <div class="min-w-0">
+                        <p class="text-sm font-medium leading-snug text-white">${e.name}</p>
+                        <p class="mt-0.5 text-[0.7rem] text-stone-400">${p.format(e.price)} · ${e.unit}</p>
+                      </div>
+                      <p class="shrink-0 text-sm font-semibold text-emerald-300">${p.format(e.total)}</p>
+                    </div>
+                    <div class="mt-2 flex items-center justify-between gap-2">
+                      <div class="inline-flex items-center gap-1 rounded-full border border-white/10 bg-white/5 p-0.5">
+                        <button type="button" data-action="decrease" data-id="${e.id}" class="btn-press grid h-6 w-6 place-items-center rounded-full bg-white/10 text-xs text-white transition hover:bg-white/20" aria-label="Menge verringern">−</button>
+                        <span class="min-w-5 text-center text-xs font-semibold text-white">${e.quantity}</span>
+                        <button type="button" data-action="increase" data-id="${e.id}" class="btn-press grid h-6 w-6 place-items-center rounded-full bg-emerald-700 text-xs text-white transition hover:bg-emerald-600" aria-label="Menge erhöhen">+</button>
+                      </div>
+                      <button type="button" data-action="remove" data-id="${e.id}" class="text-[0.7rem] text-stone-500 transition hover:text-white">Entfernen</button>
+                    </div>
+                  </article>
+                `).join(``)}
+              </div>`:`<div class="rounded-xl border border-dashed border-white/15 px-4 py-6 text-center text-sm leading-7 text-stone-300">
+                <p>Noch nichts im Korb.</p>
+                <p class="mt-1 text-xs text-stone-400">Füge Produkte hinzu, um zu sehen wie der Einkauf wächst.</p>
+              </div>`}
       </div>
     </div>
   `}function R(){return`

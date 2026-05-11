@@ -1,4 +1,4 @@
-import{a as e,i as t,r as n,t as r}from"./shared-DBLgZ_BI.js";var i=document.querySelector(`#app`);i.innerHTML=t({activePage:null,hero:n({eyebrow:`Rechtliches`,title:`Impressum`}),content:`
+import{a as e,i as t,r as n,t as r}from"./shared-cR3R1ezK.js";var i=document.querySelector(`#app`);i.innerHTML=t({activePage:null,hero:n({eyebrow:`Rechtliches`,title:`Impressum`}),content:`
   <section class="px-5 pb-16 lg:px-6 lg:pb-24" aria-labelledby="impressum-heading">
     <div class="mx-auto max-w-3xl">
       <div class="prose-like space-y-10">
