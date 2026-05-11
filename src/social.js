@@ -19,36 +19,11 @@ const accentMap = {
   sky: 'bg-sky-400/90',
 }
 
-const heroSupportingCard = `
-  <p class="text-[0.7rem] font-semibold uppercase tracking-[0.3em] text-amber-300">Aufbau des ConnectMarkts</p>
-  <h2 class="font-display mt-4 text-2xl font-semibold tracking-tight">5 Etagen, ein Konzept</h2>
-  <ol class="mt-6 space-y-0" role="list">
-    ${floors
-      .slice()
-      .reverse()
-      .map(
-        (floor, i, arr) => `
-          <li class="floor-row flex items-center gap-4 rounded-lg border-b border-white/10 py-3 last:border-b-0">
-            <span aria-hidden="true" class="grid h-9 w-9 shrink-0 place-items-center rounded-full ${accentMap[floor.accent]} text-xs font-bold text-stone-950">
-              ${floor.label}
-            </span>
-            <div class="min-w-0 flex-1">
-              <p class="text-sm font-semibold text-white">${floor.title}</p>
-              <p class="mt-0.5 text-xs leading-5 text-stone-300">${floor.text}</p>
-            </div>
-          </li>
-        `,
-      )
-      .join('')}
-  </ol>
-`
-
 const hero = renderHero({
   eyebrow: 'Der ConnectMarkt',
   title: 'Fünf Etagen für Gemeinschaft, Lernen und Begegnung.',
   intro:
     'Der kreisförmige Turm ist dem sozialen Miteinander gewidmet — barrierefrei gedacht, mehrzweckfähig gebaut, offen für alle.',
-  supportingCard: heroSupportingCard,
 })
 
 const accessibilityHighlights = [
@@ -178,6 +153,59 @@ const content = `
 
       <div class="mt-10 grid gap-5 md:grid-cols-2">
         ${serviceCards}
+      </div>
+    </div>
+  </section>
+
+  <section class="px-5 py-12 lg:px-6 lg:py-20" aria-labelledby="contact-heading">
+    <div class="mx-auto max-w-7xl">
+      <div class="reveal relative overflow-hidden rounded-[1.75rem] bg-gradient-to-br from-stone-950 via-stone-900 to-emerald-950 p-8 shadow-[0_30px_80px_-20px_rgba(6,95,70,0.45)] ring-1 ring-inset ring-white/5 sm:p-12">
+        <div aria-hidden="true" class="pointer-events-none absolute -right-16 -top-16 h-52 w-52 rounded-full bg-emerald-500/20 blur-3xl"></div>
+        <div aria-hidden="true" class="pointer-events-none absolute -bottom-20 -left-12 h-40 w-40 rounded-full bg-amber-400/15 blur-3xl"></div>
+        <div class="relative grid gap-8 lg:grid-cols-[1fr_auto] lg:items-center">
+          <div>
+            <p class="text-[0.7rem] font-semibold uppercase tracking-[0.3em] text-amber-300">Kontakt & Buchung</p>
+            <h2 id="contact-heading" class="font-display mt-4 text-3xl font-semibold tracking-tight text-white sm:text-4xl">
+              Räume buchen — für Feiern, Kurse & mehr.
+            </h2>
+            <p class="mt-5 max-w-xl text-base leading-8 text-stone-300">
+              Die Seminarräume des ConnectMarkts stehen für Geburtstagsfeiern, Vereinstreffen, Nachhilfekurse und private Veranstaltungen offen. Bei Fragen zur Buchung oder für ein individuelles Angebot melde dich direkt bei uns.
+            </p>
+            <ul class="mt-6 space-y-3 text-sm text-stone-300">
+              <li class="flex items-center gap-3">
+                <span aria-hidden="true" class="grid h-8 w-8 shrink-0 place-items-center rounded-full bg-emerald-500/20 text-emerald-300 ring-1 ring-inset ring-emerald-400/30">✓</span>
+                Geburtstage & private Feiern
+              </li>
+              <li class="flex items-center gap-3">
+                <span aria-hidden="true" class="grid h-8 w-8 shrink-0 place-items-center rounded-full bg-emerald-500/20 text-emerald-300 ring-1 ring-inset ring-emerald-400/30">✓</span>
+                Vereins- und Gruppentreffen
+              </li>
+              <li class="flex items-center gap-3">
+                <span aria-hidden="true" class="grid h-8 w-8 shrink-0 place-items-center rounded-full bg-emerald-500/20 text-emerald-300 ring-1 ring-inset ring-emerald-400/30">✓</span>
+                Kurse, Workshops & Nachhilfe
+              </li>
+            </ul>
+          </div>
+          <div class="flex flex-col items-start gap-4 lg:items-end">
+            <div class="rounded-2xl border border-white/10 bg-white/5 px-6 py-5">
+              <p class="text-xs font-semibold uppercase tracking-[0.25em] text-stone-400">Schreib uns</p>
+              <a
+                href="mailto:info@bredelicious.de"
+                class="mt-2 block font-display text-xl font-semibold text-white transition hover:text-emerald-300 sm:text-2xl"
+              >
+                info@bredelicious.de
+              </a>
+              <p class="mt-1 text-xs text-stone-500">Wir antworten in der Regel innerhalb von 48 Stunden.</p>
+            </div>
+            <a
+              href="mailto:info@bredelicious.de"
+              class="btn-press inline-flex items-center gap-2 rounded-full bg-emerald-600 px-6 py-3 text-sm font-semibold text-white shadow-[0_10px_28px_-10px_rgba(16,185,129,0.5)] transition hover:bg-emerald-500"
+            >
+              Anfrage senden
+              <span aria-hidden="true">→</span>
+            </a>
+          </div>
+        </div>
       </div>
     </div>
   </section>
