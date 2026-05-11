@@ -72,6 +72,9 @@ const state = {
   error: '',
   registered: false,
   resetSent: false,
+  savedLists: [],
+  savedListsLoading: false,
+  savedListsError: '',
 }
 
 const app = document.querySelector('#app')
@@ -206,6 +209,53 @@ function renderAuth() {
     </div>`
 }
 
+function renderSavedListsSection() {
+  const fmt = new Intl.DateTimeFormat('de-DE', { day: '2-digit', month: '2-digit', year: '2-digit' })
+  const lists = state.savedLists
+
+  return `
+    <div class="mt-6 rounded-[2rem] border border-stone-200 bg-white/90 p-6 shadow-[var(--shadow-md)]">
+      <h3 class="font-display text-lg font-semibold text-stone-950">Einkaufslisten</h3>
+      <p class="mt-1 text-xs text-stone-500">Gespeicherte Körbe — per Klick in den Shop laden.</p>
+
+      ${state.savedListsError ? `<p class="mt-3 rounded-xl bg-red-50 px-4 py-2.5 text-xs text-red-700 ring-1 ring-inset ring-red-200">${state.savedListsError}</p>` : ''}
+
+      ${state.savedListsLoading
+        ? `<p class="mt-4 text-center text-xs text-stone-400">Laden…</p>`
+        : lists.length === 0
+          ? `<p class="mt-4 text-center text-xs text-stone-400">Noch keine gespeicherten Listen.</p>`
+          : `<div class="mt-4 space-y-2">
+              ${lists.map((list) => {
+                const items = typeof list.items === 'string' ? JSON.parse(list.items) : list.items
+                const totalQty = items.reduce((s, i) => s + (i.quantity || 1), 0)
+                const totalVal = items.reduce((s, i) => s + (i.price || 0) * (i.quantity || 1), 0)
+                const curr = new Intl.NumberFormat('de-DE', { style: 'currency', currency: 'EUR' })
+                return `
+                  <div class="flex items-center gap-3 rounded-xl border border-stone-200 bg-stone-50 px-4 py-3">
+                    <div class="min-w-0 flex-1">
+                      <p class="truncate text-sm font-semibold text-stone-950">${list.name}</p>
+                      <p class="mt-0.5 text-xs text-stone-500">${totalQty} Artikel · ${curr.format(totalVal)} · ${fmt.format(new Date(list.created_at))}</p>
+                    </div>
+                    <div class="flex shrink-0 gap-1.5">
+                      <button type="button" data-action="load-list" data-list='${JSON.stringify(list)}'
+                        class="rounded-full border border-emerald-300 bg-emerald-50 px-3 py-1.5 text-xs font-medium text-emerald-800 transition hover:bg-emerald-100">
+                        Laden
+                      </button>
+                      <button type="button" data-action="delete-list" data-id="${list.id}"
+                        aria-label="Liste löschen"
+                        class="grid h-8 w-8 place-items-center rounded-full border border-stone-300 bg-white text-stone-400 transition hover:border-red-300 hover:bg-red-50 hover:text-red-600">
+                        ×
+                      </button>
+                    </div>
+                  </div>`
+              }).join('')}
+            </div>`
+      }
+
+      <p class="mt-4 text-center text-xs text-stone-400">Listen im <a href="food.html" class="font-medium text-emerald-700 underline-offset-2 hover:underline">Food-Shop</a> aus dem Warenkorb speichern.</p>
+    </div>`
+}
+
 function renderProfile(user) {
   return `
     <div class="mx-auto max-w-sm px-5 py-12 lg:px-6">
@@ -222,6 +272,7 @@ function renderProfile(user) {
           <button data-action="delete-account" class="w-full rounded-full border border-red-200 py-2.5 text-sm font-medium text-red-600 transition hover:border-red-400 hover:bg-red-50">Konto löschen</button>
         </div>
       </div>
+      ${renderSavedListsSection()}
     </div>`
 }
 
@@ -234,6 +285,50 @@ function render() {
   })
   setupRevealObserver(app)
   bindPageSelect(app)
+}
+
+// ── Saved lists ───────────────────────────────────────────────────────
+async function fetchSavedLists() {
+  if (!getToken()) return
+  state.savedListsLoading = true
+  render()
+  try {
+    const data = await apiFetch('/api/lists')
+    state.savedLists = data.lists ?? []
+    state.savedListsError = ''
+  } catch (err) {
+    state.savedListsError = err.message || 'Fehler beim Laden der Listen.'
+  } finally {
+    state.savedListsLoading = false
+    render()
+  }
+}
+
+async function deleteSavedList(listId) {
+  try {
+    await apiFetch(`/api/lists/${listId}`, { method: 'DELETE' })
+    state.savedLists = state.savedLists.filter((l) => l.id !== listId)
+    state.savedListsError = ''
+  } catch (err) {
+    state.savedListsError = err.message || 'Löschen fehlgeschlagen.'
+  }
+  render()
+}
+
+function loadListIntoCart(listJson) {
+  try {
+    const list = typeof listJson === 'string' ? JSON.parse(listJson) : listJson
+    const items = typeof list.items === 'string' ? JSON.parse(list.items) : list.items
+    const cart = {}
+    for (const item of items) {
+      if (item.id && item.quantity > 0) cart[item.id] = item.quantity
+    }
+    localStorage.setItem('foodconnect-cart-v2', JSON.stringify(cart))
+    window.location.href = 'food.html?cart=open'
+  } catch {
+    state.savedListsError = 'Liste konnte nicht geladen werden.'
+    render()
+  }
 }
 
 // ── Init ──────────────────────────────────────────────────────────────
@@ -249,6 +344,7 @@ async function init() {
     }
   }
   render()
+  if (state.user) fetchSavedLists()
 }
 
 // ── Handlers ──────────────────────────────────────────────────────────
@@ -272,6 +368,16 @@ app.addEventListener('click', async (e) => {
     state.user = null
     state.error = ''
     render()
+  }
+
+  if (action === 'load-list') {
+    loadListIntoCart(el.dataset.list)
+    return
+  }
+
+  if (action === 'delete-list') {
+    deleteSavedList(el.dataset.id)
+    return
   }
 
   if (action === 'delete-account') {

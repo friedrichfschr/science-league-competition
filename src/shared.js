@@ -94,24 +94,46 @@ function renderMobilePageSelect(activePage) {
   `
 }
 
+function getCartCountFromStorage() {
+  try {
+    const raw = localStorage.getItem('foodconnect-cart-v2')
+    if (!raw) return 0
+    const cart = JSON.parse(raw)
+    return Object.values(cart).reduce((sum, qty) => sum + (qty > 0 ? qty : 0), 0)
+  } catch {
+    return 0
+  }
+}
+
 export function renderHeader(activePage) {
   return `
     <a href="#main-content" class="skip-link">Zum Inhalt springen</a>
     <header class="sticky top-0 z-40 border-b border-stone-200/70 bg-[rgba(247,244,238,0.82)] backdrop-blur-md">
       <div class="mx-auto flex max-w-7xl items-center gap-4 px-5 py-3.5 lg:px-6">
-        <a href="index.html" class="flex min-w-0 items-center gap-3 rounded-2xl" aria-label="${competitionFacts.brand} Startseite">
-          <div class="group relative grid h-11 w-11 place-items-center rounded-2xl bg-gradient-to-br from-emerald-600 to-emerald-800 text-sm font-semibold text-white shadow-[0_6px_20px_-6px_rgba(6,95,70,0.55)] transition group-hover:shadow-[0_10px_26px_-6px_rgba(6,95,70,0.6)]">
-            <span aria-hidden="true" class="font-display">FC</span>
-            <span class="visually-hidden">FoodConnect</span>
-          </div>
-          <div class="min-w-0">
-            <p class="truncate text-[0.68rem] font-semibold uppercase tracking-[0.3em] text-emerald-800">${competitionFacts.brand}</p>
-            <p class="truncate text-sm text-stone-700">${competitionFacts.title}</p>
-          </div>
+        <a href="index.html" class="min-w-0 rounded-lg" aria-label="${competitionFacts.brand} Startseite">
+          <p class="truncate text-[0.68rem] font-semibold uppercase tracking-[0.3em] text-emerald-800">${competitionFacts.brand}</p>
+          <p class="truncate text-sm text-stone-700">${competitionFacts.title}</p>
         </a>
 
         ${renderDesktopNav(activePage)}
         ${renderMobilePageSelect(activePage)}
+        ${(() => {
+          const cartCount = getCartCountFromStorage()
+          const btnClass = `relative grid h-9 w-9 shrink-0 place-items-center rounded-full border border-stone-300 bg-white text-stone-700 text-xs font-semibold transition hover:bg-stone-50`
+          const cartIcon = `
+            <span aria-hidden="true">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/>
+                <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/>
+              </svg>
+            </span>
+            ${cartCount > 0 ? `<span class="absolute -right-1 -top-1 flex h-4 min-w-4 items-center justify-center rounded-full bg-emerald-600 px-1 text-[0.6rem] font-bold text-white leading-none">${cartCount > 99 ? '99+' : cartCount}</span>` : ''}
+          `
+          if (activePage === 'food') {
+            return `<button type="button" data-action="toggle-cart" aria-label="Warenkorb öffnen" id="cart-nav-btn" class="${btnClass}">${cartIcon}</button>`
+          }
+          return `<a href="food.html?cart=open" aria-label="Warenkorb${cartCount > 0 ? ` (${cartCount} Artikel)` : ''}" id="cart-nav-btn" class="${btnClass}">${cartIcon}</a>`
+        })()}
         <a
           href="account.html"
           aria-label="Konto"

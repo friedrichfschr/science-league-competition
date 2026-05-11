@@ -154,7 +154,7 @@ function getFilteredProducts() {
     const stockMatch = state.stock === 'Alle' || product.stockLevel === state.stock
     const queryMatch =
       query.length === 0 ||
-      [product.name, product.category, product.origin, product.stockLabel]
+      [product.name, product.category, product.origin, product.row, product.stockLabel]
         .join(' ')
         .toLowerCase()
         .includes(query)
@@ -353,7 +353,13 @@ function renderProductCard(product, index) {
         <h3 class="font-display text-2xl font-semibold text-stone-950">${product.name}</h3>
       </div>
 
-      <dl class="mt-4 grid grid-cols-2 gap-3 border-t border-stone-200 pt-3 text-sm">
+      <div class="mt-3 flex items-center gap-2">
+        <span class="inline-flex items-center gap-1 rounded-full border border-stone-300 bg-stone-50 px-2.5 py-1 text-xs font-semibold text-stone-700">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-3 w-3 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          Reihe ${product.row}
+        </span>
+      </div>
+      <dl class="mt-3 grid grid-cols-2 gap-3 border-t border-stone-200 pt-3 text-sm">
         <div>
           <dt class="text-xs text-stone-500">Preis</dt>
           <dd class="mt-1 font-display text-lg font-semibold text-stone-950">${currency.format(product.price)}</dd>
@@ -361,10 +367,6 @@ function renderProductCard(product, index) {
         <div>
           <dt class="text-xs text-stone-500">Einheit</dt>
           <dd class="mt-1 text-sm font-medium text-stone-800">${product.unit}</dd>
-        </div>
-        <div class="col-span-2">
-          <dt class="text-xs text-stone-500">Herkunft</dt>
-          <dd class="mt-1 text-sm font-medium text-stone-800">${product.origin}</dd>
         </div>
       </dl>
 
@@ -484,6 +486,20 @@ function renderCartContent() {
             Zur Kasse
             <span aria-hidden="true">→</span>
           </button>
+          ${cartCount > 0 && getToken() ? `
+            <form data-action="save-list" class="mt-3 flex gap-2">
+              <input
+                name="list-name"
+                type="text"
+                placeholder="Liste speichern…"
+                maxlength="60"
+                required
+                class="min-w-0 flex-1 rounded-xl border border-white/15 bg-white/10 px-3 py-2 text-sm text-white placeholder:text-stone-400 focus:border-emerald-400 focus:bg-white/15 focus:outline-none"
+              />
+              <button type="submit" class="shrink-0 rounded-full border border-white/20 bg-white/10 px-3 py-2 text-xs font-medium text-stone-200 transition hover:bg-white/20">
+                Merken
+              </button>
+            </form>` : ''}
         </div>
       </div>
     </div>
@@ -781,9 +797,41 @@ function handleChange(event) {
   }
 }
 
+async function handleSaveList(name) {
+  const items = getCartItems().map(({ id, name: n, price, quantity, unit }) => ({ id, name: n, price, quantity, unit }))
+  if (!items.length || !name) return
+  try {
+    await apiFetch('/api/lists', {
+      method: 'POST',
+      body: JSON.stringify({ name, items }),
+    })
+  } catch {
+    // Silently fail — user can retry from account page
+  }
+}
+
+function handleSubmit(event) {
+  const form = event.target.closest('[data-action="save-list"]')
+  if (!form) return
+  event.preventDefault()
+  const name = new FormData(form).get('list-name')?.trim()
+  if (!name) return
+  form.reset()
+  handleSaveList(name)
+}
+
 app.addEventListener('click', handleClick)
 app.addEventListener('input', handleInput)
 app.addEventListener('change', handleChange)
+app.addEventListener('submit', handleSubmit)
 
 bindPageSelect(app)
+
+// Open cart drawer immediately if arriving via the header cart button from another page
+if (new URLSearchParams(window.location.search).get('cart') === 'open') {
+  state.cartDrawerOpen = true
+  // Clean the URL without a page reload
+  history.replaceState(null, '', window.location.pathname)
+}
+
 render()
