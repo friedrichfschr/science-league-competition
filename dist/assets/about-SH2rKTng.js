@@ -34,11 +34,11 @@ import{a as e,i as t,o as n,t as r,u as i}from"./shared-DooSE0Yt.js";import{t as
 
         <!-- Subtle image column — desktop only -->
         <div class="hero-rise hero-rise-d4 hidden lg:flex lg:flex-col lg:gap-2.5" aria-hidden="true">
-          <img src="https://images.unsplash.com/photo-1542838132-92c53300491e?w=300&q=70"
+          <img src="/images/products/kirschtomaten.jpg"
             alt="" class="w-full rounded-2xl object-cover opacity-70 ring-1 ring-stone-200" style="aspect-ratio:4/3" />
-          <img src="https://images.unsplash.com/photo-1530836369250-ef72a3f5cda8?w=300&q=70"
+          <img src="/images/products/karotten.jpg"
             alt="" class="w-full rounded-2xl object-cover opacity-70 ring-1 ring-stone-200" style="aspect-ratio:4/3" />
-          <img src="https://images.unsplash.com/photo-1416879595882-3373a0480b5b?w=300&q=70"
+          <img src="/images/products/basilikum.jpg"
             alt="" class="w-full rounded-2xl object-cover opacity-70 ring-1 ring-stone-200" style="aspect-ratio:4/3" />
         </div>
 
